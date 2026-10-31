@@ -5,7 +5,17 @@ import { skickaBokning } from "@/lib/bokning";
 import { FORETAG } from "@/lib/foretag";
 import { metaKonvertering } from "@/lib/samtycke";
 import { bokningSkickad, bokningSteg } from "@/lib/sparning";
-import { TJANSTER } from "@/lib/tjanster";
+import { DELAR } from "@/lib/priser";
+import { delForTjanst } from "@/lib/tjanster";
+
+/** Valen i formuläret: de fyra delarna i prislistan, t.ex. "Studio – bilder och video". */
+const KORT: Record<string, string> = {
+  studio: "bilder och video",
+  annonser: "Facebook och Instagram",
+  synlighet: "SEO och GEO",
+  webb: "hemsida",
+};
+const VAL = DELAR.map((d) => ({ id: d.id, etikett: `${d.namn} – ${KORT[d.id] ?? d.vad}` }));
 
 // Bokningsformuläret, en fråga i taget. Det lätta (vad ni vill ha hjälp med) kommer först och
 // kontaktuppgifterna sist, när besökaren redan har kommit en bit. Varje steg är ett eget
@@ -40,7 +50,7 @@ export function Bokningsformular({
   const [skickar, setSkickar] = useState(false);
   const [fel, setFel] = useState(false);
   const [svar, setSvar] = useState<Svar>(() => ({
-    tjanster: TJANSTER.filter((t) => t.slug === tjanst).map((t) => t.titel),
+    tjanster: VAL.filter((v) => v.id === delForTjanst(tjanst)).map((v) => v.etikett),
     meddelande: meddelande ?? "",
     webbplats: "",
     namn: "",
@@ -140,18 +150,18 @@ export function Bokningsformular({
             hjalp="Välj så många ni vill, eller gå vidare direkt."
           >
             <div className="flex flex-wrap gap-2">
-              {TJANSTER.map((t) => (
+              {VAL.map((t) => (
                 <label
-                  key={t.slug}
+                  key={t.id}
                   className="flex min-h-11 cursor-pointer items-center rounded-full border-2 border-line px-4 py-2 text-sm font-bold transition-colors duration-200 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand has-[:checked]:text-white has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-light"
                 >
                   <input
                     type="checkbox"
-                    checked={svar.tjanster.includes(t.titel)}
-                    onChange={() => vaxla(t.titel)}
+                    checked={svar.tjanster.includes(t.etikett)}
+                    onChange={() => vaxla(t.etikett)}
                     className="sr-only"
                   />
-                  {t.titel}
+                  {t.etikett}
                 </label>
               ))}
             </div>

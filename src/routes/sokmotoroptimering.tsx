@@ -28,12 +28,10 @@ import { FramtidaLank } from "@/components/FramtidaLank";
 import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
-import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { LOKAL_SEO } from "@/lib/lokal-seo";
-import { BINDNING_TEXT, kr, MOMS_TEXT, PRIS, SYNLIGHET } from "@/lib/priser";
 import { SEO_BYRA } from "@/lib/seo-byra";
 import { SOKMOTOROPTIMERING, SOKMOTOROPTIMERING_FRAGOR } from "@/lib/sokmotoroptimering";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
@@ -269,29 +267,6 @@ const INNEHALL = [
   "Länkar till relaterade sidor och guider",
   "En naturlig väg till kontakt eller offert",
 ] as const;
-
-const STEG: readonly Steg[] = [
-  {
-    titel: "Gratis genomgång",
-    text: "Företaget, målgruppen, hemsidan och vad ni vill uppnå.",
-  },
-  {
-    titel: "SEO-analys",
-    text: "Teknik, innehåll och vilka sökningar ni syns för i dag.",
-  },
-  {
-    titel: "Sökordsstrategi",
-    text: "Vilka sökningar och sidor som ger mest för er, i prioritetsordning.",
-  },
-  {
-    titel: "Åtgärder",
-    text: "Teknisk SEO, metadata, internlänkar och innehåll enligt överenskommelse.",
-  },
-  {
-    titel: "Uppföljning",
-    text: "Månadsrapport och nästa steg utifrån vad som faktiskt ger resultat.",
-  },
-];
 
 const UPPFOLJNING: readonly Kort[] = [
   {
@@ -656,7 +631,7 @@ function Sokmotoroptimering() {
               Google.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Till höger ser ni hur vår egen sajt är uppbyggd.
+              Så här är vår egen sajt uppbyggd.
             </p>
             <div className="mt-8">
               <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "struktur")}>
@@ -766,86 +741,6 @@ function Sokmotoroptimering() {
                 <ArrowRight className="size-4" aria-hidden="true" />
               </FramtidaLank>
             </article>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section aria-labelledby="process" className="container-page py-14 sm:py-20">
-        <Reveal>
-          <p className="eyebrow">Så arbetar vi</p>
-          <h2 id="process" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-            Så hjälper vi ert företag med SEO – <Mark>steg för steg</Mark>
-          </h2>
-        </Reveal>
-        <Reveal delay={80} className="mt-10">
-          <Stegliste steg={STEG} rad />
-        </Reveal>
-        <Reveal delay={120} className="mt-10">
-          <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "process")} />
-        </Reveal>
-      </section>
-
-      {/* Pris */}
-      <section aria-labelledby="pris-rubrik" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-          <Reveal>
-            <p className="eyebrow">Pris</p>
-            <h2 id="pris-rubrik" className="mt-4 text-4xl sm:text-5xl">
-              Vad kostar sökmotoroptimering för <Mark>företag</Mark>?
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-ink/80">
-              Det beror på sajtens storlek, konkurrensen och hur mycket som behöver göras. För många
-              räcker en avgränsad start: sökorden och de viktigaste sidorna. Andra behöver löpande
-              arbete med innehåll, teknik och uppföljning.
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              Mer om hur ett samarbete går till finns på sidan om att{" "}
-              <Link to={SEO_BYRA.sokvag} className={LANK}>
-                anlita en SEO-byrå
-              </Link>
-              .
-            </p>
-          </Reveal>
-          <Reveal delay={80}>
-            <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
-              <dl className="divide-y divide-white/15">
-                <div className="pb-4">
-                  <dt className="text-white/80">Grundoptimering av SEO och GEO, engång</dt>
-                  <dd className="mt-1 font-display text-4xl">
-                    <span className="text-2xl">från </span>
-                    {kr(PRIS.grundoptimering)}
-                  </dd>
-                </div>
-                {SYNLIGHET.nivaer.map((p) => (
-                  <div
-                    key={p.id}
-                    className="flex flex-wrap items-baseline justify-between gap-x-4 py-3"
-                  >
-                    <dt>
-                      <span className="font-bold">{p.namn}</span>
-                      <span className="block text-sm text-white/70">{p.ingar[0]}</span>
-                    </dt>
-                    <dd className="font-display text-2xl">
-                      {kr(p.belopp)}
-                      <span className="text-base text-white/70">/mån</span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-4 text-sm leading-relaxed text-white/70">
-                Löpande nivå föreslår vi efter genomgången. Rapport varje månad ingår.{" "}
-                {BINDNING_TEXT} {MOMS_TEXT}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
-                  Få prisförslag på sökmotoroptimering
-                </BokaKnapp>
-                <Link to="/priser" className="btn-base btn-outline-white">
-                  Alla priser
-                </Link>
-              </div>
-            </div>
           </Reveal>
         </div>
       </section>

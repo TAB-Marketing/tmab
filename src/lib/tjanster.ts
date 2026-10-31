@@ -19,6 +19,7 @@ import {
   MOMS_TEXT,
   PRIS,
   type Fraga,
+  type DelId,
 } from "@/lib/priser";
 
 // Tjänsterna som säljs var för sig. Enda källan för startsidan, /tjanster, varje tjänstesida, sidfoten,
@@ -272,7 +273,7 @@ export const TJANSTER: readonly Tjanst[] = [
   {
     slug: "hemsideoptimering",
     titel: "Fräscha upp hemsidan",
-    iText: "hemsideoptimering",
+    iText: "Fräscha upp",
     rubrik: { text: "Hemsideoptimering som gör fler besökare till kunder", markera: "kunder" },
     seoTitel: "Optimering av hemsida för fler kunder",
     seoBeskrivning: `Vi går igenom er hemsida och gör den snabbare, tydligare och bättre på att sälja. Offert från ${kr(PRIS.modernisering)}. Gratis genomgång.`,
@@ -516,4 +517,17 @@ export function tjanstSokvag(t: Tjanst | string): string {
   const slug = typeof t === "string" ? t : t.slug;
   if (!hittaTjanst(slug)) return "/tjanster";
   return landningssidaForTjanst(slug)?.sokvag ?? `/tjanster/${slug}`;
+}
+
+/** Vilka tjänster som hör till vilken del i prislistan (Studio, Annonser, Synlighet, Webb). */
+export const DEL_TJANSTER: Record<DelId, readonly string[]> = {
+  studio: ["marknadsforingsbilder"],
+  annonser: ["meta-annonser"],
+  synlighet: ["seo", "geo"],
+  webb: ["hemsida", "hemsideoptimering"],
+};
+
+export function delForTjanst(slug: string | undefined): DelId | undefined {
+  if (!slug) return undefined;
+  return (Object.keys(DEL_TJANSTER) as DelId[]).find((d) => DEL_TJANSTER[d].includes(slug));
 }
