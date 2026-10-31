@@ -432,7 +432,7 @@ function HemsidaForetag() {
 
       {/* 7. Pris */}
       <section aria-labelledby="pris-rubrik" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Pris</p>
             <h2 id="pris-rubrik" className="mt-4 text-4xl sm:text-5xl">

@@ -430,7 +430,7 @@ function ModerniseraHemsida() {
 
       {/* Design, mobil och hastighet */}
       <section aria-labelledby="mobil" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <p className="eyebrow">Design</p>
             <h2 className="mt-4 text-3xl sm:text-4xl">

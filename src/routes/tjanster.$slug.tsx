@@ -171,7 +171,7 @@ function TjanstSida() {
       ))}
 
       <section className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <Pris t={t} />
           </Reveal>

@@ -583,7 +583,7 @@ function Sokmotoroptimering() {
 
       {/* On-page */}
       <section aria-labelledby="onpage" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">On-page SEO</p>
             <h2 id="onpage" className="mt-4 text-4xl sm:text-5xl">
@@ -643,7 +643,7 @@ function Sokmotoroptimering() {
 
       {/* Struktur och landningssidor */}
       <section aria-labelledby="struktur" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Struktur</p>
             <h2 id="struktur" className="mt-4 text-4xl sm:text-5xl">
@@ -726,7 +726,7 @@ function Sokmotoroptimering() {
 
       {/* Lokal och GEO */}
       <section className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-6 lg:grid-cols-2">
+        <div className="container-page grid [&>*]:min-w-0 gap-6 lg:grid-cols-2">
           <Reveal className="h-full">
             <article aria-labelledby="lokal" className="skylt h-full p-8 sm:p-10">
               <h2 id="lokal" className="text-3xl sm:text-4xl">
@@ -788,7 +788,7 @@ function Sokmotoroptimering() {
 
       {/* Pris */}
       <section aria-labelledby="pris-rubrik" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Pris</p>
             <h2 id="pris-rubrik" className="mt-4 text-4xl sm:text-5xl">
@@ -884,7 +884,7 @@ function Sokmotoroptimering() {
 
       {/* SEO vs Google Ads */}
       <section aria-labelledby="ads" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">SEO eller annonser</p>
             <h2 id="ads" className="mt-4 text-4xl sm:text-5xl">

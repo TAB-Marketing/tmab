@@ -447,7 +447,7 @@ function MetaAdsByra() {
       </section>
 
       {/* Facebook och Instagram */}
-      <section className="container-page grid gap-6 py-14 sm:py-20 lg:grid-cols-2">
+      <section className="container-page grid [&>*]:min-w-0 gap-6 py-14 sm:py-20 lg:grid-cols-2">
         <Reveal className="h-full">
           <article aria-labelledby="facebook" className="skylt h-full p-8 sm:p-10">
             <span className="grid size-12 place-items-center rounded-full text-guld-mork border border-guld/60">

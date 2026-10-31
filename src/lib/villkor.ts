@@ -42,7 +42,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     rubrik: "5. Leveranser och ändringar",
     stycken: [
       "Vi levererar det som står i den valda nivån eller offerten.",
-      "Bilder och videor: kunden godkänner 2–3 testbilder innan resten produceras. Fel från vår sida, till exempel förvrängd etikett, fel färg eller felaktiga detaljer, gör vi alltid om utan kostnad. Vill kunden ändra riktning – ny bakgrund, miljö eller känsla – ingår en omtagsrunda, därefter ${kr(PRIS.omtagPerBild)} per bild.",
+      `Bilder och videor: kunden godkänner 2–3 testbilder innan resten produceras. Fel från vår sida, till exempel förvrängd etikett, fel färg eller felaktiga detaljer, gör vi alltid om utan kostnad. Vill kunden ändra riktning – ny bakgrund, miljö eller känsla – ingår en omtagsrunda, därefter ${kr(PRIS.omtagPerBild)} per bild.`,
       "För att produktens utseende ska kunna återges behöver kunden skicka egna produktfoton. Fotografering på plats, riktiga personer eller kändisar, logotypdesign och tryckoriginal i stora format ingår inte.",
       "För hemsidor ingår en ändringsrunda innan lansering, enligt den tidplan kunden godkänt.",
       "Arbete utanför det avtalade stämmer vi alltid av med kunden innan det börjar, med fast pris.",

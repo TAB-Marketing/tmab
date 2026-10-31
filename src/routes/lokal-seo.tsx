@@ -410,7 +410,7 @@ function LokalSeo() {
 
       {/* Google-företagsprofil */}
       <section aria-labelledby="profil" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Google Maps</p>
             <h2 id="profil" className="mt-4 text-4xl sm:text-5xl">
@@ -558,7 +558,7 @@ function LokalSeo() {
 
       {/* Pris */}
       <section aria-labelledby="pris-rubrik" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Pris</p>
             <h2 id="pris-rubrik" className="mt-4 text-4xl sm:text-5xl">
@@ -651,7 +651,7 @@ function LokalSeo() {
 
       {/* Recensioner */}
       <section aria-labelledby="recensioner" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Omdömen</p>
             <h2 id="recensioner" className="mt-4 text-4xl sm:text-5xl">

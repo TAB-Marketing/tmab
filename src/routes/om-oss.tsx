@@ -96,7 +96,7 @@ function OmOss() {
 
       <section
         aria-label="Det vi står för"
-        className="container-page grid gap-4 pb-14 md:grid-cols-3 sm:pb-20"
+        className="container-page grid [&>*]:min-w-0 gap-4 pb-14 md:grid-cols-3 sm:pb-20"
       >
         {VARDERINGAR.map((v, i) => (
           <Reveal key={v.titel} delay={i * 90}>

@@ -66,7 +66,7 @@ function Kontakt() {
         intro="20–25 minuter där vi går igenom er hemsida, er synlighet på Google och i sociala medier. Ni får ett skräddarsytt förslag efteråt, helt utan kostnad."
       />
 
-      <section className="container-page grid gap-14 py-14 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <section className="container-page grid [&>*]:min-w-0 gap-14 py-14 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <h2 className="text-3xl sm:text-4xl">Så går det till</h2>
           <div className="mt-8">

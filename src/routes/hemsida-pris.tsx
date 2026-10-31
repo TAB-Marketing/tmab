@@ -667,7 +667,7 @@ function HemsidaPris() {
 
       {/* Billig eller professionell */}
       <section aria-labelledby="billig" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Billig hemsida</p>
             <h2 id="billig" className="mt-4 text-4xl sm:text-5xl">
@@ -791,7 +791,7 @@ function HemsidaPris() {
 
       {/* Varför TAB */}
       <section aria-labelledby="varfor" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="container-page grid [&>*]:min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Varför {FORETAG.kortnamn}</p>
             <h2 id="varfor" className="mt-4 text-4xl sm:text-5xl">

@@ -214,7 +214,7 @@ function SeoByra() {
       {/* Fördelar och illustration */}
       <section
         aria-label="Kort om tjänsten"
-        className="container-page grid items-center gap-10 pt-10 pb-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16"
+        className="container-page grid [&>*]:min-w-0 items-center gap-10 pt-10 pb-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16"
       >
         <ul className="space-y-3">
           {FORDELAR_HERO.map((f) => (
@@ -376,7 +376,7 @@ function SeoByra() {
       </section>
 
       {/* Lokal SEO och GEO */}
-      <section className="container-page grid gap-6 py-14 sm:py-20 lg:grid-cols-2">
+      <section className="container-page grid [&>*]:min-w-0 gap-6 py-14 sm:py-20 lg:grid-cols-2">
         <Reveal className="h-full">
           <article aria-labelledby="lokal-seo" className="skylt h-full p-8 sm:p-10">
             <span className="grid size-12 place-items-center rounded-full text-guld-mork border border-guld/60">

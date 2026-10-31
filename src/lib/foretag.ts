@@ -39,7 +39,7 @@ export const FORETAG: {
   adress: "Svenslyckegatan 16, 416 56 Göteborg",
   telefon: "",
   telefonLank: "",
-  epost: "edvin@treatlymarketing.se",
+  epost: "edvin@tabmarketing.se",
   oppettider: [],
   personer: [],
 };

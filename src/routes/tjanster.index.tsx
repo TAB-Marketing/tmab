@@ -44,7 +44,7 @@ function Tjanster() {
         </Link>
       </PageHero>
 
-      <div className="container-page grid gap-5 py-14 sm:py-20">
+      <div className="container-page grid [&>*]:min-w-0 gap-5 py-14 sm:py-20">
         {TJANSTER.map((t) => (
           <Reveal key={t.slug}>
             <section
