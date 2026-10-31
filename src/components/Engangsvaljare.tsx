@@ -84,6 +84,11 @@ export function Engangsvaljare() {
                                     {j.not}
                                   </span>
                                 )}
+                                {j.uppstart && (
+                                  <span className="mt-1 block text-xs font-bold text-guld-mork">
+                                    Startjobb – ingår inte i mängdrabatten
+                                  </span>
+                                )}
                               </span>
                               <span className="font-display text-lg whitespace-nowrap text-ink">
                                 {j.fran ? `från ${kr(j.belopp)}` : kr(j.belopp)}

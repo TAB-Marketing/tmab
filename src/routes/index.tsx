@@ -8,7 +8,15 @@ import { ProjektVideo } from "@/components/ProjektVideo";
 import { Reveal } from "@/components/Reveal";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
-import { BINDNING_TEXT, kr, LAGSTA_MANADSPRIS, MOMS_TEXT, PRIS, type Fraga } from "@/lib/priser";
+import {
+  AVBETALNING_TEXT,
+  BINDNING_TEXT,
+  kr,
+  LAGSTA_MANADSPRIS,
+  MOMS_TEXT,
+  PRIS,
+  type Fraga,
+} from "@/lib/priser";
 import { PROJEKT_VIDEO } from "@/lib/projekt";
 import { faqSchema, sidhuvud, videoSchema } from "@/lib/seo";
 import { avstava } from "@/lib/text";
@@ -34,7 +42,7 @@ const HEM_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar det att anlita er?",
-    svar: `Ni köper det ni behöver: bilder och video från ${kr(PRIS.studioS)}/mån, annonser från ${kr(PRIS.annonser1)}/mån, SEO och GEO från ${kr(PRIS.synlighetBas)}/mån och en ny hemsida från ${kr(PRIS.landningssida)}. Ingen startavgift. ${MOMS_TEXT} Första genomgången är gratis.`,
+    svar: `Ni köper det ni behöver: bilder och video från ${kr(PRIS.studioS)}/mån, annonser från ${kr(PRIS.annonser1)}/mån, SEO och GEO från ${kr(PRIS.synlighetBas)}/mån och en ny hemsida från ${kr(PRIS.tjanstesida)}. ${MOMS_TEXT} Första genomgången är gratis.`,
   },
   {
     fraga: "Arbetar ni med företag i hela Sverige?",
@@ -42,7 +50,7 @@ const HEM_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Finns det någon bindningstid?",
-    svar: BINDNING_TEXT,
+    svar: `${BINDNING_TEXT} ${AVBETALNING_TEXT}`,
   },
   {
     fraga: "Kan ni garantera att vi hamnar först på Google?",

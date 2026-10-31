@@ -8,7 +8,7 @@ export const Route = createFileRoute("/villkor")({
   head: () =>
     sidhuvud({
       titel: "Allmänna villkor",
-      beskrivning: `Villkoren som gäller när ni köper tjänster av ${FORETAG.namn}: betalning, uppsägning utan bindningstid, leveranser och vem som äger materialet.`,
+      beskrivning: `Villkoren som gäller när ni köper tjänster av ${FORETAG.namn}: betalning, uppsägning, avbetalning, leveranser och vem som äger materialet.`,
       sokvag: "/villkor",
     }),
   component: Villkor,

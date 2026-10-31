@@ -3,7 +3,7 @@
 import { FORETAG } from "@/lib/foretag";
 import { BETALNING_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
 
-export const VILLKOR_DATUM = "2026-10-28";
+export const VILLKOR_DATUM = "2026-10-31";
 
 export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] = [
   {
@@ -24,7 +24,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     rubrik: "3. Priser och betalning",
     stycken: [
       `${MOMS_TEXT} ${BETALNING_TEXT} Vid försenad betalning debiteras dröjsmålsränta enligt räntelagen.`,
-      "Vi tar ingen startavgift. Vissa tjänster kräver ett engångsjobb innan det löpande arbetet börjar – annonsuppsättning före Annonser och grundoptimering före Synlighet. Det står i offerten och hoppas över om det redan är gjort.",
+      "Vissa tjänster kräver ett engångsjobb innan det löpande arbetet börjar – annonsuppsättning före Annonser och grundoptimering före Synlighet. Det står i offerten och hoppas över om det redan är gjort.",
       "Vi arbetar med fasta priser: ett pris per nivå eller en offert med fast pris. Timmar debiteras bara för ändringar på en färdig hemsida, enligt klippkort eller drift (se punkt 6).",
       "Annonsbudget för Meta och andra kanaler betalar kunden direkt till respektive plattform med eget betalkort. Vi hanterar aldrig kundens annonspengar, och budgeten ingår aldrig i våra priser.",
     ],
@@ -34,7 +34,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     stycken: [
       `Månadstjänsterna – Studio, Annonser, Synlighet, drift av hemsida och Extern marknadsavdelning – har ingen bindningstid. Kunden kan säga upp när som helst, och tjänsten löper till slutet av den period som redan är betald. Uppsägning görs via mejl till ${FORETAG.epost}.`,
       "Påbörjad period återbetalas inte. Leveranser som ingår i en månad (till exempel bilder, kampanjer, sidor eller ändringstimmar) gäller för den månaden och sparas inte till nästa.",
-      "Synlighet omfattar nya och förbättrade texter, rubriker, metadata, strukturerad data och interna länkar. Ny design, nya funktioner, nya sidmallar och ändringar i layout räknas som hemsidearbete (Webb). Länkbygge och outreach ingår inte.",
+      "Synlighet omfattar nya och förbättrade texter, rubriker, metadata, strukturerad data och interna länkar, samt lokal SEO: löpande skötsel av Google-företagsprofilen, kontroll och rättning av företagsuppgifter i kataloger som Eniro och Hitta, och en rutin för att be om och svara på omdömen. Själva uppsättningen eller övertagandet av företagsprofilen är ett engångsjobb. Ny design, nya funktioner, nya sidmallar och ändringar i layout räknas som hemsidearbete (Webb). Länkbygge och outreach ingår inte – kunden får tips om var företaget kan nämnas.",
       "En annonskampanj är ett mål, en målgrupp, upp till tre annonsvarianter och en löptid på upp till fyra veckor. En kampanj som löper längre räknas som en ny när den förnyas.",
     ],
   },
@@ -57,14 +57,22 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     ],
   },
   {
-    rubrik: "7. Kundens ansvar",
+    rubrik: "7. Avbetalning av hemsida",
+    stycken: [
+      `Tjänstesida och E-handel kan betalas med avbetalning i 12 månader (${kr(PRIS.tjanstesidaManad)} respektive ${kr(PRIS.ehandelManad)} per månad). Avbetalningen är bindande i 12 månader. Det är det enda vi erbjuder med bindningstid.`,
+      "Drift ingår inte i avbetalningen utan väljs och betalas för sig enligt punkt 6.",
+      "Avslutar kunden avtalet i förtid, eller betalar inte trots påminnelse, faktureras det som återstår av avbetalningen. Rätten till koden går över till kunden när hela beloppet är betalt. Domänen ligger alltid i kundens namn.",
+    ],
+  },
+  {
+    rubrik: "8. Kundens ansvar",
     stycken: [
       "Kunden ger oss det material, den åtkomst och de svar vi behöver i tid. Förseningar hos kunden flyttar tidplanen lika mycket.",
       "Kunden ansvarar för att material som kunden själv lämnar, till exempel logotyper, bilder och texter, får användas.",
     ],
   },
   {
-    rubrik: "8. Rättigheter till materialet",
+    rubrik: "9. Rättigheter till materialet",
     stycken: [
       "Kunden äger konton, domän, texter och kod som vi tar fram åt kunden. Rätten går över till kunden när betalning skett.",
       "Bilder och videor tas fram helt eller delvis med AI-verktyg. För dem får kunden en fri kommersiell användningsrätt. Kunden ansvarar för att märka sådant innehåll där lag eller en plattforms regler kräver det.",
@@ -73,26 +81,26 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     ],
   },
   {
-    rubrik: "9. Konton och åtkomst",
+    rubrik: "10. Konton och åtkomst",
     stycken: [
       "Konton för exempelvis Google, Meta och domän ska ligga i kundens namn. Vi får åtkomst som användare eller partner. Innan vi ändrar något på en befintlig sajt tar vi en säkerhetskopia.",
       "När samarbetet upphör lämnar vi tillbaka all åtkomst och överlämnar material vi tagit fram.",
     ],
   },
   {
-    rubrik: "10. Resultat",
+    rubrik: "11. Resultat",
     stycken: [
       "Vi lovar att utföra arbetet fackmannamässigt och rapportera vad vi gjort. Placeringar i sökresultat, omnämnanden i AI-svar och annonsresultat styrs av andra och kan inte garanteras.",
     ],
   },
   {
-    rubrik: "11. Ansvarsbegränsning",
+    rubrik: "12. Ansvarsbegränsning",
     stycken: [
       "Vårt ansvar är begränsat till det belopp kunden betalat för den aktuella tjänsten de senaste tre månaderna. Vi ansvarar inte för indirekta skador, till exempel utebliven vinst.",
     ],
   },
   {
-    rubrik: "12. Personuppgifter",
+    rubrik: "13. Personuppgifter",
     stycken: [
       "Kunden är personuppgiftsansvarig för sin webbplats och för de uppgifter som samlas in där. När vi behandlar personuppgifter för kundens räkning, till exempel kundlistor eller formulär, tecknar vi ett personuppgiftsbiträdesavtal.",
       "När vi sätter upp cookiebanner, spårning eller integritetspolicy ansvarar vi för det tekniska utförandet: att verktygen väntar på samtycke och att policyn beskriver det vi installerat. Vi ger inte juridisk rådgivning. Kunden ansvarar för att behandlingen har stöd i lag och att texterna stämmer med verksamheten.",
@@ -100,7 +108,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     ],
   },
   {
-    rubrik: "13. Ändringar och tvist",
+    rubrik: "14. Ändringar och tvist",
     stycken: [
       "Vi kan ändra villkoren. Ändringar meddelas kunden minst 30 dagar i förväg och gäller från nästa betalningsperiod.",
       "Svensk lag gäller. Tvister avgörs av svensk allmän domstol.",

@@ -623,8 +623,8 @@ export function Masterverket() {
               ))}
             </p>
             <p className="tavla-villkor">
-              Fast pris från {kr(LAGSTA_MANADSPRIS)} i månaden, exkl. moms. Ingen bindningstid – för
-              företag i hela Sverige.
+              Fast pris från {kr(LAGSTA_MANADSPRIS)} i månaden, exkl. moms. Ingen bindningstid på
+              månadstjänster – för företag i hela Sverige.
             </p>
             <div className="tavla-knappar">
               <BokaKnapp variant="white" className="tavla-knapp" />

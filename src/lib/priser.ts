@@ -71,7 +71,10 @@ export const MOMS_TEXT = "Alla priser är exkl. moms.";
 export const BINDNING_TEXT =
   "Ingen bindningstid. Månadstjänster löper till slutet av den period ni redan betalat för.";
 
-export const STARTAVGIFT_TEXT = `Ingen startavgift. Två tjänster kräver ett engångsjobb innan det löpande arbetet kan börja: annonsuppsättning (${kr(PRIS.annonsUppsattning)}) före Annonser och grundoptimering (från ${kr(PRIS.grundoptimering)}) före Synlighet. Är det redan gjort hoppar vi över det.`;
+/** Avbetalning av hemsida – det enda som binder. */
+export const AVBETALNING_TEXT = "Väljer ni avbetalning på en ny hemsida binder den i 12 månader.";
+
+export const STARTAVGIFT_TEXT = `Studio och Webb har ingen uppstart. Annonser och Synlighet har ett engångsjobb vid start: annonsuppsättning (${kr(PRIS.annonsUppsattning)}) före Annonser och grundoptimering (från ${kr(PRIS.grundoptimering)}) före Synlighet. Är det redan gjort hoppar vi över det.`;
 
 export const SVARSTID_TEXT = "Vi svarar inom en arbetsdag.";
 
@@ -92,7 +95,10 @@ export const RESULTAT_TEXT =
 
 export const LOFTEN: readonly { titel: string; text: string }[] = [
   { titel: "Ingen bindningstid", text: BINDNING_TEXT.replace("Ingen bindningstid. ", "") },
-  { titel: "Ingen startavgift", text: "Bara tydliga engångsjobb där det behövs." },
+  {
+    titel: "Tydlig uppstart",
+    text: "Annonser och Synlighet har ett engångsjobb vid start. Studio och Webb har ingen.",
+  },
   { titel: "Ni äger det ni betalat för", text: AGANDE_TEXT },
   { titel: "Svar inom en arbetsdag", text: "På bokningar, frågor och ändringar." },
 ];
@@ -530,6 +536,8 @@ export type Engangsjobb = {
   belopp: number;
   fran?: boolean;
   grupp?: string;
+  /** Obligatoriskt startjobb för en månadstjänst – räknas inte in i mängdrabatten. */
+  uppstart?: boolean;
 };
 
 export const ENGANGSJOBB: readonly Engangsjobb[] = [
@@ -551,6 +559,7 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     namn: "Annonsuppsättning",
     not: "Business Manager, annonskonto, pixel, samtyckesbanner och första kampanjen",
     belopp: PRIS.annonsUppsattning,
+    uppstart: true,
   },
   // Synlighet
   {
@@ -567,6 +576,7 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     not: "Teknik, sökordsanalys, strukturerad data, Search Console och Bing",
     belopp: PRIS.grundoptimering,
     grupp: "grundoptimering",
+    uppstart: true,
   },
   {
     id: "grundoptimering-stor",
@@ -574,6 +584,7 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     namn: "Grundoptimering, 11–30 sidor",
     belopp: PRIS.grundoptimeringStor,
     grupp: "grundoptimering",
+    uppstart: true,
   },
   {
     id: "grundoptimering-lista",
@@ -582,6 +593,7 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     not: "Ni genomför själva utifrån vår lista",
     belopp: PRIS.grundoptimeringLista,
     grupp: "grundoptimering",
+    uppstart: true,
   },
   // Webb
   { id: "extra-sida", del: "webb", namn: "Extra sida", belopp: PRIS.extraSida },
@@ -628,11 +640,13 @@ export function raknaEngang(valda: readonly Engangsjobb[]) {
   const fasta = valda.filter((j) => !j.fran);
   const offert = valda.filter((j) => j.fran);
   const summa = fasta.reduce((s, j) => s + j.belopp, 0);
-  const procent = mangdrabattProcent(fasta.length);
+  // Obligatoriska startjobb (annonsuppsättning, grundoptimering) ger ingen mängdrabatt.
+  const rabattbas = fasta.filter((j) => !j.uppstart);
+  const procent = mangdrabattProcent(rabattbas.length);
   // Avrunda rabatten till hela kronor.
-  const rabatt = Math.round((summa * procent) / 100);
-  const nasta = MANGDRABATT.find((s) => s.antal > fasta.length);
-  return { antal: fasta.length, summa, procent, rabatt, total: summa - rabatt, offert, nasta };
+  const rabatt = Math.round((rabattbas.reduce((s, j) => s + j.belopp, 0) * procent) / 100);
+  const nasta = MANGDRABATT.find((s) => s.antal > rabattbas.length);
+  return { antal: rabattbas.length, summa, procent, rabatt, total: summa - rabatt, offert, nasta };
 }
 
 export function hittaEngangsjobb(ids: readonly string[]): Engangsjobb[] {
@@ -776,7 +790,7 @@ export const KOMBINATIONER: readonly {
 
 /** Råd om att börja med en del i taget – samma text där kombinationerna visas. */
 export const EN_I_TAGET_TEXT =
-  "Ni behöver inte köpa allt på en gång. De flesta börjar med en eller två delar, till exempel Studio och Annonser, och lägger till Synlighet när de första kampanjerna rullar. Då blir första fakturan lägre och ni ser vad varje del ger.";
+  "Ni behöver inte köpa allt på en gång. Ett bra första steg är en eller två delar, till exempel Studio och Annonser, och sedan Synlighet när de första kampanjerna rullar. Då blir första fakturan lägre och ni ser vad varje del ger.";
 
 /** Gränsen mellan Synlighet och Webb – samma text överallt där frågan kan uppstå. */
 export const WEBB_GRANS_TEXT =
@@ -798,10 +812,10 @@ export const PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Finns det någon bindningstid?",
-    svar: BINDNING_TEXT,
+    svar: `${BINDNING_TEXT} ${AVBETALNING_TEXT}`,
   },
   {
-    fraga: "Finns det en startavgift?",
+    fraga: "Kostar det något att komma igång?",
     svar: STARTAVGIFT_TEXT,
   },
   {

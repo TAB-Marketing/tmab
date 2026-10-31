@@ -240,7 +240,7 @@ function Priser() {
             Köp det ni behöver – <Mark>inget mer</Mark>
           </>
         }
-        intro="Fyra delar som köps var för sig: bilder och video, annonser, synlighet på Google och i AI-svar, och hemsida. Fasta priser, ingen bindningstid och ingen startavgift."
+        intro="Fyra delar som köps var för sig: bilder och video, annonser, synlighet på Google och i AI-svar, och hemsida. Fasta priser och ingen bindningstid på månadstjänsterna. Annonser och Synlighet har ett engångsjobb vid start."
       >
         <BokaKnapp />
         <a href="#oversikt" className="btn-base btn-outline">
@@ -359,7 +359,32 @@ function Priser() {
           </Reveal>
         </div>
         <Reveal delay={60} className="mt-10">
-          <div className="skylt-liten overflow-x-auto px-5 py-2 sm:px-8">
+          <ul className="space-y-3 sm:hidden">
+            {KOMBINATIONER.map((k) => (
+              <li key={k.delar} className="skylt-liten p-5">
+                <p className="font-bold text-ink">{k.namn}</p>
+                {k.vanligast && (
+                  <span className="mt-1 inline-block rounded-full bg-sun px-2.5 py-0.5 text-xs font-bold">
+                    Vi rekommenderar
+                  </span>
+                )}
+                <p className="mt-1 text-sm text-muted-foreground">{k.delar}</p>
+                <dl className="mt-3 grid grid-cols-2 gap-3 border-t-2 border-line pt-3">
+                  <div>
+                    <dt className="text-xs text-muted-foreground">Per månad</dt>
+                    <dd className="font-display text-xl text-ink">{kr(k.manad)}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-muted-foreground">Uppstart (engång)</dt>
+                    <dd className="text-ink">
+                      {typeof k.uppstart === "number" ? kr(k.uppstart) : k.uppstart}
+                    </dd>
+                  </div>
+                </dl>
+              </li>
+            ))}
+          </ul>
+          <div className="skylt-liten hidden overflow-x-auto px-5 py-2 sm:block sm:px-8">
             <table className="w-full min-w-[34rem] border-collapse text-left">
               <caption className="sr-only">Vanliga kombinationer</caption>
               <thead>
@@ -383,7 +408,7 @@ function Priser() {
                         {k.namn}
                         {k.vanligast && (
                           <span className="ml-2 rounded-full bg-sun px-2.5 py-0.5 align-middle text-xs font-bold">
-                            Vanligast
+                            Vi rekommenderar
                           </span>
                         )}
                       </span>
