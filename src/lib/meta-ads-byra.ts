@@ -29,7 +29,7 @@ export const META_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar det att anlita er?",
-    svar: `Uppsättningen kostar ${kr(PRIS.annonsUppsattning)} och första kampanjen ingår. Därefter Annonser 1 för ${kr(PRIS.annonser1)} per månad (1 ny kampanj, budget upp till 10 000 kr) eller Annonser 2 för ${kr(PRIS.annonser2)} per månad (upp till 3 nya kampanjer, budget upp till 25 000 kr). Arvodet styrs av antalet kampanjer, inte av hur mycket ni annonserar för. ${MOMS_TEXT}`,
+    svar: `Uppsättningen kostar ${kr(PRIS.annonsUppsattning)} och första kampanjen ingår. Därefter Annonser 1 för ${kr(PRIS.annonser1)} per månad (1 ny kampanj, budget upp till 10\u00a0000\u00a0kr) eller Annonser 2 för ${kr(PRIS.annonser2)} per månad (upp till 3 nya kampanjer, budget upp till 25\u00a0000\u00a0kr). Arvodet styrs av antalet kampanjer, inte av hur mycket ni annonserar för. ${MOMS_TEXT}`,
   },
   {
     fraga: "Vad räknas som en kampanj?",

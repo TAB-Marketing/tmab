@@ -310,7 +310,7 @@ function ModerniseraHemsida() {
         eyebrow={`Tjänster · ${MODERNISERA_HEMSIDA.titel}`}
         title={
           <Markerad
-            text="Modernisera hemsidan – utan att börja om från noll"
+            text="Modernisera hemsidan&nbsp;– utan att börja om från noll"
             markera="utan att börja om"
           />
         }
@@ -434,7 +434,7 @@ function ModerniseraHemsida() {
           <Reveal>
             <p className="eyebrow">Design</p>
             <h2 className="mt-4 text-3xl sm:text-4xl">
-              Ny design – <Mark>utan att byta plattform</Mark>
+              Ny design&nbsp;– <Mark>utan att byta plattform</Mark>
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-ink/80">
               I de flesta plattformar går layout, typsnitt, färger, bilder och komponenter att

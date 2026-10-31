@@ -188,7 +188,7 @@ const BRANSCHER: readonly { titel: string; text: string }[] = [
     text: "Tydliga tjänster, rätt adress och omdömen – det kunden jämför innan den ringer.",
   },
   {
-    titel: "Restauranger och kaféer",
+    titel: "Restauranger och caféer",
     text: "Meny, öppettider och läge som stämmer överallt, och bilder som får folk att komma.",
   },
   {
@@ -229,7 +229,7 @@ const JAMFORELSE = [
   {
     titel: "Lokal SEO",
     text: "Sökningar där platsen spelar roll. Lokalt innehåll, Google-företagsprofil och omdömen.",
-    stil: "inramad text-elfenben",
+    stil: "mork-kort text-elfenben",
   },
   {
     titel: "Gemensamt",
@@ -270,14 +270,14 @@ function LokalSeo() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
         />
-        <div className="mx-auto grid max-w-[88rem] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
           <div>
             <p className="eyebrow">
               {SEO_BYRA.titel} · {LOKAL_SEO.titel}
             </p>
             <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
               <Markerad
-                text="Lokal SEO – hjälp ert företag att synas på Google Maps och lokalt"
+                text="Lokal SEO&nbsp;– hjälp ert företag att synas på Google Maps och lokalt"
                 markera="Google Maps"
               />
             </h1>
@@ -545,7 +545,7 @@ function LokalSeo() {
         <Reveal>
           <p className="eyebrow">Så går det till</p>
           <h2 id="process" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-            Så hjälper vi er med lokal SEO – <Mark>steg för steg</Mark>
+            Så hjälper vi er med lokal SEO&nbsp;– <Mark>steg för steg</Mark>
           </h2>
         </Reveal>
         <Reveal delay={80} className="mt-10">

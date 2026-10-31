@@ -138,7 +138,7 @@ function WebbyraGoteborg() {
         eyebrow={`Tjänster · ${WEBBYRA_GOTEBORG.titel}`}
         title={
           <Markerad
-            text="Webbyrå Göteborg – professionell webbdesign för ert företag"
+            text="Webbyrå Göteborg&nbsp;– professionell webbdesign för ert företag"
             markera="webbdesign för ert företag"
           />
         }

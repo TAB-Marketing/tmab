@@ -126,7 +126,7 @@ export function Footer() {
           <div className="container-page flex flex-wrap justify-between gap-2 py-6 text-xs text-white/70">
             <span>
               © {new Date().getFullYear()} {FORETAG.namn} · Drivs av {FORETAG.juridisktNamn}
-              {FORETAG.orgnr && ` · Org.nr ${FORETAG.orgnr}`}
+              {FORETAG.orgnr && ` · Org.nr\u00a0${FORETAG.orgnr}`}
             </span>
             <span>Godkänd för F-skatt</span>
           </div>

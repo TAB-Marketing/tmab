@@ -362,7 +362,7 @@ function SeoByra() {
           <Reveal>
             <p className="eyebrow">Så arbetar vi</p>
             <h2 id="process-rubrik" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-              Så fungerar vårt SEO-arbete – <Mark>steg för steg</Mark>
+              Så fungerar vårt SEO-arbete&nbsp;– <Mark>steg för steg</Mark>
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
               SEO är långsiktigt och behöver justeras när marknaden, konkurrensen och sökbeteendet
@@ -406,7 +406,7 @@ function SeoByra() {
           </article>
         </Reveal>
         <Reveal delay={80} className="h-full">
-          <article aria-labelledby="seo-geo" className="inramad h-full p-8 text-elfenben sm:p-10">
+          <article aria-labelledby="seo-geo" className="mork-kort h-full p-8 text-elfenben sm:p-10">
             <span className="grid size-12 place-items-center rounded-full border border-guld text-guld">
               <Bot className="size-6" aria-hidden="true" />
             </span>
@@ -528,7 +528,7 @@ function SeoByra() {
         {seo && (
           <Reveal delay={80} className="mt-14">
             <h3 className="max-w-3xl text-3xl sm:text-4xl">
-              Det här krävs för SEO – <Mark>vi gör det åt er</Mark>
+              Det här krävs för SEO&nbsp;– <Mark>vi gör det åt er</Mark>
             </h3>
             <div className="mt-8">
               <SjalvMotOss o={seo} />

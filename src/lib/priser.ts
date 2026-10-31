@@ -251,7 +251,7 @@ export const ANNONSER: Del = {
       enhet: "mån",
       ingar: [
         "1 ny kampanj per månad",
-        "Annonsbudget upp till 10 000 kr/mån",
+        "Annonsbudget upp till 10\u00a0000\u00a0kr/mån",
         "Kontroll varje vecka och månadsrapport",
       ],
     },
@@ -262,7 +262,7 @@ export const ANNONSER: Del = {
       enhet: "mån",
       ingar: [
         "Upp till 3 nya kampanjer per månad",
-        "Annonsbudget upp till 25 000 kr/mån",
+        "Annonsbudget upp till 25\u00a0000\u00a0kr/mån",
         "Kontroll varje vecka och månadsrapport",
       ],
     },
@@ -495,7 +495,7 @@ export const EXTERN = {
   maxKunder: 2,
   ingar: [
     "Studio: 30 bilder + 6 korta videor per månad, innehållsplan per kvartal",
-    "Annonser: upp till 5 nya kampanjer per månad, budget upp till 50 000 kr/mån",
+    "Annonser: upp till 5 nya kampanjer per månad, budget upp till 50\u00a0000\u00a0kr/mån",
     "Synlighet: nivå Hög",
     "Webb: drift och upp till 10 ändringar på hemsidan per månad, för en sajt vi byggt",
     "Avstämning varje vecka och svar inom 4 timmar på vardagar",

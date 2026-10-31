@@ -114,7 +114,7 @@ export function Engangsvaljare() {
       <aside
         aria-labelledby="engang-summa"
         aria-live="polite"
-        className="inramad p-7 text-elfenben sm:p-8 lg:sticky lg:top-28"
+        className="mork-kort p-7 text-elfenben sm:p-8 lg:sticky lg:top-28"
       >
         <h3 id="engang-summa" className="caps text-sun">
           Era engångsjobb

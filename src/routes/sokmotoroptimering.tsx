@@ -325,12 +325,12 @@ function Sokmotoroptimering() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
         />
-        <div className="mx-auto grid max-w-[88rem] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
           <div>
             <p className="eyebrow">{SOKMOTOROPTIMERING.titel}</p>
             <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
               <Markerad
-                text="Sökmotoroptimering (SEO) – få ert företag att synas bättre på Google"
+                text="Sökmotoroptimering (SEO)&nbsp;– få ert företag att synas bättre på Google"
                 markera="synas bättre på Google"
               />
             </h1>

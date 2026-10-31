@@ -97,7 +97,7 @@ function TjanstSida() {
         <Reveal>
           <p className="eyebrow">Själv eller med oss</p>
           <h2 id="jamforelse" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-            Det här krävs för {avstava(t.iText)} – <Mark>vi gör det åt er</Mark>
+            Det här krävs för {avstava(t.iText)}&nbsp;– <Mark>vi gör det åt er</Mark>
           </h2>
         </Reveal>
         <Reveal delay={80} className="mt-10">

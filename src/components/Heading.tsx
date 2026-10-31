@@ -53,7 +53,7 @@ export function PageHero({
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
       />
-      <div className="mx-auto grid max-w-[88rem] items-center gap-12 px-6 py-16 sm:px-10 sm:py-24 lg:grid-cols-[minmax(0,1fr)_auto] lg:py-28">
+      <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-24 lg:grid-cols-[minmax(0,1fr)_auto] lg:py-28">
         <div>
           <p className="eyebrow">{eyebrow}</p>
           <h1 className="mt-6 max-w-3xl text-[clamp(2.5rem,6.4vw,5.5rem)] leading-[1.02]">

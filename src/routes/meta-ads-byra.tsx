@@ -247,7 +247,7 @@ const JAMFORELSE = [
       "Annonsmaterial och målgrupper",
       "Kostar så länge annonserna går",
     ],
-    stil: "inramad text-elfenben",
+    stil: "mork-kort text-elfenben",
   },
   {
     titel: "SEO",
@@ -339,12 +339,12 @@ function MetaAdsByra() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
         />
-        <div className="mx-auto grid max-w-[88rem] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
           <div>
             <p className="eyebrow">Tjänster · {META_ADS_BYRA.titel}</p>
             <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
               <Markerad
-                text="Meta Ads-byrå – annonsering på Facebook och Instagram"
+                text="Meta Ads-byrå&nbsp;– annonsering på Facebook och Instagram"
                 markera="Facebook och Instagram"
               />
             </h1>
@@ -468,7 +468,10 @@ function MetaAdsByra() {
           </article>
         </Reveal>
         <Reveal delay={80} className="h-full">
-          <article aria-labelledby="instagram" className="inramad h-full p-8 text-elfenben sm:p-10">
+          <article
+            aria-labelledby="instagram"
+            className="mork-kort h-full p-8 text-elfenben sm:p-10"
+          >
             <span className="grid size-12 place-items-center rounded-full border border-guld text-guld">
               <Heart className="size-6" aria-hidden="true" />
             </span>
@@ -646,7 +649,7 @@ function MetaAdsByra() {
           </Reveal>
           <Reveal delay={80}>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="inramad p-6 text-elfenben">
+              <div className="mork-kort p-6 text-elfenben">
                 <p className="font-bold">Med tillgång till hemsidan</p>
                 <p className="mt-2 text-sm leading-relaxed text-white/85">
                   Meta-pixeln och vid behov Conversions API, tillsammans med en cookiebanner och
@@ -694,7 +697,7 @@ function MetaAdsByra() {
           <Reveal>
             <p className="eyebrow">Så går det till</p>
             <h2 id="process-rubrik" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-              Från första mötet till löpande annonsering – <Mark>så går det till</Mark>
+              Från första mötet till löpande annonsering&nbsp;– <Mark>så går det till</Mark>
             </h2>
           </Reveal>
           <Reveal delay={80} className="mt-10">

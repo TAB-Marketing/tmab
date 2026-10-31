@@ -318,7 +318,7 @@ function HemsidaPris() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
         />
-        <div className="mx-auto grid max-w-[88rem] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-24">
           <div>
             <p className="eyebrow">Priser · Hemsida</p>
             <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
@@ -347,7 +347,7 @@ function HemsidaPris() {
               </Link>
             </div>
           </div>
-          <div className="inramad p-8 text-elfenben sm:p-10">
+          <div className="mork-kort p-8 text-elfenben sm:p-10">
             <p className="caps text-sun">Hemsidor från</p>
             <p className="mt-4 font-display text-6xl leading-none sm:text-7xl">
               {kr(PRIS.tjanstesida)}
@@ -556,7 +556,7 @@ function HemsidaPris() {
           <Reveal>
             <p className="eyebrow">Prismodell</p>
             <h2 id="modell" className="mt-4 text-4xl sm:text-5xl">
-              Engångspris eller månadskostnad – <Mark>hur fungerar det?</Mark>
+              Engångspris eller månadskostnad&nbsp;– <Mark>hur fungerar det?</Mark>
             </h2>
           </Reveal>
           <Reveal delay={80}>
@@ -603,7 +603,7 @@ function HemsidaPris() {
                 <Reveal delay={i * 60} className="h-full">
                   <div
                     className={`flex h-full flex-col p-6 ${
-                      i === 0 ? "inramad text-elfenben" : "skylt text-ink"
+                      i === 0 ? "mork-kort text-elfenben" : "skylt text-ink"
                     }`}
                   >
                     <h3 className="font-sans text-lg font-bold tracking-normal">{a.namn}</h3>
@@ -782,7 +782,7 @@ function HemsidaPris() {
         <Reveal>
           <p className="eyebrow">Så går det till</p>
           <h2 id="process" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-            Från prisförfrågan till färdig hemsida – <Mark>så går det till</Mark>
+            Från prisförfrågan till färdig hemsida&nbsp;– <Mark>så går det till</Mark>
           </h2>
         </Reveal>
         <Reveal delay={80} className="mt-10">
@@ -860,7 +860,7 @@ function HemsidaPris() {
             Redo att investera i en professionell <Mark>hemsida</Mark>?
           </>
         }
-        text="Första hemsidan eller en ersättare för en gammal – boka en gratis genomgång så får ni ett förslag med fast pris och allt som ingår."
+        text="Första hemsidan eller en ersättare för en gammal&nbsp;– boka en gratis genomgång så får ni ett förslag med fast pris och allt som ingår."
       />
     </>
   );

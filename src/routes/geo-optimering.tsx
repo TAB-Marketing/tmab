@@ -342,12 +342,12 @@ function GeoOptimering() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
         />
-        <div className="mx-auto grid max-w-[88rem] items-center gap-12 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
+        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
           <div>
             <p className="eyebrow">Tjänster · {GEO_OPTIMERING.titel}</p>
             <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
               <Markerad
-                text="GEO-optimering – hjälp ert företag att synas i AI-sökmotorer"
+                text="GEO-optimering&nbsp;– hjälp ert företag att synas i AI-sökmotorer"
                 markera="synas i AI-sökmotorer"
               />
             </h1>
@@ -394,7 +394,7 @@ function GeoOptimering() {
           <Reveal>
             <p className="eyebrow">Grunderna</p>
             <h2 id="vad" className="mt-4 text-4xl sm:text-5xl">
-              Vad är GEO – <Mark>Generative Engine Optimization</Mark>?
+              Vad är GEO&nbsp;– <Mark>Generative Engine Optimization</Mark>?
             </h2>
           </Reveal>
           <Reveal delay={80}>
@@ -809,7 +809,7 @@ function GeoOptimering() {
           <Reveal>
             <p className="eyebrow">Så går det till</p>
             <h2 id="process" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-              Så hjälper vi ert företag med GEO – <Mark>steg för steg</Mark>
+              Så hjälper vi ert företag med GEO&nbsp;– <Mark>steg för steg</Mark>
             </h2>
           </Reveal>
           <Reveal delay={80} className="mt-10">

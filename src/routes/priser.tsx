@@ -237,7 +237,7 @@ function Priser() {
         eyebrow="Priser"
         title={
           <>
-            Köp det ni behöver – <Mark>inget mer</Mark>
+            Köp det ni behöver&nbsp;– <Mark>inget mer</Mark>
           </>
         }
         intro="Fyra delar som köps var för sig: bilder och video, annonser, synlighet på Google och i AI-svar, och hemsida. Fasta priser och ingen bindningstid på månadstjänsterna. Annonser och Synlighet har ett engångsjobb vid start."
@@ -257,7 +257,7 @@ function Priser() {
         <div className="container-page pt-14 pb-10 sm:pt-20">
           <Reveal>
             <h2 id="oversikt-rubrik" className="text-4xl sm:text-5xl">
-              Fyra delar – <Mark>välj fritt</Mark>
+              Fyra delar&nbsp;– <Mark>välj fritt</Mark>
             </h2>
           </Reveal>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -282,7 +282,7 @@ function Priser() {
           <Reveal delay={80}>
             <a
               href="#extern"
-              className="inramad mt-4 flex flex-wrap items-center justify-between gap-4 p-7 text-elfenben"
+              className="mork-kort mt-4 flex flex-wrap items-center justify-between gap-4 p-7 text-elfenben"
             >
               <span>
                 <span className="font-sans text-xs font-bold tracking-[0.22em] text-sun uppercase">
@@ -435,7 +435,7 @@ function Priser() {
       {/* Extern marknadsavdelning */}
       <section id="extern" aria-labelledby="extern-rubrik" className="scroll-mt-24 px-3 sm:px-6">
         <Reveal>
-          <div className="inramad relative isolate mx-auto max-w-[88rem] overflow-hidden px-6 py-14 text-elfenben sm:px-14 sm:py-16">
+          <div className="mork-kort relative isolate mx-auto max-w-[88rem] overflow-hidden px-6 py-14 text-elfenben sm:px-14 sm:py-16">
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
               <div>
                 <p className="caps text-sun">
@@ -495,7 +495,7 @@ function Priser() {
             Osäker på vad ni <Mark>behöver</Mark>?
           </>
         }
-        text="Boka en gratis genomgång på 20–25 minuter. Vi föreslår vilka delar som ger mest för er – ofta räcker det att börja med en."
+        text="Boka en gratis genomgång på 20–25 minuter. Vi föreslår vilka delar som ger mest för er&nbsp;– ofta räcker det att börja med en."
         prislank={{ href: "#oversikt", text: "Till översikten" }}
       />
     </PrisvalProvider>

@@ -8,7 +8,8 @@ export type Rad = string | { titel: string; text: string };
 export type Avsnitt = {
   rubrik: string;
   stycken?: readonly string[];
-  lista?: { numrerad?: boolean; rader: readonly Rad[] };
+  /** varning: raderna är saker att undvika och visas med en varningsikon i stället för en bock. */
+  lista?: { numrerad?: boolean; varning?: boolean; rader: readonly Rad[] };
   tabell?: { kolumner: readonly string[]; rader: readonly (readonly string[])[] };
   /** Stycken efter listan eller tabellen. */
   efter?: readonly string[];
@@ -148,9 +149,9 @@ export const GUIDER: readonly Guide[] = [
   },
   {
     slug: "vad-ar-geo",
-    titel: "Synas i ChatGPT: så får du ditt företag nämnt i AI-svar",
+    titel: "Synas i ChatGPT: så ökar du chansen att nämnas i AI-svar",
     rubrik: {
-      text: "Synas i ChatGPT – så får du ditt företag nämnt i AI-svar",
+      text: "Synas i ChatGPT\u00a0– så ökar du chansen att nämnas i AI-svar",
       markera: "ChatGPT",
     },
     seoTitel: "Synas i ChatGPT – optimera ditt företag för AI-sök",
@@ -393,7 +394,7 @@ export const GUIDER: readonly Guide[] = [
         ],
       },
       {
-        rubrik: "Steg 2: Använd Ads Manager – inte Boosta-knappen",
+        rubrik: "Steg 2: Använd Ads Manager\u00a0– inte Boosta-knappen",
         stycken: [
           "Knappen Boosta inlägg är det snabbaste sättet att annonsera, men du får färre val för mål, målgrupp och placering. Bygger du kampanjen i Ads Manager styr du vad annonsen ska leda till och kan jämföra flera annonser mot varandra.",
         ],
@@ -428,7 +429,7 @@ export const GUIDER: readonly Guide[] = [
         ],
       },
       {
-        rubrik: "Steg 5: Välj målgrupp – inte för smalt",
+        rubrik: "Steg 5: Välj målgrupp\u00a0– inte för smalt",
         lista: {
           rader: [
             {
@@ -496,6 +497,7 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "De vanligaste misstagen",
         lista: {
+          varning: true,
           rader: [
             "Annonskontot ligger på en privatperson eller en tidigare anställd.",
             "Kampanjmålet är trafik när målet egentligen är förfrågningar.",

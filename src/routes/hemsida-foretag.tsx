@@ -211,7 +211,7 @@ function HemsidaForetag() {
         eyebrow={`Tjänster · ${HEMSIDA_FORETAG.titel}`}
         title={
           <Markerad
-            text="Hemsida till företag – byggd för att ge er fler kunder"
+            text="Hemsida till företag&nbsp;– byggd för att ge er fler kunder"
             markera="fler kunder"
           />
         }
@@ -567,7 +567,7 @@ function HemsidaForetag() {
         {hemsida && (
           <Reveal delay={80} className="mt-14">
             <h3 className="max-w-3xl text-3xl sm:text-4xl">
-              Det här krävs för en ny hemsida – <Mark>vi gör det åt er</Mark>
+              Det här krävs för en ny hemsida&nbsp;– <Mark>vi gör det åt er</Mark>
             </h3>
             <div className="mt-8">
               <SjalvMotOss o={hemsida} />

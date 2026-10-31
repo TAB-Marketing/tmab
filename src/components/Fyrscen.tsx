@@ -442,7 +442,7 @@ export function Fyrscen({
           <Reveal>
             <p className="caps fyr-skugga text-white/75">Gratis genomgång</p>
             <div className="relative mt-5 max-w-2xl">
-              <h2 ref={rubrikRef} id="fyr-rubrik" className={`${RUBRIK} fyr-skugga text-white/70`}>
+              <h2 ref={rubrikRef} id="fyr-rubrik" className={`${RUBRIK} fyr-skugga text-elfenben`}>
                 {rubrik}
               </h2>
               <div ref={tandRef} aria-hidden="true" className={`fyr-tand font-display ${RUBRIK}`}>

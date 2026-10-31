@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
-import { ArrowRight, Check, Clock } from "lucide-react";
+import { ArrowRight, Check, Clock, TriangleAlert } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { VanligaFragor } from "@/components/VanligaFragor";
@@ -195,14 +195,24 @@ function AvsnittVy({ a }: { a: Avsnitt }) {
   );
 }
 
-function Lista({ numrerad, rader }: { numrerad?: boolean; rader: readonly Rad[] }) {
+function Lista({
+  numrerad,
+  varning,
+  rader,
+}: {
+  numrerad?: boolean;
+  varning?: boolean;
+  rader: readonly Rad[];
+}) {
   const Tag = numrerad ? "ol" : "ul";
   return (
     <Tag className="mt-6 space-y-3">
       {rader.map((r, i) => (
         <li
           key={typeof r === "string" ? r : r.titel}
-          className="skylt-liten flex gap-4 p-4 text-lg leading-relaxed text-ink sm:p-5"
+          className={`flex gap-4 p-4 text-lg leading-relaxed text-ink sm:p-5 ${
+            varning ? "border-l-4 border-red-800/70 bg-red-50/60" : "skylt-liten"
+          }`}
         >
           {numrerad ? (
             <span
@@ -211,6 +221,8 @@ function Lista({ numrerad, rader }: { numrerad?: boolean; rader: readonly Rad[] 
             >
               {i + 1}
             </span>
+          ) : varning ? (
+            <TriangleAlert className="mt-1 size-5 shrink-0 text-red-800" aria-label="Undvik" />
           ) : (
             <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
           )}

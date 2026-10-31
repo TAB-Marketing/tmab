@@ -38,7 +38,7 @@ function Resurser() {
         eyebrow="Resurser"
         title={
           <>
-            Lär er mer – <Mark>eller låt oss göra det</Mark>
+            Lär er mer&nbsp;– <Mark>eller låt oss göra det</Mark>
           </>
         }
         intro="Guider ni kan följa själva, och sidor om hur vi arbetar med SEO och hemsidor. Allt är gratis att läsa."
@@ -47,7 +47,7 @@ function Resurser() {
       <section aria-labelledby="guider-rubrik" className="container-page py-14 sm:py-20">
         <p className="eyebrow">Guider</p>
         <h2 id="guider-rubrik" className="mt-4 text-3xl sm:text-4xl">
-          Gör det själv – <Mark>steg för steg</Mark>
+          Gör det själv&nbsp;– <Mark>steg för steg</Mark>
         </h2>
         <ul className="mt-8 grid gap-5 lg:grid-cols-3">
           {GUIDER.map((g, i) => (
