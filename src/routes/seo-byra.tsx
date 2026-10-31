@@ -420,8 +420,8 @@ function SeoByra() {
             </p>
             <p className="mt-4 leading-relaxed text-white/80">
               Grunden är densamma – tydligt innehåll, korrekt företagsinformation, en tekniskt sund
-              sajt och omnämnanden på andra sajter – så vi gör dem tillsammans. Ingen kan garantera
-              att ett företag nämns i ett AI-svar.
+              sajt och omnämnanden på andra sajter, där ni får tips av oss – så vi gör dem
+              tillsammans. Ingen kan garantera att ett företag nämns i ett AI-svar.
             </p>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               <Link

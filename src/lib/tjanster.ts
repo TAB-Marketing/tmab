@@ -134,7 +134,7 @@ export const TJANSTER: readonly Tjanst[] = [
     medOss: [
       "Innehåll byggt för att citeras",
       "Strukturerad data på sajten",
-      "Plan för omnämnanden",
+      "Tips om var ni kan nämnas",
       "Uppföljning av hur ni nämns",
     ],
     pris: { belopp: PRIS.synlighetBas, fran: true, manad: true, avser: "Synlighet – SEO och GEO" },
@@ -209,8 +209,8 @@ export const TJANSTER: readonly Tjanst[] = [
       "Testa, läsa siffror och justera varje vecka",
     ],
     medOss: [
-      "Konto, pixel och cookiebanner, när vi har tillgång till sajten",
-      "Annonsmaterial i alla format",
+      "Konto, pixel och cookiebanner i uppsättningen, när vi har tillgång till sajten",
+      "Annonser av ert material i alla format",
       "Löpande optimering av budgeten",
       "Tydlig rapport om vad det gav",
     ],
@@ -227,7 +227,7 @@ export const TJANSTER: readonly Tjanst[] = [
         lista: [
           "Annonskonto och Business Manager i ert namn – vi får åtkomst som partner, så kontot alltid är ert.",
           "Målgrupper utifrån vilka era kunder är, var de bor och vad de är intresserade av.",
-          "Annonser i flera format – bild, video och karusell – för flödet, Stories och Reels.",
+          "Annonser i flera format – bild, video och karusell – för flödet, Stories och Reels, gjorda av ert material eller nytt från Studio.",
           "En tydlig plats att landa på: en sida på er hemsida eller ett formulär direkt i annonsen.",
         ],
       },
@@ -376,7 +376,7 @@ export const TJANSTER: readonly Tjanst[] = [
       {
         rubrik: { text: "Korta videor för sociala medier", markera: "videor" },
         stycken: [
-          "Vi gör korta videor i stående format för Reels, TikTok och annonser – produkten i rörelse, en före och efter, eller en kort presentation av det ni erbjuder. Video prissätts efter innehåll, och ni får ett fast pris innan vi börjar.",
+          `Vi gör korta videor i stående format för Reels, TikTok och annonser – produkten i rörelse, en före och efter utifrån era egna foton, eller en kort presentation av det ni erbjuder. Korta videor ingår i Studio M och L, och 3 korta videor kostar ${kr(PRIS.videor3)} som engångsjobb.`,
         ],
       },
     ],

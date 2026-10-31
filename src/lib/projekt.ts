@@ -63,18 +63,6 @@ export const PROJEKT: readonly Projekt[] = [
       mobil: "/projekt/scudaro-hemsida-mobil.webp",
     },
   },
-  {
-    namn: "Martinssons",
-    kategori: "Billackering",
-    text: "Billackering, rostskydd och plastreparationer för privatpersoner, försäkringsbolag och företag.",
-    url: "https://martinsson.vercel.app",
-    doman: "martinsson.vercel.app",
-    farger: ["#7fe3ff", "#3d7bff"],
-    skarmbild: {
-      dator: "/projekt/martinsson-hemsida.webp",
-      mobil: "/projekt/martinsson-hemsida-mobil.webp",
-    },
-  },
 ];
 
 // Marknadsföringsbilder som visas under projekten. Filerna ligger i public/projekt/.

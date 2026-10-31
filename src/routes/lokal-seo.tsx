@@ -140,7 +140,7 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "Företagsuppgifter och trovärdighet",
-    text: "Vi hittar motstridiga uppgifter i kataloger som Eniro och Hitta och möjligheter till lokala omnämnanden och länkar.",
+    text: "Vi hittar motstridiga uppgifter i kataloger som Eniro och Hitta och tipsar om var ni kan nämnas lokalt.",
     ikon: ShieldCheck,
   },
   {

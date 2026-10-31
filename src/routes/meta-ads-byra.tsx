@@ -123,7 +123,7 @@ const TJANSTER: readonly Kort[] = [
   },
   {
     titel: "Annonsmaterial och texter",
-    text: "Bild, video och karusell för flödet, Stories och Reels, med rubriker och texter i flera varianter att testa.",
+    text: "Bild, video och karusell för flödet, Stories och Reels, gjorda av ert befintliga material med rubriker och texter i flera varianter. Nytt material tas fram i Studio.",
     ikon: PenLine,
   },
   {
@@ -303,7 +303,7 @@ const BRANSCHER: readonly { titel: string; text: string }[] = [
   },
   {
     titel: "Hantverkare och byggföretag",
-    text: "Före och efter-bilder och ett tydligt erbjudande som leder till offertförfrågningar.",
+    text: "Före och efter-bilder från era egna jobb och ett tydligt erbjudande som leder till offertförfrågningar.",
   },
 ];
 
@@ -325,7 +325,7 @@ const VARFOR: readonly Kort[] = [
   },
   {
     titel: "Annons, sajt och SEO",
-    text: "Vi kan förbättra landningssidan och hemsidan när annonserna visar att det behövs.",
+    text: "Behöver landningssidan eller hemsidan förbättras gör vi det som ett Webb-jobb, när annonserna visar att det behövs.",
     ikon: LayoutTemplate,
   },
 ];
@@ -350,9 +350,9 @@ function MetaAdsByra() {
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
               Vill ni nå fler kunder med annonser på Facebook och Instagram? Vi planerar, skapar och
-              optimerar era Meta-kampanjer, med en tydlig strategi, annonsmaterial vi tar fram
-              själva och uppföljning varje månad. Oavsett om målet är fler förfrågningar, mer
-              försäljning eller bättre resultat av annonser ni redan kör.
+              optimerar era Meta-kampanjer, med en tydlig strategi, annonser gjorda av ert material
+              och uppföljning varje månad. Oavsett om målet är fler förfrågningar, mer försäljning
+              eller bättre resultat av annonser ni redan kör.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
@@ -425,8 +425,8 @@ function MetaAdsByra() {
               Våra Meta Ads-tjänster – från strategi till <Mark>optimering</Mark>
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-              Bra annonsering är mer än en annons och en budget. Vi planerar, tar fram materialet,
-              sköter kampanjerna och följer upp vad de ger.
+              Bra annonsering är mer än en annons och en budget. Vi planerar, gör annonserna av ert
+              material, sköter kampanjerna och följer upp vad de ger.
             </p>
           </Reveal>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -545,8 +545,9 @@ function MetaAdsByra() {
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
             Ett tjänsteföretag vill ha offertförfrågningar, en e-handel vill ha köp och en konsult
-            vill ha bokade möten. Därför bygger vi annonsen, landningssidan och mätningen kring det
-            som ska hända efter klicket, och utvärderar kampanjerna på det, inte på visningar.
+            vill ha bokade möten. Därför bygger vi annonsen och mätningen kring det som ska hända
+            efter klicket, och utvärderar kampanjerna på det, inte på visningar. Behöver
+            landningssidan byggas eller förbättras gör vi det som ett Webb-jobb.
           </p>
         </Reveal>
         <Reveal delay={80}>
@@ -608,8 +609,9 @@ function MetaAdsByra() {
                 rubrik som träffar.
               </p>
               <p className="mt-5 text-lg leading-relaxed text-ink/80">
-                Vi tar fram materialet själva och gör flera varianter, eftersom det sällan går att
-                veta i förväg vilken som vinner. Resultaten avgör vad som får fortsätta.{" "}
+                Vi gör flera varianter av varje annons, eftersom det sällan går att veta i förväg
+                vilken som vinner. Utan Studio använder vi ert befintliga material; nytt material
+                tas fram i Studio. Resultaten avgör vad som får fortsätta.{" "}
                 <Link to={tjanstSokvag("marknadsforingsbilder")} className={LANK}>
                   Se bilder vi tagit fram
                 </Link>
