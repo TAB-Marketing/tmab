@@ -124,7 +124,7 @@ const STEG: readonly Steg[] = [
   },
   {
     titel: "Lansering",
-    text: "Hemsidan publiceras i ert namn. Senare ändringar gör vi till fast pris per uppdrag.",
+    text: "Hemsidan publiceras i ert namn. Senare ändringar ingår i drift Total eller köps som klippkort.",
   },
 ];
 
@@ -162,7 +162,7 @@ function WebbyraGoteborg() {
           ))}
           <li className="flex items-center">
             <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
-              Ny hemsida från {kr(PRIS.landningssida)} exkl. moms
+              Ny hemsida från {kr(PRIS.tjanstesida)} exkl. moms
             </span>
           </li>
         </ul>
@@ -326,11 +326,12 @@ function WebbyraGoteborg() {
               <p className="caps text-sun">Ny hemsida</p>
               <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">
                 <span className="text-3xl sm:text-4xl">från </span>
-                {kr(PRIS.landningssida)}
+                {kr(PRIS.tjanstesida)}
               </p>
               <p className="mt-3 text-sm text-white/70">
-                {MOMS_TEXT} Företagshemsida {kr(PRIS.foretagshemsida)}. Drift från{" "}
-                {kr(PRIS.essential)}/mån. Modernisering: offert från {kr(PRIS.modernisering)}.
+                {MOMS_TEXT} Tjänstesida med upp till 5 sidor, eller {kr(PRIS.tjanstesidaManad)}/mån
+                i 12 månader. E-handel {kr(PRIS.ehandel)}. Drift från {kr(PRIS.essential)}/mån.
+                Fräscha upp: offert från {kr(PRIS.modernisering)}.
               </p>
               <div className="mt-8">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
@@ -368,7 +369,7 @@ function WebbyraGoteborg() {
         <BokaPanel
           tjanst={TJANST}
           onBoka={() => bokaKlick(SIDA, "avslutning")}
-          prislank={{ href: "#pris", text: `Ny hemsida från ${kr(PRIS.landningssida)}` }}
+          prislank={{ href: "#pris", text: `Ny hemsida från ${kr(PRIS.tjanstesida)}` }}
           rubrik={
             <>
               Behöver ert företag i Göteborg en <Mark>ny hemsida</Mark>?

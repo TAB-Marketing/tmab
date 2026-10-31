@@ -38,14 +38,12 @@ export const PRIS = {
   synlighetHog: 9930,
   synlighetSkraddarsytt: 12995,
   // Webb – bygge
-  landningssida: 4995,
   // Webb – bygge (nytt sortiment 2026-10-30)
   tjanstesida: 4970,
   ehandel: 9970,
   /** Avbetalning, bunden i 12 månader. */
   tjanstesidaManad: 500,
   ehandelManad: 1000,
-  foretagshemsida: 6995,
   extraSida: 1995,
   webbSkraddarsytt: 14995,
   cms: 4995,
@@ -64,7 +62,7 @@ export const PRIS = {
 /** Lägsta månadspris på sajten – "marknadsföring från …/mån". */
 export const LAGSTA_MANADSPRIS = PRIS.studioS;
 /** Lägsta pris för en ny hemsida. */
-export const LAGSTA_HEMSIDA = PRIS.landningssida;
+export const LAGSTA_HEMSIDA = PRIS.tjanstesida;
 
 export const MOMS_TEXT = "Alla priser är exkl. moms.";
 
@@ -380,15 +378,15 @@ export const WEBB: Del = {
     "Vi bygger hemsidan till fast pris. Efter lansering väljer ni själva: ta över allt, eller låt oss sköta drift och ändringar.",
   engang: [
     {
-      tjanst: "Landningssida",
-      pris: PRIS.landningssida,
-      not: "En sida med design, texter, kontakt- eller offertformulär, SEO-grund och en ändringsrunda",
+      tjanst: "Tjänstesida",
+      pris: PRIS.tjanstesida,
+      not: `Upp till 5 sidor med design, texter, formulär och SEO-grund. Eller ${kr(PRIS.tjanstesidaManad)}/mån i 12 månader`,
       slug: "hemsida",
     },
     {
-      tjanst: "Företagshemsida",
-      pris: PRIS.foretagshemsida,
-      not: "Upp till 5 sidor, fler integrationer, Search Console och Bing",
+      tjanst: "E-handel",
+      pris: PRIS.ehandel,
+      not: `Egen butik kopplad till Shopify. Eller ${kr(PRIS.ehandelManad)}/mån i 12 månader`,
       slug: "hemsida",
     },
     { tjanst: "Extra sida", pris: PRIS.extraSida, slug: "hemsida" },
@@ -399,7 +397,7 @@ export const WEBB: Del = {
       slug: "hemsida",
     },
     {
-      tjanst: "Modernisera befintlig hemsida",
+      tjanst: "Fräscha upp befintlig hemsida",
       pris: PRIS.modernisering,
       fran: true,
       not: "Offert, fast pris efter genomgången",
@@ -427,11 +425,11 @@ export const WEBB: Del = {
       belopp: PRIS.ehandel,
       enhet: "engång",
       alternativ: `eller ${kr(PRIS.ehandelManad)}/mån i 12 månader`,
-      // TODO(TAB): bestäm vad E-handel innehåller (plattform, antal produkter, betalning).
       ingar: [
         "Allt i Tjänstesida",
-        "Webbshop med produkter och betalning",
-        "En ändringsrunda innan lansering",
+        "Egen butik i er design, kopplad till Shopify",
+        "Produkter, lager och kassa sköts i Shopify",
+        "Shopify-abonnemanget betalar ni direkt till Shopify",
       ],
     },
     {
@@ -808,7 +806,7 @@ export const GSC_SVAR =
 export const PRIS_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad kostar marknadsföring hos er?",
-    svar: `Ni köper det ni behöver. Studio (bilder och video) från ${kr(PRIS.studioS)}/mån, Annonser från ${kr(PRIS.annonser1)}/mån, Synlighet (SEO och GEO) från ${kr(PRIS.synlighetBas)}/mån och en ny hemsida från ${kr(PRIS.landningssida)}. ${MOMS_TEXT}`,
+    svar: `Ni köper det ni behöver. Studio (bilder och video) från ${kr(PRIS.studioS)}/mån, Annonser från ${kr(PRIS.annonser1)}/mån, Synlighet (SEO och GEO) från ${kr(PRIS.synlighetBas)}/mån och en ny hemsida från ${kr(PRIS.tjanstesida)}. ${MOMS_TEXT}`,
   },
   {
     fraga: "Finns det någon bindningstid?",

@@ -236,7 +236,7 @@ function HemsidaForetag() {
           ))}
           <li className="flex items-center gap-3 font-bold text-ink">
             <span className="rounded-full bg-sun px-3 py-1 text-sm">
-              Från {kr(PRIS.landningssida)} exkl. moms
+              Från {kr(PRIS.tjanstesida)} exkl. moms
             </span>
           </li>
         </ul>
@@ -464,12 +464,12 @@ function HemsidaForetag() {
               <p className="caps text-sun">Ny hemsida</p>
               <dl className="mt-5 divide-y divide-white/15">
                 <div className="flex items-baseline justify-between gap-4 pb-3">
-                  <dt className="text-white/80">Landningssida</dt>
-                  <dd className="font-display text-4xl">{kr(PRIS.landningssida)}</dd>
+                  <dt className="text-white/80">Tjänstesida, upp till 5 sidor</dt>
+                  <dd className="font-display text-4xl">{kr(PRIS.tjanstesida)}</dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-4 py-3">
-                  <dt className="text-white/80">Företagshemsida, upp till 5 sidor</dt>
-                  <dd className="font-display text-4xl">{kr(PRIS.foretagshemsida)}</dd>
+                  <dt className="text-white/80">E-handel</dt>
+                  <dd className="font-display text-4xl">{kr(PRIS.ehandel)}</dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-4 py-3">
                   <dt className="text-white/80">Skräddarsytt</dt>
@@ -501,7 +501,7 @@ function HemsidaForetag() {
                   to={tjanstSokvag("hemsideoptimering")}
                   className="mt-4 inline-flex items-center gap-2 font-bold text-white underline decoration-sun decoration-2 underline-offset-4"
                 >
-                  Förbättra befintlig hemsida
+                  Fräscha upp befintlig hemsida
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
               </div>

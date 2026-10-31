@@ -25,6 +25,7 @@ import { ARSKOSTNAD, HEMSIDA_PRIS, HEMSIDA_PRIS_FRAGOR } from "@/lib/hemsida-pri
 import {
   AGANDE_TEXT,
   BETALNING_TEXT,
+  AVBETALNING_TEXT,
   BINDNING_TEXT,
   kr,
   MOMS_TEXT,
@@ -71,7 +72,7 @@ export const Route = createFileRoute("/hemsida-pris")({
 const LANK =
   "font-bold text-ink underline decoration-sun decoration-2 underline-offset-4 hover:decoration-ink";
 
-/** Tre nivåer för bygget – priserna kommer från priser.ts. */
+/** Bygget: tjänstesida, e-handel och skräddarsytt – priserna kommer från priser.ts. */
 const BYGGEN: readonly {
   id: string;
   namn: string;
@@ -81,32 +82,30 @@ const BYGGEN: readonly {
   utvald?: boolean;
 }[] = [
   {
-    id: "landningssida",
-    namn: "Landningssida",
-    pris: kr(PRIS.landningssida),
-    passar:
-      "En sida som säljer en sak, till exempel en hantverkare som vill ha offertförfrågningar.",
+    id: "tjanstesida",
+    namn: "Tjänstesida",
+    pris: kr(PRIS.tjanstesida),
+    passar: `Upp till 5 sidor för företag som säljer tjänster. Eller ${kr(PRIS.tjanstesidaManad)}/mån i 12 månader.`,
     ingar: [
-      "En sida med design efter ert varumärke",
+      "Upp till 5 sidor med design efter ert varumärke",
       "Texter utifrån ert underlag",
       "Kontakt- eller offertformulär",
-      "Mobilanpassning och SEO-grund",
-      "En ändringsrunda innan lansering",
-    ],
-  },
-  {
-    id: "foretagshemsida",
-    namn: "Företagshemsida",
-    pris: kr(PRIS.foretagshemsida),
-    passar: "Upp till 5 sidor och fler integrationer, för företag med flera tjänster.",
-    ingar: [
-      "Upp till 5 sidor",
-      "Allt i landningssidan",
-      "Fler integrationer och formulär",
-      "Search Console och Bing i ert namn",
+      "Mobilanpassning, SEO-grund, Search Console och Bing",
       `Extra sida ${kr(PRIS.extraSida)}`,
     ],
     utvald: true,
+  },
+  {
+    id: "ehandel",
+    namn: "E-handel",
+    pris: kr(PRIS.ehandel),
+    passar: `Egen butik för er som säljer produkter. Eller ${kr(PRIS.ehandelManad)}/mån i 12 månader.`,
+    ingar: [
+      "Allt i Tjänstesida",
+      "Egen butik i er design, kopplad till Shopify",
+      "Produkter, lager och kassa sköts i Shopify",
+      "Shopify-abonnemanget betalar ni direkt till Shopify",
+    ],
   },
   {
     id: "skraddarsytt",
@@ -203,7 +202,7 @@ const FAKTORER: readonly Kort[] = [
 const KONTROLLERA: readonly { punkt: string; hosOss: string }[] = [
   {
     punkt: "Startkostnad",
-    hosOss: `Landningssida ${kr(PRIS.landningssida)}, företagshemsida ${kr(PRIS.foretagshemsida)}`,
+    hosOss: `Tjänstesida ${kr(PRIS.tjanstesida)}, e-handel ${kr(PRIS.ehandel)}, även som avbetalning`,
   },
   {
     punkt: "Löpande avgifter",
@@ -224,7 +223,7 @@ const FORETAGSTYPER: readonly { titel: string; text: string }[] = [
   },
   {
     titel: "Hantverkare",
-    text: "Ofta räcker en landningssida med ett tydligt offertformulär. Har ni flera tjänster ger en sida per tjänst mest.",
+    text: "Ofta räcker några sidor med ett tydligt offertformulär. Har ni flera tjänster ger en sida per tjänst mest.",
   },
   {
     titel: "Konsulter",
@@ -351,13 +350,16 @@ function HemsidaPris() {
           <div className="inramad p-8 text-elfenben sm:p-10">
             <p className="caps text-sun">Hemsidor från</p>
             <p className="mt-4 font-display text-6xl leading-none sm:text-7xl">
-              {kr(PRIS.landningssida)}
+              {kr(PRIS.tjanstesida)}
             </p>
-            <p className="mt-3 text-white/75">Landningssida, engångspris exkl. moms</p>
+            <p className="mt-3 text-white/75">
+              Tjänstesida, engångspris exkl. moms, eller {kr(PRIS.tjanstesidaManad)}/mån i 12
+              månader
+            </p>
             <dl className="mt-8 divide-y divide-white/15 border-t border-white/15">
               <div className="flex justify-between gap-4 py-3">
-                <dt className="text-white/80">Företagshemsida, upp till 5 sidor</dt>
-                <dd className="font-bold">{kr(PRIS.foretagshemsida)}</dd>
+                <dt className="text-white/80">E-handel</dt>
+                <dd className="font-bold">{kr(PRIS.ehandel)}</dd>
               </div>
               <div className="flex justify-between gap-4 py-3">
                 <dt className="text-white/80">Skräddarsytt</dt>
@@ -385,11 +387,12 @@ function HemsidaPris() {
         <Reveal>
           <p className="eyebrow">Priser</p>
           <h2 id="priser-rubrik" className="mt-4 max-w-3xl text-4xl sm:text-5xl">
-            Våra priser för <Mark>företagshemsidor</Mark>
+            Våra priser för <Mark>hemsidor</Mark>
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
-            Tre nivåer för bygget, alla med fast pris. Fasta priser gäller hemsidor vi bygger i vår
-            egen uppsättning – andra plattformar får offert.
+            Tjänstesida eller e-handel, båda med fast pris, och skräddarsytt för mer avancerade
+            behov. Fasta priser gäller hemsidor vi bygger i vår egen uppsättning – andra plattformar
+            får offert.
           </p>
         </Reveal>
 
@@ -451,9 +454,9 @@ function HemsidaPris() {
           </li>
         </ul>
         <p className="mt-4 text-ink/80">
-          Har ni redan en hemsida? Modernisering är offert från {kr(PRIS.modernisering)} –{" "}
+          Har ni redan en hemsida? Fräscha upp är offert från {kr(PRIS.modernisering)} –{" "}
           <Link to={tjanstSokvag("hemsideoptimering")} className={LANK}>
-            modernisera er hemsida
+            fräscha upp er hemsida
           </Link>
           .
         </p>
@@ -564,9 +567,10 @@ function HemsidaPris() {
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                `Ni betalar bygget en gång, från ${kr(PRIS.landningssida)}. Ingen startavgift.`,
+                `Ni betalar bygget en gång, från ${kr(PRIS.tjanstesida)}, eller delar upp det på 12 månader.`,
                 "Drift är frivillig. Tar ni över sajten betalar ni ingenting till oss per månad.",
                 `Väljer ni drift: ${BINDNING_TEXT}`,
+                AVBETALNING_TEXT,
                 "Domänen ligger alltid i ert namn, och koden är er.",
                 "Vill ni flytta får ni koden och en timmes flytthjälp utan kostnad.",
               ].map((t) => (

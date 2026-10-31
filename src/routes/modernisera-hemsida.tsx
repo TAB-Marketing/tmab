@@ -42,7 +42,7 @@ export const Route = createFileRoute("/modernisera-hemsida")({
         ...(t
           ? [
               tjanstSchema(t, {
-                namn: "Modernisering av befintlig hemsida",
+                namn: "Fräscha upp befintlig hemsida",
                 beskrivning: MODERNISERA_HEMSIDA.seoBeskrivning,
                 sokvag: SIDA,
               }),
@@ -168,7 +168,7 @@ const VAGAR: readonly {
   markerad?: boolean;
 }[] = [
   {
-    titel: "Uppfräschning",
+    titel: "Fräscha upp",
     passar: "Grunden fungerar, men sajten känns gammal eller krånglig på några punkter.",
     punkter: [
       "Design, bilder och texter uppdateras",
@@ -186,7 +186,7 @@ const VAGAR: readonly {
       "Ny design i samma plattform",
       "Adresser och omdirigeringar planeras",
     ],
-    pris: "Offert, fast pris efter genomgången",
+    pris: "Fräscha upp, offert efter genomgången",
   },
   {
     titel: "Ny hemsida",
@@ -196,7 +196,7 @@ const VAGAR: readonly {
       "Innehåll som fungerar flyttas med",
       "Domän och viktiga adresser behålls",
     ],
-    pris: `Från ${kr(PRIS.landningssida)}`,
+    pris: `Från ${kr(PRIS.tjanstesida)}`,
     lank: { till: HEMSIDA_FORETAG.sokvag, text: "Hemsida till företag" },
   },
 ];
@@ -588,13 +588,13 @@ function ModerniseraHemsida() {
           </Reveal>
           <Reveal delay={80}>
             <div id="pris" className="inramad scroll-mt-28 p-8 text-elfenben sm:p-10">
-              <p className="caps text-sun">Modernisering av hemsida</p>
+              <p className="caps text-sun">Fräscha upp hemsidan</p>
               <p className="mt-5 font-display text-5xl leading-none sm:text-6xl">
                 <span className="text-3xl sm:text-4xl">från </span>
                 {kr(PRIS.modernisering)}
               </p>
               <p className="mt-3 text-sm text-white/70">
-                {MOMS_TEXT} Alltid offert med fast pris, aldrig timdebitering.
+                {MOMS_TEXT} Alltid offert med fast pris för jobbet.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <BokaKnapp variant="white" tjanst={TJANST} onClick={() => bokaKlick(SIDA, "pris")}>
@@ -604,8 +604,7 @@ function ModerniseraHemsida() {
               <div className="mt-10 border-t border-white/15 pt-8">
                 <p className="font-bold">Behöver ni hellre en ny hemsida?</p>
                 <p className="mt-2 leading-relaxed text-white/80">
-                  En landningssida kostar {kr(PRIS.landningssida)} och en företagshemsida{" "}
-                  {kr(PRIS.foretagshemsida)}.
+                  En tjänstesida kostar {kr(PRIS.tjanstesida)} och en e-handel {kr(PRIS.ehandel)}.
                 </p>
                 <Link
                   to={HEMSIDA_FORETAG.sokvag}

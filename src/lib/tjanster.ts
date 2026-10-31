@@ -271,7 +271,7 @@ export const TJANSTER: readonly Tjanst[] = [
   },
   {
     slug: "hemsideoptimering",
-    titel: "Optimering av hemsida",
+    titel: "Fräscha upp hemsidan",
     iText: "hemsideoptimering",
     rubrik: { text: "Hemsideoptimering som gör fler besökare till kunder", markera: "kunder" },
     seoTitel: "Optimering av hemsida för fler kunder",
@@ -293,7 +293,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Vi gör ändringarna åt er",
       "Mätning före och efter",
     ],
-    pris: { belopp: PRIS.modernisering, fran: true, avser: "Modernisering – offert" },
+    pris: { belopp: PRIS.modernisering, fran: true, avser: "Fräscha upp – offert" },
     iPaket: null,
     fordjupning: [
       {
@@ -323,7 +323,7 @@ export const TJANSTER: readonly Tjanst[] = [
     fragor: [
       {
         fraga: "Vad kostar det att förbättra vår hemsida?",
-        svar: `Modernisering är alltid offert, från ${kr(PRIS.modernisering)}, beroende på hur mycket som behöver göras och vilken plattform sajten ligger på. Ni får ett fast pris efter den kostnadsfria genomgången. ${MOMS_TEXT}`,
+        svar: `Fräscha upp är alltid offert, från ${kr(PRIS.modernisering)}, beroende på hur mycket som behöver göras och vilken plattform sajten ligger på. Ni får ett fast pris efter den kostnadsfria genomgången. ${MOMS_TEXT}`,
       },
       {
         fraga: "Kan vi få löpande hjälp med ändringar?",
@@ -401,12 +401,12 @@ export const TJANSTER: readonly Tjanst[] = [
     iText: "nya hemsidor",
     rubrik: { text: "En hemsida som ser ut som ert varumärke och säljer", markera: "säljer" },
     seoTitel: "Skapa ny hemsida för företag",
-    seoBeskrivning: `Vi designar, skriver och bygger er nya hemsida med SEO från start. Från ${kr(PRIS.landningssida)}. Gratis genomgång och fast pris.`,
+    seoBeskrivning: `Vi designar, skriver och bygger er nya hemsida med SEO från start. Från ${kr(PRIS.tjanstesida)}. Gratis genomgång och fast pris.`,
     vad: "En sajt som ser ut som ert varumärke och säljer",
     ikon: LayoutTemplate,
     svarighet: 5,
     forklaring:
-      "En mall ser ut som alla andras, och en utvecklare som tar betalt per timme blir snabbt dyrt. En bra sajt kräver design, text, teknik och SEO som fungerar tillsammans.",
+      "En mall ser ut som alla andras, och ett bygge utan fast pris blir lätt dyrare än tänkt. En bra sajt kräver design, text, teknik och SEO som fungerar tillsammans.",
     sjalv: [
       "Välja plattform och mall",
       "Skriva all text och ta fram bilder",
@@ -419,7 +419,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Utveckling och lansering",
       "SEO-grund från start",
     ],
-    pris: { belopp: PRIS.landningssida, fran: true, avser: "Webb – ny hemsida" },
+    pris: { belopp: PRIS.tjanstesida, fran: true, avser: "Webb – ny hemsida" },
     iPaket: `Efter lansering: ta över sajten själva, eller drift från ${kr(PRIS.essential)}/mån.`,
     arbetssatt: {
       steg: [
@@ -446,7 +446,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Vad kostar en ny hemsida?",
-        svar: `En landningssida kostar ${kr(PRIS.landningssida)} och en företagshemsida med upp till 5 sidor ${kr(PRIS.foretagshemsida)}. Mer avancerade sajter – bokning, flera språk, inloggning – får offert från ${kr(PRIS.webbSkraddarsytt)}. ${MOMS_TEXT}`,
+        svar: `En tjänstesida med upp till 5 sidor kostar ${kr(PRIS.tjanstesida)} och en e-handel ${kr(PRIS.ehandel)}, båda även som avbetalning på 12 månader. Mer avancerade sajter – bokning, flera språk, inloggning – får offert från ${kr(PRIS.webbSkraddarsytt)}. ${MOMS_TEXT}`,
       },
       {
         fraga: "Ska vi bygga nytt eller förbättra den hemsida vi har?",

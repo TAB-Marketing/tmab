@@ -40,11 +40,11 @@ export const MODERNISERA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar det att modernisera en hemsida?",
-    svar: `Modernisering är alltid offert, från ${kr(PRIS.modernisering)}, eftersom det beror på sajtens skick och plattform. Ni får ett fast pris efter genomgången – vi tar aldrig betalt per timme. ${MOMS_TEXT}`,
+    svar: `Fräscha upp är alltid offert, från ${kr(PRIS.modernisering)}, eftersom det beror på sajtens skick och plattform. Ni får ett fast pris efter genomgången, och bygget har alltid fast pris. ${MOMS_TEXT}`,
   },
   {
     fraga: "Måste vi bygga en helt ny hemsida?",
-    svar: `Oftast inte – design, innehåll och funktioner går ofta att förbättra i den sajt ni har. Är tekniken för begränsad kan en ny hemsida vara bättre på sikt, och då säger vi det. En ny företagshemsida kostar ${kr(PRIS.foretagshemsida)}.`,
+    svar: `Oftast inte – design, innehåll och funktioner går ofta att förbättra i den sajt ni har. Är tekniken för begränsad kan en ny hemsida vara bättre på sikt, och då säger vi det. En ny tjänstesida kostar ${kr(PRIS.tjanstesida)}.`,
   },
   {
     fraga: "Kan ni förbättra designen utan att ändra hela hemsidan?",

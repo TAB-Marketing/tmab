@@ -9,9 +9,9 @@ export const HEMSIDA_FORETAG = {
   titel: "Hemsida till företag",
   etikett: "Tjänst · Ny hemsida",
   /** Sidans titel i sökresultat, utan företagsnamn (läggs till automatiskt). */
-  seoTitel: `Hemsida till företag – från ${kr(PRIS.landningssida)}`,
+  seoTitel: `Hemsida till företag – från ${kr(PRIS.tjanstesida)}`,
   /** Max ca 155 tecken. */
-  seoBeskrivning: `Ny hemsida till företaget? TAB bygger moderna, mobilanpassade hemsidor för småföretag och växande företag från ${kr(PRIS.landningssida)} exkl. moms. Boka gratis genomgång.`,
+  seoBeskrivning: `Ny hemsida till företaget? TAB bygger moderna, mobilanpassade hemsidor för småföretag och växande företag från ${kr(PRIS.tjanstesida)} exkl. moms, även som avbetalning. Boka gratis genomgång.`,
   /** Text på kortet under /guider. */
   kortText:
     "Vad en bra företagshemsida behöver, vad som ingår när vi bygger den, hur det går till och vad det kostar.",
@@ -22,7 +22,7 @@ export const HEMSIDA_FORETAG = {
 export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   {
     fraga: "Vad kostar det att skapa en hemsida till ett företag?",
-    svar: `En landningssida kostar ${kr(PRIS.landningssida)} och en företagshemsida med upp till 5 sidor ${kr(PRIS.foretagshemsida)}. Mer avancerade sajter – bokning, flera språk, inloggning – får offert från ${kr(PRIS.webbSkraddarsytt)}. Efter lansering tar ni över sajten, eller låter oss sköta driften från ${kr(PRIS.essential)} per månad. ${MOMS_TEXT}`,
+    svar: `En tjänstesida med upp till 5 sidor kostar ${kr(PRIS.tjanstesida)} och en e-handel ${kr(PRIS.ehandel)}, eller ${kr(PRIS.tjanstesidaManad)} respektive ${kr(PRIS.ehandelManad)} per månad i 12 månader. Mer avancerade sajter – bokning, flera språk, inloggning – får offert från ${kr(PRIS.webbSkraddarsytt)}. Efter lansering tar ni över sajten, eller låter oss sköta driften från ${kr(PRIS.essential)} per månad. ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar det att bygga en företagshemsida?",
@@ -42,7 +42,7 @@ export const HEMSIDA_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Finns det billiga hemsidor för småföretag?",
-    svar: `Vår enklaste hemsida, en landningssida, kostar ${kr(PRIS.landningssida)}. Skillnaden mellan en billig och en dyr hemsida sitter sällan i utseendet utan i vad som ingår: antal sidor, texter och bilder, funktioner och vem som äger sajten och kontona efteråt. Jämför därför vad som ingår, inte bara priset. ${MOMS_TEXT}`,
+    svar: `Vår tjänstesida, med upp till 5 sidor, kostar ${kr(PRIS.tjanstesida)}. Skillnaden mellan en billig och en dyr hemsida sitter sällan i utseendet utan i vad som ingår: antal sidor, texter och bilder, funktioner och vem som äger sajten och kontona efteråt. Jämför därför vad som ingår, inte bara priset. ${MOMS_TEXT}`,
   },
   {
     fraga: "Är hemsidorna mobilanpassade?",
