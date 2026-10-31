@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { AiSammanfattning } from "@/components/AiSammanfattning";
 import { Logo } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
 import { BEHOVER_SAMTYCKE, VISA_BANNER, oppnaInstallningar } from "@/lib/samtycke";
@@ -19,6 +20,7 @@ export function Footer() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
               {FORETAG.beskrivning}
             </p>
+            <AiSammanfattning />
           </div>
 
           <div>
