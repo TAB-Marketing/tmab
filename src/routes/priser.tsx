@@ -328,9 +328,9 @@ function Priser() {
             </Reveal>
             <Reveal delay={80}>
               <p className="text-lg leading-relaxed text-ink/80">
-                Bilder, uppsättningar och hemsidor som köps en gång. Kryssa i det ni vill ha – ju
-                fler jobb, desto större mängdrabatt. Ni får en bekräftelse med fast pris innan vi
-                börjar.
+                Bilder, uppsättningar och tillägg till hemsidan som köps en gång. Kryssa i det ni
+                vill ha – ju fler jobb, desto större mängdrabatt. Ni får en bekräftelse med fast
+                pris innan vi börjar.
               </p>
             </Reveal>
           </div>
