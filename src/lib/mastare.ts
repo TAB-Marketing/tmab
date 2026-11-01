@@ -51,7 +51,7 @@ export const MASTAR_HERO = {
     plats: "Sal II · Verk nr 2",
     sida: "vanster",
   }),
-  "meta-annonser": mastare("aristoteles", 1094, {
+  "meta-annonser": mastare("aristoteles", 1095, {
     person: "Aristoteles",
     levde: "384–322 f.Kr.",
     bildtext: "Skrev om hur man övertygar: med förtroende, känsla och förnuft.",
@@ -59,7 +59,7 @@ export const MASTAR_HERO = {
     plats: "Sal II · Verk nr 3",
     sida: "hoger",
   }),
-  hemsideoptimering: mastare("nightingale", 1094, {
+  hemsideoptimering: mastare("nightingale", 1071, {
     person: "Florence Nightingale",
     levde: "1820–1910",
     bildtext: "Mätte, ritade diagram och ändrade efter vad siffrorna visade.",
@@ -67,7 +67,7 @@ export const MASTAR_HERO = {
     plats: "Sal II · Verk nr 4",
     sida: "vanster",
   }),
-  marknadsforingsbilder: mastare("vermeer", 1094, {
+  marknadsforingsbilder: mastare("vermeer", 1071, {
     person: "Johannes Vermeer",
     levde: "1632–1675",
     bildtext: "Började varje bild med hur ljuset föll.",
@@ -75,7 +75,7 @@ export const MASTAR_HERO = {
     plats: "Sal II · Verk nr 5",
     sida: "hoger",
   }),
-  hemsida: mastare("davinci", 1094, {
+  hemsida: mastare("davinci", 1099, {
     person: "Leonardo da Vinci",
     levde: "1452–1519",
     bildtext: "Förenade konst och teknik i samma hand.",

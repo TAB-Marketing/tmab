@@ -1174,8 +1174,12 @@ main:has(.fyr-panel) + footer > div {
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
+.mastar-plats > :first-child {
+  white-space: nowrap;
+}
 .mastar-plats > :last-child {
   color: #9a7631;
+  text-align: right;
 }
 .mastar-verk {
   display: grid;
