@@ -353,9 +353,10 @@
 }
 .tavla {
   --elfenben: #efe6d2;
-  /* Ramens ornament sticker ut 40 enheter utanför rutan (border-image-outset), så rutan
-     krymper så mycket att hela ramen – utstickarna inräknade – får plats. */
-  --b: min(100cqw * 1672 / 1752, 100rem, (100svh - 5.25rem) * 1672 / 1021);
+  /* Samma storlek som innan ornamenten fick sticka ut (border-image-outset): de ritas i
+     luften runt tavlan. Bara där bredden styr krymper tavlan lite, så att sidornamenten
+     inte kapas av skärmkanten. Höjden får inte krympa – då får texten inte plats på duken. */
+  --b: min(100cqw * 1672 / 1752, 100rem, (100svh - 5.25rem) * 1672 / 941);
   --e: calc(var(--b) / 1672);
   position: relative;
   isolation: isolate;
@@ -374,7 +375,6 @@
   background-clip: padding-box;
   background-color: #14100b;
   color: var(--elfenben);
-  margin-block: calc(var(--e) * 40);
 }
 .tavla-duk {
   position: absolute;
