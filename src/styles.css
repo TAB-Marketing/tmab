@@ -353,7 +353,9 @@
 }
 .tavla {
   --elfenben: #efe6d2;
-  --b: min(100cqw, 100rem, (100svh - 5.25rem) * 1672 / 941);
+  /* Ramens ornament sticker ut 40 enheter utanför rutan (border-image-outset), så rutan
+     krymper så mycket att hela ramen – utstickarna inräknade – får plats. */
+  --b: min(100cqw * 1672 / 1752, 100rem, (100svh - 5.25rem) * 1672 / 1021);
   --e: calc(var(--b) / 1672);
   position: relative;
   isolation: isolate;
@@ -363,12 +365,16 @@
   border-style: solid;
   border-color: transparent;
   border-width: calc(var(--e) * 74) calc(var(--e) * 82) calc(var(--e) * 82) calc(var(--e) * 84);
-  border-image: url("/masterverk/ram-bred.webp") 74 82 82 84 / 1 stretch;
+  border-image-source: url("/masterverk/ram-bred-kontur.webp");
+  border-image-slice: 114 122 122 124;
+  border-image-width: calc(var(--e) * 114) calc(var(--e) * 122) calc(var(--e) * 122) calc(var(--e) * 124);
+  border-image-outset: calc(var(--e) * 40);
+  border-image-repeat: stretch;
+  /* Bakgrunden stannar innanför listen – annars syns den där ytterkanten är urskuren. */
+  background-clip: padding-box;
   background-color: #14100b;
   color: var(--elfenben);
-  box-shadow:
-    0 3px 4px rgb(30 20 5 / 0.3),
-    0 30px 54px -18px rgb(40 28 8 / 0.5);
+  margin-block: calc(var(--e) * 40);
 }
 .tavla-duk {
   position: absolute;
@@ -568,13 +574,16 @@
     padding: 0 0.5rem 0.5rem;
   }
   .tavla {
-    --b: 100cqw;
+    --b: calc(100cqw * 941 / 1021);
     --e: calc(var(--b) / 941);
     display: flex;
     flex-direction: column;
     aspect-ratio: auto;
     border-width: calc(var(--e) * 84) calc(var(--e) * 85) calc(var(--e) * 90) calc(var(--e) * 82);
-    border-image: url("/masterverk/ram-hog.webp") 84 85 90 82 / 1 stretch;
+    border-image-source: url("/masterverk/ram-hog-kontur.webp");
+    border-image-slice: 124 125 130 122;
+    border-image-width: calc(var(--e) * 124) calc(var(--e) * 125) calc(var(--e) * 130) calc(var(--e) * 122);
+    border-image-outset: calc(var(--e) * 40);
   }
   /* Dukens inre bredd är 941 − 82 − 85 = 774 enheter; överdelens bild är 774 × 500. */
   .tavla-ovan {
@@ -812,18 +821,34 @@ main:has(.fyr-panel) + footer > div {
   color: #b8913f;
 }
 .galleri-ram {
+  --rb: 16px;
   position: relative;
-  border: 16px solid transparent;
-  border-image: url("/masterverk/ram-hog.webp") 84 85 90 82 / 1 stretch;
+  border-width: var(--rb);
+  border-style: solid;
+  border-color: transparent;
+  background-clip: padding-box;
   background-color: #14100b;
-  box-shadow:
-    0 2px 3px rgb(30 20 5 / 0.3),
-    0 22px 40px -16px rgb(40 28 8 / 0.45);
+}
+/* Ramfilerna har 40 enheter genomskinlig kant runt listen, där ornamenten och skuggan ligger.
+   border-image-width/-outset skalar den kanten i samma takt som listen (--rb / listens bredd i filen). */
+.galleri-ram,
+.inramad {
+  border-image-source: url("/masterverk/ram-hog-kontur.webp");
+  border-image-slice: 124 125 130 122;
+  border-image-width: calc(var(--rb) * 124 / 84) calc(var(--rb) * 125 / 85) calc(var(--rb) * 130 / 90)
+    calc(var(--rb) * 122 / 82);
+  border-image-outset: calc(var(--rb) * 40 / 84) calc(var(--rb) * 40 / 85) calc(var(--rb) * 40 / 90)
+    calc(var(--rb) * 40 / 82);
+  border-image-repeat: stretch;
 }
 .galleri-ram-bred {
-  border-width: clamp(14px, 1.8vw, 24px);
-  border-image-source: url("/masterverk/ram-bred.webp");
-  border-image-slice: 74 82 82 84;
+  --rb: clamp(14px, 1.8vw, 24px);
+  border-image-source: url("/masterverk/ram-bred-kontur.webp");
+  border-image-slice: 114 122 122 124;
+  border-image-width: calc(var(--rb) * 114 / 74) calc(var(--rb) * 122 / 82) calc(var(--rb) * 122 / 82)
+    calc(var(--rb) * 124 / 84);
+  border-image-outset: calc(var(--rb) * 40 / 74) calc(var(--rb) * 40 / 82) calc(var(--rb) * 40 / 82)
+    calc(var(--rb) * 40 / 84);
 }
 /* Filmens egen rundning och bildtext passar inte i en ram. */
 .galleri-ram-bred figure > div {
@@ -1007,12 +1032,15 @@ main:has(.fyr-panel) + footer > div {
   border-style: solid;
   border-color: transparent;
   border-width: 56px 62px 62px 63px;
-  border-image: url("/masterverk/ram-bred.webp") 74 82 82 84 / 1 stretch;
+  /* Listen är 56–63 px, dvs. ≈ 0,756 px per enhet i ramfilen; ornamentkanten är 40 enheter. */
+  border-image-source: url("/masterverk/ram-bred-kontur.webp");
+  border-image-slice: 114 122 122 124;
+  border-image-width: 86.3px 92.2px 92.2px 93px;
+  border-image-outset: 30.3px 30.2px 30.2px 30px;
+  border-image-repeat: stretch;
+  background-clip: padding-box;
   background-color: #14100b;
   transform: translate3d(calc(20vw - 48px), 0, 0) scale(0.6);
-  box-shadow:
-    0 3px 5px rgb(30 20 5 / 0.3),
-    0 40px 70px -24px rgb(40 28 8 / 0.5);
 }
 .mastar-bakgrund {
   position: absolute;
@@ -1178,12 +1206,12 @@ main:has(.fyr-panel) + footer > div {
   outline-color: #b8913f;
 }
 .inramad {
-  border: 18px solid transparent;
-  border-image: url("/masterverk/ram-hog.webp") 84 85 90 82 / 1 stretch;
+  --rb: 18px;
+  border-width: var(--rb);
+  border-style: solid;
+  border-color: transparent;
+  background-clip: padding-box;
   background-color: #14100b;
-  box-shadow:
-    0 2px 3px rgb(30 20 5 / 0.3),
-    0 22px 40px -16px rgb(40 28 8 / 0.45);
 }
 /* Mörkt kort med tunn guldlinje – för framhävda rutor som inte är sidans huvudval.
    Den förgyllda ramen (.inramad) sparas till ett element per sida: det vi rekommenderar. */

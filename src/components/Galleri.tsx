@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 /**
  * Startsidan som ett galleri: målningen överst hänger på museiväggen och sektionerna under är
  * salar med inramade verk och museiskyltar. Ramen är samma förgyllda ram som den stora
- * målningen (public/masterverk/ram-hog.webp), se .galleri-ram i styles.css.
+ * målningen (public/masterverk/ram-hog-kontur.webp), se .galleri-ram i styles.css.
  */
 
 /** Salens rubrik: romersk siffra, liten versalrad och rubrik. */
