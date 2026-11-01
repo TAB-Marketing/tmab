@@ -828,7 +828,7 @@ main:has(.fyr-panel) + footer > div {
 .galleri-ram {
   /* Listen i samma proportion som mobilherons stående ram – med 16 px krymptes ramfilen
      så mycket att ornamenten blev streck. */
-  --rb: clamp(24px, 2.2vw, 34px);
+  --rb: 24px;
   position: relative;
   border-width: var(--rb);
   border-style: solid;
