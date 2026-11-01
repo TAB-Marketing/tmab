@@ -211,69 +211,72 @@ function Start() {
           </div>
         </section>
 
-        {/* Sal II – Varför TAB: Caesar och de sex hantverkens mästare */}
-        <section aria-labelledby="lyckas-rubrik" className="container-page sal">
-          <Reveal>
-            <SalRubrik
-              nummer="II"
-              etikett={`Varför ${FORETAG.kortnamn}`}
-              id="lyckas-rubrik"
-              ingress="Digital marknadsföring är många hantverk på en gång. Varje hantverk har haft sin mästare. Ni kan lära er dem själva, eller låta oss sköta dem medan ni driver företaget."
-            >
-              Det här krävs för att <Mark>lyckas</Mark> digitalt
-            </SalRubrik>
-          </Reveal>
-          <div className="caesar">
-            <Verk
-              bild={{
-                src: "/galleri/caesar-720.webp",
-                srcSet: "/galleri/caesar-720.webp 720w, /galleri/caesar-1080.webp 1080w",
-                bredd: 720,
-                hojd: 900,
-                alt: "Stilleben tillägnat Julius Caesar: lagerkrans, svärd och romersk örn på en marmorhylla",
-              }}
-              sizes="(min-width: 1024px) 30rem, 90vw"
-              overrad="Tillägnad Julius Caesar"
-              titel="Veni, vidi, vici"
-              className="caesar-verk"
-            />
-            <Reveal className="caesar-text">
-              <p className="caps text-muted-foreground">Julius Caesar · 47 f.Kr.</p>
-              <blockquote lang="la" className="caesar-citat">
-                Veni, vidi, vici.
-              </blockquote>
-              <p className="mt-3 font-display text-2xl text-muted-foreground">
-                Jag kom, jag såg, jag segrade.
-              </p>
-              <p className="caesar-poang">
-                Ingen segrar osynlig. Innan ni kan vinna kunderna måste de se er, och det är de här
-                sex hantverken som gör att de gör det.
-              </p>
-            </Reveal>
-          </div>
-          <div className="sal-tre mastare">
-            {MASTARE.map((m) => (
-              <Verk
-                key={m.slug}
-                bild={{
-                  src: `/galleri/${m.bild}-560.webp`,
-                  srcSet: `/galleri/${m.bild}-560.webp 560w, /galleri/${m.bild}-840.webp 840w`,
-                  bredd: 560,
-                  hojd: 700,
-                  alt: `Stilleben tillägnat ${m.person}`,
-                }}
-                overrad={`Tillägnad ${m.person}`}
-                titel={hittaTjanst(m.slug)?.titel ?? m.slug}
-                till={tjanstSokvag(m.slug)}
+        {/* Sal II – Varför TAB: Caesar och de sex hantverkens mästare. Det röda rummet: damasttapet
+            mellan förgyllda lister, se .rod-sal i styles.css. */}
+        <section aria-labelledby="lyckas-rubrik" className="rod-sal">
+          <div className="container-page sal">
+            <Reveal>
+              <SalRubrik
+                nummer="II"
+                etikett={`Varför ${FORETAG.kortnamn}`}
+                id="lyckas-rubrik"
+                ingress="Digital marknadsföring är många hantverk på en gång. Varje hantverk har haft sin mästare. Ni kan lära er dem själva, eller låta oss sköta dem medan ni driver företaget."
               >
-                <p className="mt-2 leading-relaxed text-muted-foreground">{m.text}</p>
-                {m.citat && (
-                  <p className="mt-3 font-display text-[1.05rem] leading-snug text-ink italic">
-                    <span lang={m.citat.lang}>”{m.citat.text}”</span> – {m.citat.oversattning}
-                  </p>
-                )}
-              </Verk>
-            ))}
+                Det här krävs för att <Mark>lyckas</Mark> digitalt
+              </SalRubrik>
+            </Reveal>
+            <div className="caesar">
+              <Verk
+                bild={{
+                  src: "/galleri/caesar-720.webp",
+                  srcSet: "/galleri/caesar-720.webp 720w, /galleri/caesar-1080.webp 1080w",
+                  bredd: 720,
+                  hojd: 900,
+                  alt: "Stilleben tillägnat Julius Caesar: lagerkrans, svärd och romersk örn på en marmorhylla",
+                }}
+                sizes="(min-width: 1024px) 30rem, 90vw"
+                overrad="Tillägnad Julius Caesar"
+                titel="Veni, vidi, vici"
+                className="caesar-verk"
+              />
+              <Reveal className="caesar-text">
+                <p className="caps text-muted-foreground">Julius Caesar · 47 f.Kr.</p>
+                <blockquote lang="la" className="caesar-citat">
+                  Veni, vidi, vici.
+                </blockquote>
+                <p className="mt-3 font-display text-2xl text-muted-foreground">
+                  Jag kom, jag såg, jag segrade.
+                </p>
+                <p className="caesar-poang">
+                  Ingen segrar osynlig. Innan ni kan vinna kunderna måste de se er, och det är de
+                  här sex hantverken som gör att de gör det.
+                </p>
+              </Reveal>
+            </div>
+            <div className="sal-tre mastare">
+              {MASTARE.map((m) => (
+                <Verk
+                  key={m.slug}
+                  bild={{
+                    src: `/galleri/${m.bild}-560.webp`,
+                    srcSet: `/galleri/${m.bild}-560.webp 560w, /galleri/${m.bild}-840.webp 840w`,
+                    bredd: 560,
+                    hojd: 700,
+                    alt: `Stilleben tillägnat ${m.person}`,
+                  }}
+                  overrad={`Tillägnad ${m.person}`}
+                  titel={hittaTjanst(m.slug)?.titel ?? m.slug}
+                  till={tjanstSokvag(m.slug)}
+                >
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{m.text}</p>
+                  {m.citat && (
+                    <p className="mt-3 font-display text-[1.05rem] leading-snug text-ink italic">
+                      <span lang={m.citat.lang}>”{m.citat.text}”</span> – {m.citat.oversattning}
+                    </p>
+                  )}
+                </Verk>
+              ))}
+            </div>
           </div>
         </section>
 

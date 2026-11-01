@@ -933,6 +933,77 @@ main:has(.fyr-panel) + footer > div {
   line-height: 1.6;
   color: rgb(16 17 20 / 0.8);
 }
+/* Det röda rummet (Sal II på startsidan): damasttapet ton-i-ton, mellan en förgylld taklist
+   och en bröstlist. Listerna är utskurna ur samma ram som tavlorna (list.webp), så guldet
+   matchar; de gör övergången till den ljusa väggen till arkitektur i stället för en kant.
+   Ljuset: mörkare under taklisten och ut mot hörnen, varmt i mitten och över varje tavla. */
+.rod-sal {
+  --list-h: clamp(22px, 2.2vw, 32px);
+  --elfenben: #efe6d2;
+  position: relative;
+  isolation: isolate;
+  margin-top: 4.5rem;
+  padding-block: var(--list-h) calc(var(--list-h) + 4rem);
+  color: var(--elfenben);
+  background:
+    linear-gradient(to bottom, rgb(18 3 3 / 0.6), transparent 10rem),
+    linear-gradient(to top, rgb(18 3 3 / 0.45), transparent 7rem),
+    radial-gradient(ellipse 60% 55% at 50% 40%, rgb(255 170 110 / 0.09), transparent 75%),
+    radial-gradient(ellipse 110% 90% at 50% 50%, transparent 55%, rgb(14 2 2 / 0.5)),
+    url("/masterverk/damast.svg") 0 0 / 180px 270px,
+    #5a1517;
+}
+.rod-sal::before,
+.rod-sal::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  z-index: 1;
+  height: var(--list-h);
+  background: url("/masterverk/list.webp") 0 0 / auto 100% repeat-x;
+  pointer-events: none;
+}
+.rod-sal::before {
+  top: 0;
+  box-shadow:
+    0 1px 0 rgb(255 230 170 / 0.25),
+    0 8px 14px -4px rgb(10 2 2 / 0.6);
+}
+/* Bröstlisten är samma list spegelvänd, så profilen vänder sig mot rummet. */
+.rod-sal::after {
+  bottom: 0;
+  transform: scaleY(-1);
+  box-shadow: 0 6px 12px -4px rgb(10 2 2 / 0.5);
+}
+.rod-sal .sal-nummer {
+  color: #d4ae5c;
+}
+.rod-sal .text-muted-foreground {
+  color: rgb(239 230 210 / 0.72);
+}
+.rod-sal .sal-ingress,
+.rod-sal .caesar-poang {
+  color: rgb(239 230 210 / 0.86);
+}
+/* Galleriljuset blir varmt ljus på tapeten i stället för den ljusa väggens bländvita kägla. */
+.rod-sal .galleri-verk::before {
+  background: radial-gradient(ellipse 48% 44% at 50% 26%, rgb(255 196 140 / 0.2), transparent 72%);
+}
+/* Museiskyltar i papper – mörk text direkt på tapeten går inte att läsa. */
+.rod-sal .galleri-skylt {
+  margin-top: 1.4rem;
+  padding: 1rem 1.15rem 1.15rem;
+  border-left: 0;
+  background-color: #f1ebdc;
+  color: var(--ink);
+  outline: 1px solid rgb(184 145 63 / 0.6);
+  outline-offset: -6px;
+  box-shadow: 0 12px 24px -14px rgb(10 2 2 / 0.7);
+}
+.rod-sal .galleri-skylt .text-muted-foreground {
+  color: var(--muted-foreground);
+}
+
 /* Sal IV: faktan som en väggtext i galleriet – samma papper, guldlinje, versalrad och serif
    som museiskyltarna under tavlorna, och siffrorna i salnumrens kursiva guld. */
 .vaggtext {
