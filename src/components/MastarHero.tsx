@@ -37,8 +37,12 @@ export function MastarHero({
   title,
   intro,
   children,
+  sida = "hoger",
 }: {
   mastare: Mastare;
+  /** Var tavlan hänger på väggen; kortet tar andra sidan. Växla mellan sidorna så att
+   *  tjänstesidorna inte ser likadana ut. */
+  sida?: "hoger" | "vanster";
   /** Var verket hänger, t.ex. "Sal II · Verk nr 1". */
   plats: string;
   /** Hantverket, t.ex. "SEO". */
@@ -78,9 +82,10 @@ export function MastarHero({
       const fast = parseFloat(getComputedStyle(scen).top) || 0;
       const p = stracka > 0 ? Math.min(1, Math.max(0, (fast - r.top) / stracka)) : 0;
       const e = p * p * (3 - 2 * p);
-      // På väggen hänger tavlan till höger (kortet tar vänster sida); inne i den är den centrerad.
+      // På väggen hänger tavlan åt ena sidan (kortet tar den andra); inne i den är den centrerad.
       const w = scen.offsetWidth;
-      const tx = (1 - e) * (w * (0.5 - SKALA_VAGG / 2) - 48);
+      const riktning = sida === "vanster" ? -1 : 1;
+      const tx = riktning * (1 - e) * (w * (0.5 - SKALA_VAGG / 2) - 48);
       const s = SKALA_VAGG + (SKALA_INNE - SKALA_VAGG) * e;
       tavla.style.transform = `translate3d(${tx.toFixed(1)}px, 0, 0) scale(${s.toFixed(4)})`;
       bak.style.transform = `scale(${(1.04 - BAKGRUND_BORT * e).toFixed(4)})`;
@@ -115,10 +120,14 @@ export function MastarHero({
       stilla.removeEventListener("change", begar);
       stor.removeEventListener("change", begar);
     };
-  }, []);
+  }, [sida]);
 
   return (
-    <section ref={rotRef} className="mastar-hero" aria-labelledby="mastar-rubrik">
+    <section
+      ref={rotRef}
+      className={`mastar-hero${sida === "vanster" ? " mastar-vanster" : ""}`}
+      aria-labelledby="mastar-rubrik"
+    >
       <div ref={scenRef} className="mastar-scen">
         <div ref={tavlaRef} className="mastar-tavla">
           <img

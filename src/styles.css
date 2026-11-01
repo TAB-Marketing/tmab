@@ -373,7 +373,8 @@
   border-width: calc(var(--e) * 74) calc(var(--e) * 82) calc(var(--e) * 82) calc(var(--e) * 84);
   border-image-source: url("/masterverk/ram-bred-kontur.webp");
   border-image-slice: 114 122 122 124;
-  border-image-width: calc(var(--e) * 114) calc(var(--e) * 122) calc(var(--e) * 122) calc(var(--e) * 124);
+  border-image-width: calc(var(--e) * 114) calc(var(--e) * 122) calc(var(--e) * 122)
+    calc(var(--e) * 124);
   border-image-outset: calc(var(--e) * 40);
   border-image-repeat: stretch;
   /* Bakgrunden stannar innanför listen – annars syns den där ytterkanten är urskuren. */
@@ -587,7 +588,8 @@
     border-width: calc(var(--e) * 84) calc(var(--e) * 85) calc(var(--e) * 90) calc(var(--e) * 82);
     border-image-source: url("/masterverk/ram-hog-kontur.webp");
     border-image-slice: 124 125 130 122;
-    border-image-width: calc(var(--e) * 124) calc(var(--e) * 125) calc(var(--e) * 130) calc(var(--e) * 122);
+    border-image-width: calc(var(--e) * 124) calc(var(--e) * 125) calc(var(--e) * 130)
+      calc(var(--e) * 122);
     border-image-outset: calc(var(--e) * 40);
   }
   /* Dukens inre bredd är 941 − 82 − 85 = 774 enheter; överdelens bild är 774 × 500. */
@@ -842,8 +844,8 @@ main:has(.fyr-panel) + footer > div {
 .inramad {
   border-image-source: url("/masterverk/ram-hog-kontur.webp");
   border-image-slice: 124 125 130 122;
-  border-image-width: calc(var(--rb) * 124 / 84) calc(var(--rb) * 125 / 85) calc(var(--rb) * 130 / 90)
-    calc(var(--rb) * 122 / 82);
+  border-image-width: calc(var(--rb) * 124 / 84) calc(var(--rb) * 125 / 85)
+    calc(var(--rb) * 130 / 90) calc(var(--rb) * 122 / 82);
   border-image-outset: calc(var(--rb) * 40 / 84) calc(var(--rb) * 40 / 85) calc(var(--rb) * 40 / 90)
     calc(var(--rb) * 40 / 82);
   border-image-repeat: stretch;
@@ -854,8 +856,8 @@ main:has(.fyr-panel) + footer > div {
   --rb: clamp(26px, 3.6vw, 56px);
   border-image-source: url("/masterverk/ram-bred-kontur.webp");
   border-image-slice: 114 122 122 124;
-  border-image-width: calc(var(--rb) * 114 / 74) calc(var(--rb) * 122 / 82) calc(var(--rb) * 122 / 82)
-    calc(var(--rb) * 124 / 84);
+  border-image-width: calc(var(--rb) * 114 / 74) calc(var(--rb) * 122 / 82)
+    calc(var(--rb) * 122 / 82) calc(var(--rb) * 124 / 84);
   border-image-outset: calc(var(--rb) * 40 / 74) calc(var(--rb) * 40 / 82) calc(var(--rb) * 40 / 82)
     calc(var(--rb) * 40 / 84);
 }
@@ -1227,6 +1229,26 @@ main:has(.fyr-panel) + footer > div {
     top: 4.5rem;
   }
 }
+/* Spegelvänt: tavlan till vänster, kortet till höger, mästaren i målningens vänstra del.
+   Placeringen gäller bara stor skärm – på mobil hänger tavlan överst och kortet under. */
+.mastar-vanster .mastar-figur {
+  right: auto;
+  left: 5%;
+  transform-origin: 30% 100%;
+}
+@media (min-width: 1024px) {
+  .mastar-vanster {
+    background:
+      radial-gradient(ellipse 60% 70% at 34% 42%, #f6f4ee 0%, transparent 70%), var(--background);
+  }
+  .mastar-vanster .mastar-tavla {
+    transform: translate3d(calc(-20vw + 48px), 0, 0) scale(0.6);
+  }
+  .mastar-vanster .mastar-kort {
+    left: auto;
+    right: max(2.5rem, calc(50% - 41rem));
+  }
+}
 /* Mobil: tavlan hänger överst i full bredd, kortet under. Ingen inzoomning. */
 @media (max-width: 1023px) {
   .mastar-hero {
@@ -1242,6 +1264,9 @@ main:has(.fyr-panel) + footer > div {
     inset: auto;
     aspect-ratio: 1672 / 941;
     border-width: 22px 24px 24px 25px;
+    /* Samma skala som listen: 22 px / 74 enheter ≈ 0,297 px per enhet. */
+    border-image-width: 33.9px 36.3px 36.3px 36.9px;
+    border-image-outset: 11.9px;
     transform: none;
   }
   .mastar-figur {

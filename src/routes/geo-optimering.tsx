@@ -300,7 +300,7 @@ const SOKRATES = {
     src: "/mastare/sokrates-900.webp",
     srcSet: "/mastare/sokrates-560.webp 560w, /mastare/sokrates-900.webp 900w",
     bredd: 900,
-    hojd: 1082,
+    hojd: 1094,
   },
 };
 
@@ -359,6 +359,7 @@ function GeoOptimering() {
       <MastarHero
         mastare={SOKRATES}
         plats="Sal II · Verk nr 2"
+        sida="vanster"
         hantverk={GEO_OPTIMERING.titel}
         title={
           <Markerad
