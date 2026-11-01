@@ -356,8 +356,13 @@
   /* Samma storlek som innan ornamenten fick sticka ut (border-image-outset): de ritas i
      luften runt tavlan. Bara där bredden styr krymper tavlan lite, så att sidornamenten
      inte kapas av skärmkanten. Höjden får inte krympa – då får texten inte plats på duken. */
-  --b: min(100cqw * 1672 / 1752, 100rem, (100svh - 5.25rem) * 1672 / 941);
+  /* Höjden får gå 8 % förbi skärmens nederkant: på breda, låga skärmar blir tavlan annars
+     smal med mycket tom vägg på sidorna. Underkanten som sticker ner lockar till att skrolla. */
+  --b: min(100cqw * 1672 / 1752, 100rem, (100svh - 5.25rem) * 1.08 * 1672 / 941);
   --e: calc(var(--b) / 1672);
+  /* Textmått följer tavlan, inte skärmbredden – annars rinner texten utanför duken när
+     tavlan begränsas av höjden. 1 enhet ≈ 1vw när tavlan fyller skärmens bredd. */
+  --tv: calc(var(--b) / 94);
   position: relative;
   isolation: isolate;
   width: var(--b);
@@ -415,7 +420,7 @@
 .tavla-ord {
   display: block;
   font-family: var(--font-sans);
-  font-size: clamp(0.62rem, 0.75vw, 0.82rem);
+  font-size: clamp(0.62rem, calc(var(--tv) * 0.75), 0.82rem);
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0.26em;
@@ -426,7 +431,7 @@
 .tavla-lofte {
   display: block;
   margin-top: 1.1rem;
-  font-size: clamp(2.6rem, 5.6vw, 6.4rem);
+  font-size: clamp(2.6rem, calc(var(--tv) * 5.6), 6.4rem);
   line-height: 0.98;
   letter-spacing: -0.02em;
   color: transparent;
@@ -459,13 +464,13 @@
 .tavla-linje {
   width: 3.5rem;
   height: 1px;
-  margin: clamp(1.2rem, 2vw, 2rem) 0 clamp(0.8rem, 1.2vw, 1.25rem);
+  margin: clamp(1.2rem, calc(var(--tv) * 2), 2rem) 0 clamp(0.8rem, calc(var(--tv) * 1.2), 1.25rem);
   background-color: #c9a24a;
 }
 .tavla-katalog {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 1.5vw, 1.45rem);
+  font-size: clamp(1.05rem, calc(var(--tv) * 1.5), 1.45rem);
   font-style: italic;
   line-height: 1.4;
 }
@@ -489,7 +494,7 @@
 .tavla-villkor {
   max-width: 28rem;
   margin: 0.6rem 0 0;
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-size: clamp(0.85rem, calc(var(--tv) * 1), 0.95rem);
   line-height: 1.55;
   color: rgb(239 230 210 / 0.8);
 }
@@ -498,7 +503,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem 1.5rem;
-  margin-top: clamp(1.25rem, 2vw, 2rem);
+  margin-top: clamp(1.25rem, calc(var(--tv) * 2), 2rem);
 }
 .tavla-knapp:not(:hover) {
   background-color: var(--elfenben);
