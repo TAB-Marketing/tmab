@@ -23,6 +23,7 @@ import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { MASTAR_HERO } from "@/lib/mastare";
 import { GEO_FRAGOR, GEO_OPTIMERING } from "@/lib/geo-optimering";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { LOKAL_SEO } from "@/lib/lokal-seo";
@@ -285,25 +286,6 @@ const VARFOR: readonly Kort[] = [
 ];
 
 /** Illustrerad AI-sökning – inga riktiga företag, inget påstående om att någon rekommenderas. */
-// GEO:s mästare: Sokrates, som lärde ut genom frågor och svar – precis så folk söker hos
-// AI-tjänster i dag. Bilderna är AI-genererade (november 2026).
-const SOKRATES = {
-  person: "Sokrates",
-  levde: "ca 470–399 f.Kr.",
-  bildtext: "Lärde ut genom frågor och svar, så att sanningen kom fram.",
-  bakgrund: {
-    src: "/mastare/sokrates-bakgrund.webp",
-    srcSet: "/mastare/sokrates-bakgrund-1000.webp 1000w, /mastare/sokrates-bakgrund.webp 1672w",
-    alt: "Målning av antikens Aten i morgonljus, med Parthenon på Akropolis, olivlundar och Egeiska havet",
-  },
-  figur: {
-    src: "/mastare/sokrates-900.webp",
-    srcSet: "/mastare/sokrates-560.webp 560w, /mastare/sokrates-900.webp 900w",
-    bredd: 900,
-    hojd: 1094,
-  },
-};
-
 function AiSokning() {
   return (
     <figure>
@@ -357,9 +339,7 @@ function GeoOptimering() {
   return (
     <>
       <MastarHero
-        mastare={SOKRATES}
-        plats="Sal II · Verk nr 2"
-        sida="vanster"
+        mastare={MASTAR_HERO[TJANST]}
         hantverk={GEO_OPTIMERING.titel}
         title={
           <Markerad

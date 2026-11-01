@@ -12,11 +12,13 @@ import {
 } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { KortVy, type Kort } from "@/components/Kort";
-import { Markerad, Mark, PageHero } from "@/components/Heading";
+import { Markerad, Mark } from "@/components/Heading";
+import { MastarHero } from "@/components/MastarHero";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { MASTAR_HERO } from "@/lib/mastare";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { MODERNISERA_FRAGOR, MODERNISERA_HEMSIDA, PLATTFORMAR } from "@/lib/modernisera-hemsida";
@@ -305,9 +307,9 @@ function ForeEfter() {
 function ModerniseraHemsida() {
   return (
     <>
-      <PageHero
-        tavla={{ src: "/galleri/nightingale-840.webp", bredd: 840, hojd: 1050 }}
-        eyebrow={`Tjänster · ${MODERNISERA_HEMSIDA.titel}`}
+      <MastarHero
+        mastare={MASTAR_HERO[TJANST]}
+        hantverk={MODERNISERA_HEMSIDA.titel}
         title={
           <Markerad
             text="Modernisera hemsidan&nbsp;– utan att börja om från noll"
@@ -322,7 +324,7 @@ function ModerniseraHemsida() {
         <a href="#pris" className="btn-base btn-outline">
           Se pris
         </a>
-      </PageHero>
+      </MastarHero>
 
       <section aria-label="Kort om tjänsten" className="container-page pt-8 sm:pt-10">
         <ul className="flex flex-wrap gap-x-8 gap-y-3">

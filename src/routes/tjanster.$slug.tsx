@@ -4,6 +4,7 @@ import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark, PageHero } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
 import { BildGalleri } from "@/components/Projekt";
+import { MastarHero } from "@/components/MastarHero";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
@@ -11,6 +12,7 @@ import { kr, MOMS_TEXT } from "@/lib/priser";
 import { brodsmulor, faqSchema, sidhuvud, tjanstSchema } from "@/lib/seo";
 import { avstava } from "@/lib/text";
 import { landningssidaForTjanst } from "@/lib/landningssidor";
+import { mastarHero } from "@/lib/mastare";
 import { hittaDelomrade, hittaTjanst, TJANSTER, tjanstSokvag, type Tjanst } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/tjanster/$slug")({
@@ -47,39 +49,43 @@ export const Route = createFileRoute("/tjanster/$slug")({
   component: TjanstSida,
 });
 
-/** Mästarens verk från startsidans Sal II (galleri/{namn}-840.webp), per tjänst. */
-const MASTARE: Record<string, string> = {
-  seo: "linne",
-  geo: "sokrates",
-  "meta-annonser": "aristoteles",
-  hemsideoptimering: "nightingale",
-  marknadsforingsbilder: "vermeer",
-  hemsida: "davinci",
-};
-
 function TjanstSida() {
   const { slug } = Route.useParams();
   const t = hittaTjanst(slug);
   if (!t) return null;
   const ovriga = TJANSTER.filter((o) => o.slug !== t.slug);
+  const mastare = mastarHero(t.slug);
 
   return (
     <>
-      <PageHero
-        {...(MASTARE[t.slug]
-          ? { tavla: { src: `/galleri/${MASTARE[t.slug]}-840.webp`, bredd: 840, hojd: 1050 } }
-          : {})}
-        eyebrow={`Tjänster · ${t.titel}`}
-        title={<Markerad text={t.rubrik.text} markera={t.rubrik.markera} />}
-        intro={t.forklaring}
-      >
-        <BokaKnapp tjanst={t.slug} />
-        <a href="#pris" className="btn-base btn-outline">
-          Pris: {t.pris.fran ? "från " : ""}
-          {kr(t.pris.belopp)}
-          {t.pris.manad ? "/mån" : ""}
-        </a>
-      </PageHero>
+      {mastare ? (
+        <MastarHero
+          mastare={mastare}
+          hantverk={t.titel}
+          title={<Markerad text={t.rubrik.text} markera={t.rubrik.markera} />}
+          intro={t.forklaring}
+        >
+          <BokaKnapp tjanst={t.slug} />
+          <a href="#pris" className="btn-base btn-outline">
+            Pris: {t.pris.fran ? "från " : ""}
+            {kr(t.pris.belopp)}
+            {t.pris.manad ? "/mån" : ""}
+          </a>
+        </MastarHero>
+      ) : (
+        <PageHero
+          eyebrow={`Tjänster · ${t.titel}`}
+          title={<Markerad text={t.rubrik.text} markera={t.rubrik.markera} />}
+          intro={t.forklaring}
+        >
+          <BokaKnapp tjanst={t.slug} />
+          <a href="#pris" className="btn-base btn-outline">
+            Pris: {t.pris.fran ? "från " : ""}
+            {kr(t.pris.belopp)}
+            {t.pris.manad ? "/mån" : ""}
+          </a>
+        </PageHero>
+      )}
 
       {t.galleri && (
         <section aria-labelledby="exempel" className="container-page pt-14 sm:pt-20">
