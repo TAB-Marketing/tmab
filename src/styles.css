@@ -826,7 +826,9 @@ main:has(.fyr-panel) + footer > div {
   color: #b8913f;
 }
 .galleri-ram {
-  --rb: 16px;
+  /* Listen i samma proportion som mobilherons stående ram – med 16 px krymptes ramfilen
+     så mycket att ornamenten blev streck. */
+  --rb: clamp(24px, 2.2vw, 34px);
   position: relative;
   border-width: var(--rb);
   border-style: solid;
@@ -1006,9 +1008,6 @@ main:has(.fyr-panel) + footer > div {
   }
   .sal-tre > :nth-child(even) {
     margin-top: 0;
-  }
-  .galleri-ram {
-    border-width: 11px;
   }
 }
 
