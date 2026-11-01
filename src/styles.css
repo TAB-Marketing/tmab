@@ -936,7 +936,7 @@ main:has(.fyr-panel) + footer > div {
 /* Det röda rummet (Sal II på startsidan): damasttapet ton-i-ton, mellan en förgylld taklist
    och en bröstlist. Listerna är utskurna ur samma ram som tavlorna (list.webp), så guldet
    matchar; de gör övergången till den ljusa väggen till arkitektur i stället för en kant.
-   Ljuset: mörkare under taklisten och ut mot hörnen, varmt i mitten och under varje tavellampa. */
+   Ljuset: mörkare under taklisten och ut mot hörnen, varmt i mitten och över varje tavla. */
 .rod-sal {
   --list-h: clamp(22px, 2.2vw, 32px);
   --elfenben: #efe6d2;
@@ -988,31 +988,6 @@ main:has(.fyr-panel) + footer > div {
 /* Galleriljuset blir varmt ljus på tapeten i stället för den ljusa väggens bländvita kägla. */
 .rod-sal .galleri-verk::before {
   background: radial-gradient(ellipse 48% 44% at 50% 26%, rgb(255 196 140 / 0.2), transparent 72%);
-}
-/* Tavellampa i mässing ovanför varje ram. */
-.rod-sal .galleri-ram::before,
-.rod-sal .galleri-ram::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  translate: -50% 0;
-  pointer-events: none;
-}
-.rod-sal .galleri-ram::before {
-  top: calc(var(--rb) * -1 - 22px);
-  width: 3px;
-  height: 26px;
-  background: linear-gradient(to right, #6e4f17, #d8b768, #6e4f17);
-}
-.rod-sal .galleri-ram::after {
-  top: calc(var(--rb) * -1 - 32px);
-  width: 46%;
-  height: 10px;
-  border-radius: 6px 6px 3px 3px;
-  background: linear-gradient(#edd593, #b0852f 55%, #6a4b15);
-  box-shadow:
-    0 2px 3px rgb(10 2 2 / 0.45),
-    0 10px 24px 4px rgb(255 205 140 / 0.18);
 }
 /* Museiskyltar i papper – mörk text direkt på tapeten går inte att läsa. */
 .rod-sal .galleri-skylt {
