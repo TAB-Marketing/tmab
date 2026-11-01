@@ -27,6 +27,7 @@ import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { MASTAR_HERO } from "@/lib/mastare";
 import { DelPrisrutor, SYNLIGHET_KORT } from "@/components/Prisrutor";
 import { SYNLIGHET } from "@/lib/priser";
 import { SEO_BYRA, SEO_FRAGOR } from "@/lib/seo-byra";
@@ -169,33 +170,13 @@ const VARFOR_TAB: readonly Kort[] = [
   },
 ];
 
-// SEO:s mästare: Carl von Linné, som gav varje växt ett namn och en plats så att allt gick att
-// hitta. Bilderna är AI-genererade (oktober 2026).
-const LINNE = {
-  person: "Carl von Linné",
-  levde: "1707–1778",
-  bildtext: "Gav varje växt ett namn och en plats, så att allt gick att hitta.",
-  bakgrund: {
-    src: "/mastare/linne-bakgrund.webp",
-    srcSet: "/mastare/linne-bakgrund-1000.webp 1000w, /mastare/linne-bakgrund.webp 1672w",
-    alt: "Målning av ett svenskt landskap i morgondimma, med blomsteräng, björkskog och sjöar",
-  },
-  figur: {
-    src: "/mastare/linne-900.webp",
-    srcSet: "/mastare/linne-560.webp 560w, /mastare/linne-900.webp 900w",
-    bredd: 900,
-    hojd: 1082,
-  },
-};
-
 function SeoByra() {
   const seo = hittaTjanst(TJANST);
 
   return (
     <>
       <MastarHero
-        mastare={LINNE}
-        plats="Sal II · Verk nr 1"
+        mastare={MASTAR_HERO[TJANST]}
         hantverk={SEO_BYRA.titel}
         title={
           <Markerad

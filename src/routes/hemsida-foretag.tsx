@@ -14,14 +14,16 @@ import {
 } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { KortVy, type Kort } from "@/components/Kort";
-import { Markerad, Mark, PageHero } from "@/components/Heading";
+import { Markerad, Mark } from "@/components/Heading";
 import { SjalvMotOss } from "@/components/LyckasDigitalt";
 import { ProjektLista } from "@/components/Projekt";
 import { ProjektVideo } from "@/components/ProjektVideo";
+import { MastarHero } from "@/components/MastarHero";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { MASTAR_HERO } from "@/lib/mastare";
 import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { HEMSIDA_FORETAG, HEMSIDA_FRAGOR } from "@/lib/hemsida-foretag";
 import { AGANDE_TEXT, kr, MOMS_TEXT, PRIS } from "@/lib/priser";
@@ -206,9 +208,9 @@ function HemsidaForetag() {
 
   return (
     <>
-      <PageHero
-        tavla={{ src: "/galleri/davinci-840.webp", bredd: 840, hojd: 1050 }}
-        eyebrow={`Tjänster · ${HEMSIDA_FORETAG.titel}`}
+      <MastarHero
+        mastare={MASTAR_HERO[TJANST]}
+        hantverk={HEMSIDA_FORETAG.titel}
         title={
           <Markerad
             text="Hemsida till företag&nbsp;– byggd för att ge er fler kunder"
@@ -221,7 +223,7 @@ function HemsidaForetag() {
         <a href="#projekt" className="btn-base btn-outline">
           Se tidigare projekt
         </a>
-      </PageHero>
+      </MastarHero>
 
       {/* Tre fördelar och pris direkt under rubriken */}
       <section aria-label="Kort om tjänsten" className="container-page pt-8 sm:pt-10">

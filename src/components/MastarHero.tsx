@@ -17,6 +17,11 @@ export type Mastare = {
   levde: string;
   /** Kort bildtext på kortet – vår egen text, inte ett citat. */
   bildtext: string;
+  /** Var verket hänger, t.ex. "Sal II · Verk nr 1". */
+  plats: string;
+  /** Var tavlan hänger på väggen; kortet tar andra sidan. Sidorna växlar mellan
+   *  tjänstesidorna så att de inte ser likadana ut. */
+  sida: "hoger" | "vanster";
   bakgrund: { src: string; srcSet: string; alt: string };
   figur: { src: string; srcSet: string; bredd: number; hojd: number };
 };
@@ -32,25 +37,20 @@ const STOR = "(min-width: 1024px)";
 
 export function MastarHero({
   mastare,
-  plats,
   hantverk,
   title,
   intro,
   children,
-  sida = "hoger",
 }: {
+  /** Från MASTAR_HERO i lib/mastare.ts. */
   mastare: Mastare;
-  /** Var tavlan hänger på väggen; kortet tar andra sidan. Växla mellan sidorna så att
-   *  tjänstesidorna inte ser likadana ut. */
-  sida?: "hoger" | "vanster";
-  /** Var verket hänger, t.ex. "Sal II · Verk nr 1". */
-  plats: string;
   /** Hantverket, t.ex. "SEO". */
   hantverk: string;
   title: ReactNode;
   intro?: ReactNode;
   children?: ReactNode;
 }) {
+  const { plats, sida } = mastare;
   const rotRef = useRef<HTMLElement>(null);
   const scenRef = useRef<HTMLDivElement>(null);
   const tavlaRef = useRef<HTMLDivElement>(null);

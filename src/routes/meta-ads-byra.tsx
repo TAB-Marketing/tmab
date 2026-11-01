@@ -28,10 +28,12 @@ import {
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark } from "@/components/Heading";
+import { MastarHero } from "@/components/MastarHero";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
+import { MASTAR_HERO } from "@/lib/mastare";
 import { HEMSIDA_FORETAG } from "@/lib/hemsida-foretag";
 import { HEMSIDA_PRIS } from "@/lib/hemsida-pris";
 import { META_ADS_BYRA, META_FRAGOR } from "@/lib/meta-ads-byra";
@@ -333,40 +335,29 @@ const VARFOR: readonly Kort[] = [
 function MetaAdsByra() {
   return (
     <>
-      {/* Hero */}
-      <section className="vagg-ljus relative isolate overflow-hidden">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
-        />
-        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
-          <div>
-            <p className="eyebrow">Tjänster · {META_ADS_BYRA.titel}</p>
-            <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
-              <Markerad
-                text="Meta Ads-byrå&nbsp;– annonsering på Facebook och Instagram"
-                markera="Facebook och Instagram"
-              />
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
-              Vill ni nå fler kunder med annonser på Facebook och Instagram? Vi planerar, skapar och
-              optimerar era Meta-kampanjer, med en tydlig strategi, annonser gjorda av ert material
-              och uppföljning varje månad. Oavsett om målet är fler förfrågningar, mer försäljning
-              eller bättre resultat av annonser ni redan kör.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
-              <a href="#process" className="btn-base btn-outline">
-                Se hur vi arbetar
-              </a>
-            </div>
-          </div>
-          <Annonsmockup />
-        </div>
-      </section>
+      <MastarHero
+        mastare={MASTAR_HERO[TJANST]}
+        hantverk={META_ADS_BYRA.titel}
+        title={
+          <Markerad
+            text="Meta Ads-byrå&nbsp;– annonsering på Facebook och Instagram"
+            markera="Facebook och Instagram"
+          />
+        }
+        intro="Vill ni nå fler kunder med annonser på Facebook och Instagram? Vi planerar, skapar och optimerar era Meta-kampanjer, med en tydlig strategi, annonser gjorda av ert material och uppföljning varje månad. Oavsett om målet är fler förfrågningar, mer försäljning eller bättre resultat av annonser ni redan kör."
+      >
+        <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")} />
+        <a href="#process" className="btn-base btn-outline">
+          Se hur vi arbetar
+        </a>
+      </MastarHero>
 
-      <section aria-label="Kort om tjänsten" className="container-page pt-8 sm:pt-10">
-        <ul className="flex flex-wrap gap-x-8 gap-y-3">
+      {/* Fördelar och illustration */}
+      <section
+        aria-label="Kort om tjänsten"
+        className="container-page grid [&>*]:min-w-0 items-center gap-10 pt-10 pb-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16"
+      >
+        <ul className="space-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
               <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
@@ -375,12 +366,13 @@ function MetaAdsByra() {
               {f}
             </li>
           ))}
-          <li className="flex items-center">
+          <li className="pt-2">
             <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
               Från {kr(PRIS.annonser1)}/mån · annonsbudget betalas till Meta
             </span>
           </li>
         </ul>
+        <Annonsmockup />
       </section>
 
       {/* Vad är Meta Ads */}
