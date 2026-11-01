@@ -144,7 +144,7 @@ const JAMFORELSE: readonly { rad: string; celler: readonly Cell[] }[] = [
     rad: "Domän",
     celler: [
       nej("Ni betalar själva"),
-      nej("Ni betalar själva"),
+      ja("Ingår – dyrare domännamn kan kosta extra"),
       ja("Ingår – dyrare domännamn kan kosta extra"),
     ],
   },
@@ -639,7 +639,7 @@ function HemsidaPris() {
           </ul>
           <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
             {MOMS_TEXT} Tar ni över sajten tillkommer hosting och domän, som ni betalar direkt till
-            leverantören. Med Essential tillkommer domänen. Driften kan avslutas när som helst –
+            leverantören. Driften kan avslutas när som helst –
             räkningen gäller om ni behåller den hela året.
           </p>
         </div>

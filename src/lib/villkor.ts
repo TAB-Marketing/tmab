@@ -52,7 +52,7 @@ export const VILLKOR: readonly { rubrik: string; stycken: readonly string[] }[] 
     rubrik: "6. Hemsida efter lansering",
     stycken: [
       `Efter lansering väljer kunden överlämning eller drift. Vid överlämning får kunden kod, konton och inloggningar och uppdraget avslutas. Senare ändringar köps som klippkort (2 timmar ${kr(PRIS.klippkort2)}, 5 timmar ${kr(PRIS.klippkort5)}), giltiga i 12 månader från köpet.`,
-      `Drift Essential omfattar hosting, SSL, övervakning, säkerhetsuppdateringar och backup. Drift Total omfattar dessutom domän och upp till en timmes ändringar per månad. En domän med vanlig ändelse, som .se, .nu eller .com, ingår. Kostar det domännamn kunden väljer mer betalar kunden mellanskillnaden, efter avstämning innan domänen köps. Avslutas Total förnyar kunden domänen själv. Timmar som inte används sparas inte. Ändringar därutöver debiteras med ${kr(PRIS.extraTimme)} per påbörjad timme, efter avstämning med kunden.`,
+      `Drift Essential omfattar hosting, SSL, domän, övervakning, säkerhetsuppdateringar och backup. Drift Total omfattar dessutom upp till en timmes ändringar per månad. En domän med vanlig ändelse, som .se, .nu eller .com, ingår. Kostar det domännamn kunden väljer mer betalar kunden mellanskillnaden, efter avstämning innan domänen köps. Avslutas driften förnyar kunden domänen själv. Timmar som inte används sparas inte. Ändringar därutöver debiteras med ${kr(PRIS.extraTimme)} per påbörjad timme, efter avstämning med kunden.`,
       "Hosting i drift kan ligga på vårt konto hos hostingleverantören. Domänen registreras alltid i kundens namn. Kunden har rätt att flytta sajten när som helst och får då koden och en timmes flytthjälp utan kostnad.",
     ],
   },

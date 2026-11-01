@@ -42,13 +42,13 @@ export const ARSKOSTNAD = [
     namn: "Tjänstesida + Essential",
     start: PRIS.tjanstesida,
     perManad: PRIS.essential,
-    beskrivning: "Vi sköter hosting, säkerhet och backup. Domänen betalar ni själva.",
+    beskrivning: "Vi sköter hosting, domän, säkerhet och backup.",
   },
   {
     namn: "Tjänstesida + Total",
     start: PRIS.tjanstesida,
     perManad: PRIS.total,
-    beskrivning: "Hosting, domän och upp till en timme ändringar varje månad.",
+    beskrivning: "Allt i Essential, plus upp till en timme ändringar varje månad.",
   },
   {
     namn: "E-handel + Total",
@@ -70,7 +70,7 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar en hemsida per månad?",
-    svar: `Det väljer ni. Tar ni över sajten betalar ni ingenting till oss per månad, bara hosting och domän till leverantören. Vill ni att vi sköter driften kostar Essential ${kr(PRIS.essential)} per månad och Total, med domän och ändringar, ${kr(PRIS.total)} per månad.`,
+    svar: `Det väljer ni. Tar ni över sajten betalar ni ingenting till oss per månad, bara hosting och domän till leverantören. Vill ni att vi sköter driften kostar Essential, med hosting och domän, ${kr(PRIS.essential)} per månad och Total, som även har ändringar, ${kr(PRIS.total)} per månad.`,
   },
   {
     fraga: "Är det ett engångspris eller en prenumeration?",
@@ -78,7 +78,7 @@ export const HEMSIDA_PRIS_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Ingår domän och hosting i priset?",
-    svar: `Hosting ingår i både Essential och Total, och domänen ingår i Total. ${DOMAN_TEXT} Tar ni över sajten betalar ni båda direkt till leverantören. Domänen ligger alltid i ert namn.`,
+    svar: `Hosting och domän ingår i både Essential och Total. ${DOMAN_TEXT} Tar ni över sajten betalar ni båda direkt till leverantören. Domänen ligger alltid i ert namn.`,
   },
   {
     fraga: "Ingår SEO i hemsidans pris?",
