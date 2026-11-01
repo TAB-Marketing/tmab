@@ -18,6 +18,7 @@ import {
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { KortVy, type Kort } from "@/components/Kort";
 import { Markerad, Mark } from "@/components/Heading";
+import { MastarHero } from "@/components/MastarHero";
 import { Reveal } from "@/components/Reveal";
 import { Stegliste, type Steg } from "@/components/Steg";
 import { VanligaFragor } from "@/components/VanligaFragor";
@@ -284,6 +285,25 @@ const VARFOR: readonly Kort[] = [
 ];
 
 /** Illustrerad AI-sökning – inga riktiga företag, inget påstående om att någon rekommenderas. */
+// GEO:s mästare: Sokrates, som lärde ut genom frågor och svar – precis så folk söker hos
+// AI-tjänster i dag. Bilderna är AI-genererade (november 2026).
+const SOKRATES = {
+  person: "Sokrates",
+  levde: "ca 470–399 f.Kr.",
+  bildtext: "Lärde ut genom frågor och svar, så att sanningen kom fram.",
+  bakgrund: {
+    src: "/mastare/sokrates-bakgrund.webp",
+    srcSet: "/mastare/sokrates-bakgrund-1000.webp 1000w, /mastare/sokrates-bakgrund.webp 1672w",
+    alt: "Målning av antikens Aten i morgonljus, med Parthenon på Akropolis, olivlundar och Egeiska havet",
+  },
+  figur: {
+    src: "/mastare/sokrates-900.webp",
+    srcSet: "/mastare/sokrates-560.webp 560w, /mastare/sokrates-900.webp 900w",
+    bredd: 900,
+    hojd: 1094,
+  },
+};
+
 function AiSokning() {
   return (
     <figure>
@@ -336,42 +356,33 @@ function AiSokning() {
 function GeoOptimering() {
   return (
     <>
-      {/* Hero */}
-      <section className="vagg-ljus relative isolate overflow-hidden">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
-        />
-        <div className="mx-auto grid max-w-[78rem] items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
-          <div>
-            <p className="eyebrow">Tjänster · {GEO_OPTIMERING.titel}</p>
-            <h1 className="mt-6 max-w-3xl text-[clamp(2.4rem,5.6vw,4.75rem)] leading-[1.03]">
-              <Markerad
-                text="GEO-optimering&nbsp;– hjälp ert företag att synas i AI-sökmotorer"
-                markera="synas i AI-sökmotorer"
-              />
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80">
-              Allt fler frågar ChatGPT, Googles AI-funktioner eller Copilot när de jämför företag.
-              Med GEO-optimering gör {FORETAG.kortnamn} er sajt, ert innehåll och er
-              företagsinformation lätta att hitta, förstå och hänvisa till, med samma grund som god
-              sökmotoroptimering.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")}>
-                Boka gratis GEO-genomgång
-              </BokaKnapp>
-              <a href="#sa-fungerar" className="btn-base btn-outline">
-                Så fungerar GEO-optimering
-              </a>
-            </div>
-          </div>
-          <AiSokning />
-        </div>
-      </section>
+      <MastarHero
+        mastare={SOKRATES}
+        plats="Sal II · Verk nr 2"
+        sida="vanster"
+        hantverk={GEO_OPTIMERING.titel}
+        title={
+          <Markerad
+            text="GEO-optimering&nbsp;– hjälp ert företag att synas i AI-sökmotorer"
+            markera="synas i AI-sökmotorer"
+          />
+        }
+        intro={`Allt fler frågar ChatGPT, Googles AI-funktioner eller Copilot när de jämför företag. Med GEO-optimering gör ${FORETAG.kortnamn} er sajt, ert innehåll och er företagsinformation lätta att hitta, förstå och hänvisa till, med samma grund som god sökmotoroptimering.`}
+      >
+        <BokaKnapp tjanst={TJANST} onClick={() => bokaKlick(SIDA, "hero")}>
+          Boka gratis GEO-genomgång
+        </BokaKnapp>
+        <a href="#sa-fungerar" className="btn-base btn-outline">
+          Så fungerar GEO-optimering
+        </a>
+      </MastarHero>
 
-      <section aria-label="Kort om tjänsten" className="container-page pt-8 sm:pt-10">
-        <ul className="flex flex-wrap gap-x-8 gap-y-3">
+      {/* Fördelar och illustration */}
+      <section
+        aria-label="Kort om tjänsten"
+        className="container-page grid [&>*]:min-w-0 items-center gap-10 pt-10 pb-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16"
+      >
+        <ul className="space-y-3">
           {FORDELAR_HERO.map((f) => (
             <li key={f} className="flex items-center gap-3 font-bold text-ink">
               <span className="grid size-7 shrink-0 place-items-center rounded-full text-guld-mork border border-guld">
@@ -380,12 +391,13 @@ function GeoOptimering() {
               {f}
             </li>
           ))}
-          <li className="flex items-center">
+          <li className="pt-2">
             <span className="rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">
               {SYNLIGHET_KORT}
             </span>
           </li>
         </ul>
+        <AiSokning />
       </section>
 
       {/* Vad är GEO */}
