@@ -847,7 +847,9 @@ main:has(.fyr-panel) + footer > div {
   border-image-repeat: stretch;
 }
 .galleri-ram-bred {
-  --rb: clamp(14px, 1.8vw, 24px);
+  /* Samma proportion som heron (listen ≈ 4,4 % av tavlans bredd); tunnare än så krymps
+     ramfilen så mycket att ornamenten blir streck och listen ser utsmetad ut. */
+  --rb: clamp(26px, 3.6vw, 56px);
   border-image-source: url("/masterverk/ram-bred-kontur.webp");
   border-image-slice: 114 122 122 124;
   border-image-width: calc(var(--rb) * 114 / 74) calc(var(--rb) * 122 / 82) calc(var(--rb) * 122 / 82)
