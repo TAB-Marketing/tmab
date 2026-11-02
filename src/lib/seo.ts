@@ -152,6 +152,23 @@ export function tjanstSchema(
   };
 }
 
+/** Gör ett datum (ÅÅÅÅ-MM-DD) till fullständig ISO 8601 med tid och svensk tidszon, t.ex.
+ * "2026-10-22T12:00:00+02:00". Google vill ha tid och tidszon i uploadDate. Klockslaget är
+ * satt till mitt på dagen så att datumet blir rätt i alla tidszoner. Värden som redan har tid
+ * lämnas orörda. */
+export function svenskDatumTid(datum: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(datum)) return datum;
+  const mitt = new Date(`${datum}T12:00:00Z`);
+  const zon = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Europe/Stockholm",
+    timeZoneName: "longOffset",
+  })
+    .formatToParts(mitt)
+    .find((d) => d.type === "timeZoneName")?.value;
+  const offset = zon?.replace("GMT", "") || "+01:00";
+  return `${datum}T12:00:00${offset}`;
+}
+
 /** VideoObject för en visningsfilm på sidan. Ger ingen videominiatyr i Google (filmen är inte
  * sidans huvudinnehåll), men beskriver filmen för sökmotorer och AI-tjänster. */
 export function videoSchema(v: ProjektVideo): Schema {
@@ -162,7 +179,7 @@ export function videoSchema(v: ProjektVideo): Schema {
     description: v.beskrivning,
     thumbnailUrl: absolut(`/video/${v.fil}.webp`),
     contentUrl: absolut(`/video/${v.fil}.mp4`),
-    uploadDate: v.publicerad,
+    uploadDate: svenskDatumTid(v.publicerad),
     duration: v.langd,
     inLanguage: "sv-SE",
     publisher: { "@id": FORETAG_ID },
