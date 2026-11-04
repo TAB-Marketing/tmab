@@ -11,7 +11,10 @@ import { Reveal } from "@/components/Reveal";
  * - Strålen sveper en gång över rubriken när scenen syns och följer sedan muspekaren (på mobil:
  *   dit man trycker). När ingen rör sig står allt still, så inget rör sig längre än fem sekunder
  *   av sig självt (WCAG 2.2.2) och grafikkortet vilar.
- * - Minskad rörelse: strålen står still på rubriken. Utan WebGL tänds hela rubriken.
+ * - Det markerade ordet i rubriken ("synas") är nästan osynligt tills strålen lyser på det
+ *   eller man håller muspekaren över rubriken (.fyr-rubrik i styles.css). Strålen vilar på
+ *   ordet, så det syns så länge ingen styr bort ljuset.
+ * - Minskad rörelse: strålen står still på ordet. Utan WebGL tänds hela rubriken.
  * - Målningen hänger i den förgyllda ramen (.galleri-ram-bred) och sidfoten under är dess
  *   museiskylt i mässing (Footer.tsx).
  */
@@ -238,12 +241,20 @@ export function Fyrscen({
     const vinkelMot = (x: number, y: number) => Math.atan2(lyktaY - y, x - lyktaX);
     // Rubrikens text (inte dess ruta) sedd från lyktan, så att svepet går över orden.
     const textyta = document.createRange();
+    // Det markerade ordet (<Mark>, t.ex. "synas") är dolt tills strålen eller muspekaren
+    // når det, så strålen vilar på ordet i stället för på rubrikens mitt.
+    const ord = rubrik.querySelector("span");
     const rubrikVinklar = (k: DOMRect) => {
       textyta.selectNodeContents(rubrik);
       const r = textyta.getBoundingClientRect();
       const vanster = vinkelMot(r.left - k.left, r.top - k.top + r.height * 0.4);
       const hoger = vinkelMot(r.right - k.left, r.top - k.top + r.height * 0.6);
-      return { mitt: vanster + skillnad(vanster, hoger) / 2, hoger };
+      let mitt = vanster + skillnad(vanster, hoger) / 2;
+      if (ord) {
+        const o = ord.getBoundingClientRect();
+        mitt = vinkelMot(o.left - k.left + o.width / 2, o.top - k.top + o.height / 2);
+      }
+      return { vanster, mitt, hoger };
     };
 
     let vinkel = 0;
@@ -299,9 +310,13 @@ export function Fyrscen({
       let mal = r.mitt;
       let foljer = 0.06;
       if (!svepKlart) {
-        // Höger ände av rubriken → mitten → vänster ände → mitten.
+        // Höger ände av rubriken → vänster ände → det markerade ordet, med mjuk fart.
         const s = Math.min((nu - svepStart) / SVEP_MS, 1);
-        mal = r.mitt + skillnad(r.mitt, r.hoger) * Math.cos(s * 1.5 * Math.PI);
+        const mjuk = (t: number) => t * t * (3 - 2 * t);
+        mal =
+          s < 0.55
+            ? r.hoger + skillnad(r.hoger, r.vanster) * mjuk(s / 0.55)
+            : r.vanster + skillnad(r.vanster, r.mitt) * mjuk((s - 0.55) / 0.45);
         foljer = 0.25;
         if (s >= 1) svepKlart = true;
       } else if (pekare) {
@@ -438,7 +453,7 @@ export function Fyrscen({
                 <h2
                   ref={rubrikRef}
                   id="fyr-rubrik"
-                  className={`${RUBRIK} fyr-skugga text-elfenben`}
+                  className={`${RUBRIK} fyr-rubrik fyr-skugga text-elfenben`}
                 >
                   {rubrik}
                 </h2>
