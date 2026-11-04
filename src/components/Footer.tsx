@@ -1,34 +1,43 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone } from "lucide-react";
 import { AiSammanfattning } from "@/components/AiSammanfattning";
-import { Logo } from "@/components/Brand";
 import { FORETAG } from "@/lib/foretag";
 import { BEHOVER_SAMTYCKE, VISA_BANNER, oppnaInstallningar } from "@/lib/samtycke";
 import { mejlKlick } from "@/lib/sparning";
 import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 
-const LANK =
-  "rounded-sm underline decoration-transparent decoration-2 underline-offset-4 transition-colors duration-200 hover:decoration-sun";
-
+/**
+ * Sidfoten: en graverad mässingsskylt som hänger på väggen under fyrmålningen (Fyrscen.tsx) –
+ * som skylten under en tavla på ett museum. Titel, "konstnär" (bolaget), en rad om verket,
+ * och längst ner katalognumret (org.nr). Allt ritas i CSS (.plakett i styles.css); inga bilder.
+ */
 export function Footer() {
   return (
-    <footer className="p-3 pt-0 sm:px-6">
-      <div className="mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] bg-ink text-white">
-        <div className="container-page grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          <div>
-            <Logo ljus storlek="stor" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
-              {FORETAG.beskrivning}
-            </p>
-            <AiSammanfattning />
-          </div>
+    <footer className="plakett-vagg px-6 pt-12 pb-14 sm:pt-16 sm:pb-20">
+      <div className="plakett mx-auto max-w-[66rem]">
+        <span aria-hidden="true" className="plakett-skruv" />
+        <span aria-hidden="true" className="plakett-skruv" />
+        <span aria-hidden="true" className="plakett-skruv" />
+        <span aria-hidden="true" className="plakett-skruv" />
 
+        <div className="plakett-huvud">
+          <p className="font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-none">
+            {FORETAG.namn}
+          </p>
+          <p className="plakett-caps">
+            {FORETAG.juridisktNamn} · {FORETAG.ort}
+          </p>
+        </div>
+        <p className="mt-4 max-w-2xl font-display text-[1.05rem] leading-relaxed italic sm:text-lg">
+          {FORETAG.beskrivning}
+        </p>
+
+        <div className="plakett-kolumner">
           <div>
-            <p className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Tjänster</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/85">
+            <p className="plakett-caps">Tjänster</p>
+            <ul className="plakett-lista">
               {TJANSTER.map((t) => (
                 <li key={t.slug}>
-                  <Link to={tjanstSokvag(t)} className={LANK}>
+                  <Link to={tjanstSokvag(t)} className="plakett-lank">
                     {t.titel}
                   </Link>
                 </li>
@@ -37,41 +46,41 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Sidor</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/85">
+            <p className="plakett-caps">Sidor</p>
+            <ul className="plakett-lista">
               <li>
-                <Link to="/priser" className={LANK}>
+                <Link to="/priser" className="plakett-lank">
                   Priser
                 </Link>
               </li>
               <li>
-                <Link to="/guider" className={LANK}>
+                <Link to="/guider" className="plakett-lank">
                   Resurser
                 </Link>
               </li>
               <li>
-                <Link to="/om-oss" className={LANK}>
+                <Link to="/om-oss" className="plakett-lank">
                   Om oss
                 </Link>
               </li>
               <li>
-                <Link to="/kontakt" className={LANK}>
+                <Link to="/kontakt" className="plakett-lank">
                   Boka gratis genomgång
                 </Link>
               </li>
               <li>
-                <Link to="/villkor" className={LANK}>
+                <Link to="/villkor" className="plakett-lank">
                   Allmänna villkor
                 </Link>
               </li>
               <li>
-                <Link to="/integritetspolicy" className={LANK}>
+                <Link to="/integritetspolicy" className="plakett-lank">
                   Integritetspolicy
                 </Link>
               </li>
               {(VISA_BANNER || BEHOVER_SAMTYCKE) && (
                 <li>
-                  <button type="button" onClick={oppnaInstallningar} className={LANK}>
+                  <button type="button" onClick={oppnaInstallningar} className="plakett-lank">
                     Cookieinställningar
                   </button>
                 </li>
@@ -80,31 +89,28 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-bold tracking-[0.14em] text-sun uppercase">Kontakt</p>
-            <ul className="mt-4 space-y-3 text-sm text-white/85">
+            <p className="plakett-caps">Kontakt</p>
+            <ul className="plakett-lista">
               {FORETAG.telefon && (
-                <li className="flex gap-3">
-                  <Phone className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
-                  <a href={`tel:${FORETAG.telefonLank}`} className={LANK}>
+                <li>
+                  <a href={`tel:${FORETAG.telefonLank}`} className="plakett-lank">
                     {FORETAG.telefon}
                   </a>
                 </li>
               )}
               {FORETAG.epost && (
-                <li className="flex gap-3">
-                  <Mail className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
+                <li>
                   <a
                     href={`mailto:${FORETAG.epost}`}
                     onClick={() => mejlKlick(window.location.pathname)}
-                    className={LANK}
+                    className="plakett-lank"
                   >
                     {FORETAG.epost}
                   </a>
                 </li>
               )}
               {FORETAG.gata && (
-                <li className="flex gap-3">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
+                <li>
                   <address className="not-italic">
                     {FORETAG.gata}
                     <br />
@@ -113,25 +119,23 @@ export function Footer() {
                 </li>
               )}
               {!FORETAG.gata && !FORETAG.epost && (
-                <li className="flex gap-3">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-sun" aria-hidden="true" />
-                  <Link to="/kontakt" className={LANK}>
+                <li>
+                  <Link to="/kontakt" className="plakett-lank">
                     Skriv till oss
                   </Link>
                 </li>
               )}
             </ul>
+            <AiSammanfattning />
           </div>
         </div>
 
-        <div className="border-t border-white/15">
-          <div className="container-page flex flex-wrap justify-between gap-2 py-6 text-xs text-white/70">
-            <span>
-              © {new Date().getFullYear()} {FORETAG.namn} · Drivs av {FORETAG.juridisktNamn}
-              {FORETAG.orgnr && ` · Org.nr\u00a0${FORETAG.orgnr}`}
-            </span>
-            <span>Godkänd för F-skatt</span>
-          </div>
+        <div className="plakett-fot">
+          <span>
+            © {new Date().getFullYear()} {FORETAG.namn} · Drivs av {FORETAG.juridisktNamn}
+            {FORETAG.orgnr && ` · Org.nr\u00a0${FORETAG.orgnr}`}
+          </span>
+          <span>Godkänd för F-skatt</span>
         </div>
       </div>
     </footer>

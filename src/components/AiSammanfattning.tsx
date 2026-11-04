@@ -30,8 +30,8 @@ export function AiSammanfattning() {
     `Sammanfatta de viktigaste punkterna på den här sidan från ${FORETAG.namn}: ${absolut(sokvag)}`,
   );
   return (
-    <div className="mt-8">
-      <p className="text-sm font-bold text-white/85">Få en AI-sammanfattning av sidan</p>
+    <div className="ai-sammanfattning mt-8">
+      <p className="text-sm font-bold">Få en AI-sammanfattning av sidan</p>
       <ul className="mt-3 flex flex-wrap gap-3">
         {TJANSTER.map((t) => (
           <li key={t.namn}>

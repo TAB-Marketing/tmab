@@ -735,10 +735,178 @@
   -webkit-mask-image: var(--strale, linear-gradient(transparent, transparent));
   mask-image: var(--strale, linear-gradient(transparent, transparent));
 }
-/* Scenen går rakt över i sidfoten: ett kort i stället för två mörka rutor med en skarv. */
-main:has(.fyr-panel) + footer > div {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+/* Fyren hänger som en tavla i den förgyllda ramen. Sidorna får luft så att ramens ornament
+   (border-image-outset) inte kapas av skärmkanten, och galleriljuset (.galleri-verk) ovanför
+   får plats. */
+.fyr-panel {
+  padding: 2.5rem 1.75rem 0;
+}
+@media (min-width: 640px) {
+  .fyr-panel {
+    padding: 3rem 3.5rem 0;
+  }
+}
+.fyr-ram {
+  --rb: clamp(22px, 3.4vw, 56px);
+}
+
+/* Sidfoten (Footer.tsx): en graverad mässingsskylt som hänger på väggen under fyrmålningen.
+   Mässingen är borstad (tunna linjer) med en ljusare bård, fyra skruvar i hörnen och mörk,
+   graverad text med en ljus kant under sig. Text 5,5:1 mot mässingen (WCAG AA). */
+.plakett {
+  --massing: #c9a24d;
+  --gravyr: #2b1d08;
+  position: relative;
+  padding: 2.25rem 2rem 1.5rem;
+  color: var(--gravyr);
+  background:
+    repeating-linear-gradient(
+      92deg,
+      rgb(255 255 255 / 0.05) 0 1px,
+      transparent 1px 3px,
+      rgb(0 0 0 / 0.035) 3px 4px,
+      transparent 4px 7px
+    ),
+    linear-gradient(155deg, #e3c572 0%, #c9a24d 32%, #b98e3b 50%, #d7b45c 68%, #b48936 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 245 205 / 0.75),
+    inset 0 -1px 0 rgb(60 35 5 / 0.55),
+    inset 1px 0 0 rgb(255 245 205 / 0.35),
+    inset -1px 0 0 rgb(60 35 5 / 0.35),
+    0 1px 2px rgb(40 25 5 / 0.35),
+    0 18px 36px -18px rgb(40 28 8 / 0.6);
+  text-shadow: 0 1px 0 rgb(255 240 190 / 0.45);
+}
+/* Fasad kant: en tunn linje en bit in från kanten, som på en frästad mässingsplatta. */
+.plakett::before {
+  content: "";
+  position: absolute;
+  inset: 0.65rem;
+  pointer-events: none;
+  border: 1px solid rgb(70 45 8 / 0.35);
+  box-shadow: inset 0 0 0 1px rgb(255 240 190 / 0.4);
+}
+.plakett-skruv {
+  position: absolute;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f1dc9a, #b48b36 55%, #6d4f14);
+  box-shadow:
+    0 1px 2px rgb(40 25 5 / 0.6),
+    inset 0 -1px 1px rgb(0 0 0 / 0.3);
+}
+/* Skruvspåret */
+.plakett-skruv::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  height: 1.5px;
+  background: rgb(50 32 5 / 0.75);
+  transform: translateY(-50%) rotate(var(--v, 28deg));
+}
+.plakett-skruv:nth-child(1) {
+  --v: 28deg;
+  top: 0.95rem;
+  left: 0.95rem;
+}
+.plakett-skruv:nth-child(2) {
+  --v: -52deg;
+  top: 0.95rem;
+  right: 0.95rem;
+}
+.plakett-skruv:nth-child(3) {
+  --v: 71deg;
+  bottom: 0.95rem;
+  left: 0.95rem;
+}
+.plakett-skruv:nth-child(4) {
+  --v: 9deg;
+  bottom: 0.95rem;
+  right: 0.95rem;
+}
+.plakett-huvud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(70 45 8 / 0.35);
+  box-shadow: 0 1px 0 rgb(255 240 190 / 0.4);
+}
+.plakett-caps {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.plakett-kolumner {
+  display: grid;
+  gap: 2rem 2.5rem;
+  margin-top: 2.25rem;
+}
+@media (min-width: 640px) {
+  .plakett-kolumner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .plakett-kolumner {
+    grid-template-columns: 1fr 1fr 1.3fr;
+  }
+}
+.plakett-lista {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+/* Ingen genomskinlig linje i vila: text-shadow ritar skuggan av linjen även när den är
+   genomskinlig, så den syns som en ljus strimma. */
+.plakett-lank {
+  border-radius: 2px;
+  text-decoration: none;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+.plakett-lank:hover,
+.plakett-lank:focus-visible {
+  text-decoration: underline;
+}
+.plakett-lank:focus-visible {
+  outline: 2px solid var(--gravyr);
+  outline-offset: 2px;
+}
+/* AI-tjänsternas ikoner graveras in i mässingen i stället för att ligga som klistermärken. */
+.plakett .ai-sammanfattning img {
+  filter: grayscale(1) contrast(1.15);
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+.plakett .ai-sammanfattning a:hover img {
+  opacity: 1;
+}
+/* Katalograden längst ner, som verkets inventarienummer. */
+.plakett-fot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem 1.5rem;
+  margin-top: 2.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgb(70 45 8 / 0.35);
+  box-shadow: 0 -1px 0 rgb(255 240 190 / 0.4) inset;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+}
+@media (min-width: 640px) {
+  .plakett {
+    padding: 2.75rem 3rem 1.75rem;
+  }
 }
 
 /* Svävande bubblor i hero */

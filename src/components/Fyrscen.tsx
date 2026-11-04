@@ -12,7 +12,8 @@ import { Reveal } from "@/components/Reveal";
  *   dit man trycker). När ingen rör sig står allt still, så inget rör sig längre än fem sekunder
  *   av sig självt (WCAG 2.2.2) och grafikkortet vilar.
  * - Minskad rörelse: strålen står still på rubriken. Utan WebGL tänds hela rubriken.
- * - Kortet går rakt över i sidfoten (se .fyr-panel i styles.css).
+ * - Målningen hänger i den förgyllda ramen (.galleri-ram-bred) och sidfoten under är dess
+ *   museiskylt i mässing (Footer.tsx).
  */
 
 // Under den här bredden används den stående bilden. Samma gräns som .fyr-kort i styles.css.
@@ -407,55 +408,52 @@ export function Fyrscen({
   }, []);
 
   return (
-    <section aria-labelledby="fyr-rubrik" className="fyr-panel px-3 sm:px-6">
-      <div
-        ref={kortRef}
-        className="fyr-kort relative isolate mx-auto max-w-[88rem] overflow-hidden rounded-t-[2rem] bg-ink text-white"
-      >
-        <picture>
-          <source media={SMAL} srcSet={HOG.src} width={HOG.bredd} height={HOG.hojd} />
-          <img
-            src={BRED.src}
-            srcSet={`/fyr/fyr-bred-1280.webp 1280w, ${BRED.src} 1916w`}
-            sizes="(min-width: 1456px) 1408px, calc(100vw - 48px)"
-            alt=""
-            width={BRED.bredd}
-            height={BRED.hojd}
-            loading="lazy"
-            decoding="async"
-            className="fyr-bild absolute inset-0 -z-20 size-full object-cover"
-          />
-        </picture>
-        {/* Egna rundade hörn: Chrome klipper inte alltid ett WebGL-lager med blandningsläge
-            mot förälderns hörn. */}
-        <canvas
-          ref={canvasRef}
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 size-full rounded-t-[2rem] mix-blend-screen"
-        />
-        {/* Botten tonas ut i sidfotens färg. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-linear-to-b from-transparent to-ink"
-        />
-        <div className="relative px-6 pt-14 pb-24 sm:px-14 sm:pt-16">
-          <Reveal>
-            <p className="caps fyr-skugga text-white/75">Gratis genomgång</p>
-            <div className="relative mt-5 max-w-2xl">
-              <h2 ref={rubrikRef} id="fyr-rubrik" className={`${RUBRIK} fyr-skugga text-elfenben`}>
-                {rubrik}
-              </h2>
-              <div ref={tandRef} aria-hidden="true" className={`fyr-tand font-display ${RUBRIK}`}>
-                {rubrik}
-              </div>
-            </div>
-            <p className="fyr-skugga mt-5 max-w-xl text-white/85">{text}</p>
-            <BokaKnappar
-              {...(onBoka ? { onBoka } : {})}
-              {...(prislank ? { prislank } : {})}
-              {...val}
+    <section aria-labelledby="fyr-rubrik" className="fyr-panel">
+      {/* Målningen hänger i samma förgyllda ram som projektfilmen; sidfoten är dess skylt. */}
+      <div className="galleri-ram galleri-ram-bred fyr-ram galleri-verk mx-auto max-w-[88rem]">
+        <div ref={kortRef} className="fyr-kort relative isolate overflow-hidden bg-ink text-white">
+          <picture>
+            <source media={SMAL} srcSet={HOG.src} width={HOG.bredd} height={HOG.hojd} />
+            <img
+              src={BRED.src}
+              srcSet={`/fyr/fyr-bred-1280.webp 1280w, ${BRED.src} 1916w`}
+              sizes="(min-width: 1456px) 1408px, calc(100vw - 48px)"
+              alt=""
+              width={BRED.bredd}
+              height={BRED.hojd}
+              loading="lazy"
+              decoding="async"
+              className="fyr-bild absolute inset-0 -z-20 size-full object-cover"
             />
-          </Reveal>
+          </picture>
+          <canvas
+            ref={canvasRef}
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 size-full mix-blend-screen"
+          />
+          <div className="relative px-6 pt-14 pb-24 sm:px-14 sm:pt-16">
+            <Reveal>
+              <p className="caps fyr-skugga text-white/75">Gratis genomgång</p>
+              <div className="relative mt-5 max-w-2xl">
+                <h2
+                  ref={rubrikRef}
+                  id="fyr-rubrik"
+                  className={`${RUBRIK} fyr-skugga text-elfenben`}
+                >
+                  {rubrik}
+                </h2>
+                <div ref={tandRef} aria-hidden="true" className={`fyr-tand font-display ${RUBRIK}`}>
+                  {rubrik}
+                </div>
+              </div>
+              <p className="fyr-skugga mt-5 max-w-xl text-white/85">{text}</p>
+              <BokaKnappar
+                {...(onBoka ? { onBoka } : {})}
+                {...(prislank ? { prislank } : {})}
+                {...val}
+              />
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
