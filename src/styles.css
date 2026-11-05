@@ -771,135 +771,50 @@
 }
 
 /* Sidfoten (Footer.tsx): en graverad mässingsskylt som hänger på väggen under fyrmålningen.
-   Plattan: borstad mässing med ett ljusstråk uppifrån vänster, en fasad kant (::before, ljus
-   upptill/vänster och mörk nedtill/höger) och godstjocklek i de mörka linjerna under kanten.
-   Texten är graverad: en ljus kant under och en mörk ovanför varje bokstav, som en fördjupning
-   i metallen. Text ≈ 5:1 mot mässingen (WCAG AA). */
+   Plattan är ett foto (public/skylt/platta.webp – borstad mässing med fyra skruvar, ljuset
+   utjämnat i efterhand så att kanterna kan sträckas). Hörnen med skruvarna behålls som de är
+   (border-image-slice 80), kanterna sträcks och mitten fylls från samma foto (fill).
+   Väggen runt plattan är genomskinlig i filen så att
+   den får sidans egen vägg, men plattans skugga ligger kvar.
+   Texten är graverad: en ljus kant under och en mörk ovanför varje bokstav. Text ≈ 6:1 mot
+   mässingen (WCAG AA). */
 .plakett {
-  --gravyr: #2a1c08;
-  --ljus: rgb(255 244 200 / 0.55);
-  --morkt: rgb(50 30 4 / 0.55);
+  --gravyr: #241806;
+  /* Skala mot bildfilerna (halv upplösning av fotot). */
+  --sk: 1;
   position: relative;
-  padding: 2.25rem 2rem 1.5rem;
+  padding: 0.75rem 1rem 0.25rem;
+  border: calc(80px * var(--sk)) solid transparent;
+  border-image-source: url("/skylt/platta.webp");
+  border-image-slice: 80 fill;
+  border-image-width: calc(80px * var(--sk));
+  /* Mitten sträcks i sidled (borstningen är vågrät, så det syns inte) och upprepas på höjden;
+     mittfältet i filen är spegelsymmetriskt så att upprepningen inte får någon söm. */
+  border-image-repeat: stretch round;
   color: var(--gravyr);
-  background:
-    /* ljusstråk, som reflex från galleriljuset */
-    linear-gradient(
-      100deg,
-      rgb(255 250 220 / 0) 20%,
-      rgb(255 250 220 / 0.28) 36%,
-      rgb(255 250 220 / 0) 50%
-    ),
-    /* borstning: täta, oregelbundna linjer */
-    repeating-linear-gradient(
-        91deg,
-        rgb(255 255 255 / 0.06) 0 1px,
-        transparent 1px 2px,
-        rgb(0 0 0 / 0.05) 2px 3px,
-        transparent 3px 5px
-      ),
-    linear-gradient(
-      160deg,
-      #e8cb7a 0%,
-      #cfa852 26%,
-      #b78b38 46%,
-      #d5b25a 64%,
-      #a97f2e 86%,
-      #c29a44 100%
-    );
-  box-shadow:
-    /* innerkant: ljus upptill/vänster, mörk nedtill/höger */
-    inset 0 1px 0 rgb(255 248 215 / 0.9),
-    inset 1px 0 0 rgb(255 248 215 / 0.55),
-    inset 0 -1px 0 rgb(40 24 2 / 0.7),
-    inset -1px 0 0 rgb(40 24 2 / 0.45),
-    /* godstjocklek */ 0 1px 0 #8a6520,
-    0 2px 0 #6e4f16,
-    0 3px 0 #553c0f,
-    /* skugga på väggen */ 0 4px 3px rgb(30 18 2 / 0.35),
-    0 24px 40px -18px rgb(40 28 8 / 0.65);
   text-shadow:
-    0 1px 0 var(--ljus),
-    0 -1px 0 var(--morkt);
+    0 1px 0 rgb(255 240 190 / 0.4),
+    0 -1px 0 rgb(40 24 2 / 0.55);
 }
-/* Fasad kant en bit in: en smal rand som fångar ljuset upptill/vänster och skuggar
-   nedtill/höger. */
+@media (max-width: 639px) {
+  .plakett {
+    --sk: 0.7;
+    padding: 0.5rem 0.25rem 0;
+  }
+}
+/* En svag reflex från galleriljuset uppifrån vänster, lagd över hela plattan (inte väggen). */
 .plakett::before {
   content: "";
   position: absolute;
-  inset: 0.7rem;
+  inset: calc(-62px * var(--sk));
   pointer-events: none;
-  border: 2px solid transparent;
-  border-image: linear-gradient(
-      150deg,
-      rgb(255 248 215 / 0.75),
-      rgb(255 248 215 / 0.2) 40%,
-      rgb(50 30 4 / 0.35) 60%,
-      rgb(50 30 4 / 0.7)
-    )
-    1;
-}
-/* Skuggan som fasen kastar inåt. */
-.plakett::after {
-  content: "";
-  position: absolute;
-  inset: calc(0.7rem + 2px);
-  pointer-events: none;
-  box-shadow:
-    inset 1px 1px 2px rgb(50 30 4 / 0.35),
-    inset -1px -1px 1px rgb(255 248 215 / 0.35);
-}
-/* Skruvar: kupigt huvud med högdager uppifrån vänster och mörk underkant, försänkning som en
-   mörk ring med ljus reflex nedtill, och ett spår med mörk botten och ljus underkant (::after). */
-.plakett-skruv {
-  position: absolute;
-  z-index: 1;
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 38% 30%, rgb(255 253 235 / 1) 0 6%, rgb(255 253 235 / 0) 34%),
-    radial-gradient(circle at 50% 50%, #f0d78e 0%, #d6b45e 38%, #a57c2c 70%, #634812 100%);
-  box-shadow:
-    inset 0 -2px 3px rgb(40 24 2 / 0.6),
-    inset 0 1px 1px rgb(255 253 235 / 0.7),
-    0 0 0 2px rgb(40 24 2 / 0.6),
-    0 1px 0 3px rgb(255 248 215 / 0.45),
-    0 2px 4px 2px rgb(30 18 2 / 0.45);
-}
-.plakett-skruv::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 14%;
-  width: 72%;
-  height: 3px;
-  border-radius: 1px;
-  background: linear-gradient(#1f1404, #3d2a0a);
-  box-shadow:
-    0 1px 0 rgb(255 248 215 / 0.75),
-    inset 0 1px 1px rgb(0 0 0 / 0.7);
-  transform: translateY(-50%) rotate(var(--v, 28deg));
-}
-.plakett-skruv:nth-child(1) {
-  --v: 28deg;
-  top: 1rem;
-  left: 1rem;
-}
-.plakett-skruv:nth-child(2) {
-  --v: -52deg;
-  top: 1rem;
-  right: 1rem;
-}
-.plakett-skruv:nth-child(3) {
-  --v: 71deg;
-  bottom: 1rem;
-  left: 1rem;
-}
-.plakett-skruv:nth-child(4) {
-  --v: 9deg;
-  bottom: 1rem;
-  right: 1rem;
+  background: linear-gradient(
+    110deg,
+    rgb(255 250 225 / 0.22) 0%,
+    rgb(255 250 225 / 0.08) 30%,
+    rgb(255 250 225 / 0) 55%,
+    rgb(40 24 2 / 0.08) 100%
+  );
 }
 .plakett-huvud {
   display: flex;
@@ -908,8 +823,8 @@
   justify-content: space-between;
   gap: 0.5rem 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgb(50 30 4 / 0.5);
-  box-shadow: 0 1px 0 rgb(255 248 215 / 0.5);
+  border-bottom: 1px solid rgb(40 24 2 / 0.55);
+  box-shadow: 0 1px 0 rgb(255 240 190 / 0.35);
 }
 .plakett-caps {
   font-size: 0.72rem;
@@ -955,14 +870,37 @@
   outline: 2px solid var(--gravyr);
   outline-offset: 2px;
 }
-/* AI-tjänsternas ikoner graveras in i mässingen i stället för att ligga som klistermärken. */
+/* AI-tjänsternas ikoner graveras i samma färg som texten: ikonen blir en mask över textfärgen,
+   med samma ljusa kant under som bokstäverna. */
 .plakett .ai-sammanfattning img {
-  filter: grayscale(1) contrast(1.2) brightness(0.55) drop-shadow(0 1px 0 rgb(255 248 215 / 0.55));
-  mix-blend-mode: multiply;
-  opacity: 0.85;
+  opacity: 0;
 }
-.plakett .ai-sammanfattning a:hover img {
+.plakett .ai-sammanfattning a {
+  position: relative;
   opacity: 1;
+}
+.plakett .ai-sammanfattning a::before,
+.plakett .ai-sammanfattning a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  -webkit-mask: var(--ikon) center / contain no-repeat;
+  mask: var(--ikon) center / contain no-repeat;
+  pointer-events: none;
+}
+.plakett .ai-sammanfattning a::before {
+  background: rgb(255 240 190 / 0.4);
+  transform: translateY(1px);
+}
+.plakett .ai-sammanfattning a::after {
+  background: var(--gravyr);
+}
+.plakett .ai-sammanfattning a:hover::after,
+.plakett .ai-sammanfattning a:focus-visible::after {
+  background: #000;
 }
 /* Katalograden längst ner, som verkets inventarienummer. */
 .plakett-fot {
@@ -972,15 +910,10 @@
   gap: 0.35rem 1.5rem;
   margin-top: 2.25rem;
   padding-top: 0.9rem;
-  border-top: 1px solid rgb(255 248 215 / 0.5);
-  box-shadow: 0 -1px 0 rgb(50 30 4 / 0.5);
+  border-top: 1px solid rgb(40 24 2 / 0.55);
+  box-shadow: inset 0 1px 0 rgb(255 240 190 / 0.35);
   font-size: 0.74rem;
   letter-spacing: 0.04em;
-}
-@media (min-width: 640px) {
-  .plakett {
-    padding: 2.75rem 3rem 1.75rem;
-  }
 }
 
 /* Svävande bubblor i hero */

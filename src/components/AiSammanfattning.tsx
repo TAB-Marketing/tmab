@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import { absolut, FORETAG } from "@/lib/foretag";
 
@@ -41,6 +42,7 @@ export function AiSammanfattning() {
               rel="noopener noreferrer"
               aria-label={`Sammanfatta sidan med ${t.namn} (öppnas i en ny flik)`}
               title={t.namn}
+              style={{ "--ikon": `url(${t.ikon})` } as CSSProperties}
               className="grid size-11 place-items-center rounded-full opacity-70 transition-opacity duration-200 hover:opacity-100 focus-visible:opacity-100"
             >
               <img src={t.ikon} alt="" width={28} height={28} loading="lazy" className="size-7" />

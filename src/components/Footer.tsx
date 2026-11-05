@@ -8,17 +8,13 @@ import { TJANSTER, tjanstSokvag } from "@/lib/tjanster";
 /**
  * Sidfoten: en graverad mässingsskylt som hänger på väggen under fyrmålningen (Fyrscen.tsx) –
  * som skylten under en tavla på ett museum. Titel, "konstnär" (bolaget), en rad om verket,
- * och längst ner katalognumret (org.nr). Allt ritas i CSS (.plakett i styles.css); inga bilder.
+ * och längst ner katalognumret (org.nr). Plattan och skruvarna är ett foto (public/skylt),
+ * texten ligger ovanpå som gravyr – se .plakett i styles.css.
  */
 export function Footer() {
   return (
-    <footer className="plakett-vagg px-6 pt-12 pb-14 sm:pt-16 sm:pb-20">
+    <footer className="px-3 pt-10 pb-12 sm:px-6 sm:pt-14 sm:pb-20">
       <div className="plakett mx-auto max-w-[66rem]">
-        <span aria-hidden="true" className="plakett-skruv" />
-        <span aria-hidden="true" className="plakett-skruv" />
-        <span aria-hidden="true" className="plakett-skruv" />
-        <span aria-hidden="true" className="plakett-skruv" />
-
         <div className="plakett-huvud">
           <p className="font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-none">
             {FORETAG.namn}
