@@ -191,14 +191,18 @@ export function Ljusscen({
     // under tiden hoppar sekvensen till slutet och den vanliga skrollen tar vid. Skrollar man
     // uppåt avbryts den. Inget av detta med minskad rörelse.
     const INTRO_MS = 2800;
+    // Hjulhändelser närmare varandra än så här hör till samma gest (styrplatta, mjuk mus).
+    const GEST_MS = 350;
     let intro = 0; // rAF-id medan introt spelas
     let introStart = 0;
+    let senasteHjul = -Infinity;
     const bana = () => Math.max(1, sektion.offsetHeight - window.innerHeight);
     const iStart = () =>
       !stilla.matches && window.scrollY <= 2 && sektion.getBoundingClientRect().top >= -2;
     const stoppaIntro = () => {
       if (intro) window.cancelAnimationFrame(intro);
       intro = 0;
+      document.documentElement.style.removeProperty("scroll-behavior");
     };
     const hoppaTillSlut = () => {
       stoppaIntro();
@@ -217,13 +221,20 @@ export function Ljusscen({
     };
     const startaIntro = () => {
       introStart = performance.now();
+      // Sidans mjuka skroll (html { scroll-behavior: smooth }) får inte lägga sig ovanpå.
+      document.documentElement.style.setProperty("scroll-behavior", "auto");
       intro = window.requestAnimationFrame(introSteg);
     };
     const onHjul = (e: WheelEvent) => {
       if (stilla.matches) return;
+      const nu = performance.now();
+      const sammaGest = nu - senasteHjul < GEST_MS;
+      senasteHjul = nu;
       if (intro) {
-        // Pågående intro: nedåt hoppar till slutet, uppåt avbryter.
+        // Pågående intro: en ny gest nedåt hoppar till slutet, uppåt avbryter. Händelser som
+        // hör till gesten som startade introt ignoreras.
         e.preventDefault();
+        if (sammaGest) return;
         if (e.deltaY > 0) hoppaTillSlut();
         else stoppaIntro();
         return;
