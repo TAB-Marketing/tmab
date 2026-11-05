@@ -9,6 +9,8 @@ import { useEffect, useId, useRef, type CSSProperties, type ReactNode } from "re
  *   fladdrande skimmer ritat i WebGL exakt där lågan sitter i bilden).
  * - När man skrollar flammar lågan upp: skimret växer, "efter" tonas in över "före", rubriken
  *   träder fram i det mörka fältet och målningen krymper in i den förgyllda ramen.
+ * - Ett skrollsteg från toppen spelar hela sekvensen av sig självt (sidan skrollas i lugnt tempo
+ *   till sektionens slut); skrollar man igen under tiden hoppar den till slutet.
  * - Läget i sekvensen (0–1) skrivs som --p på sektionen; CSS sköter tonerna, texten och
  *   krympningen, shadern glöden. Minskad rörelse och utan JS: färdigt läge direkt (--p är 1 i
  *   CSS tills skriptet tar över).
@@ -184,6 +186,96 @@ export function Ljusscen({
       sektion.style.setProperty("--s0", s0.toFixed(4));
     };
 
+    // Ett enda skrollsteg från startläget spelar hela sekvensen: sidan skrollas själv, i lugnt
+    // tempo, från toppen till sektionens slut (där målningen hänger i ramen). Skrollar man igen
+    // under tiden hoppar sekvensen till slutet och den vanliga skrollen tar vid. Skrollar man
+    // uppåt avbryts den. Inget av detta med minskad rörelse.
+    const INTRO_MS = 2800;
+    let intro = 0; // rAF-id medan introt spelas
+    let introStart = 0;
+    const bana = () => Math.max(1, sektion.offsetHeight - window.innerHeight);
+    const iStart = () =>
+      !stilla.matches && window.scrollY <= 2 && sektion.getBoundingClientRect().top >= -2;
+    const stoppaIntro = () => {
+      if (intro) window.cancelAnimationFrame(intro);
+      intro = 0;
+    };
+    const hoppaTillSlut = () => {
+      stoppaIntro();
+      window.scrollTo({ top: sektion.offsetTop + bana(), behavior: "instant" as ScrollBehavior });
+    };
+    const introSteg = (nu: number) => {
+      intro = 0;
+      const t = Math.min((nu - introStart) / INTRO_MS, 1);
+      // Mjuk start och mjukt slut
+      const e = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+      window.scrollTo({
+        top: sektion.offsetTop + bana() * e,
+        behavior: "instant" as ScrollBehavior,
+      });
+      if (t < 1) intro = window.requestAnimationFrame(introSteg);
+    };
+    const startaIntro = () => {
+      introStart = performance.now();
+      intro = window.requestAnimationFrame(introSteg);
+    };
+    const onHjul = (e: WheelEvent) => {
+      if (stilla.matches) return;
+      if (intro) {
+        // Pågående intro: nedåt hoppar till slutet, uppåt avbryter.
+        e.preventDefault();
+        if (e.deltaY > 0) hoppaTillSlut();
+        else stoppaIntro();
+        return;
+      }
+      if (e.deltaY > 0 && iStart()) {
+        e.preventDefault();
+        startaIntro();
+      }
+    };
+    let pekY = 0;
+    const onPekStart = (e: TouchEvent) => {
+      pekY = e.touches[0]?.clientY ?? 0;
+    };
+    const onPekFlytt = (e: TouchEvent) => {
+      if (stilla.matches) return;
+      const y = e.touches[0]?.clientY ?? 0;
+      const nedat = pekY - y > 8;
+      if (intro) {
+        e.preventDefault();
+        if (nedat) hoppaTillSlut();
+        else if (y - pekY > 8) stoppaIntro();
+        return;
+      }
+      if (nedat && iStart()) {
+        e.preventDefault();
+        startaIntro();
+      }
+    };
+    const onTangent = (e: KeyboardEvent) => {
+      if (stilla.matches) return;
+      const ned = e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey);
+      if (!ned || e.target !== document.body) return;
+      if (intro) {
+        e.preventDefault();
+        hoppaTillSlut();
+      } else if (iStart()) {
+        e.preventDefault();
+        startaIntro();
+      }
+    };
+    window.addEventListener("wheel", onHjul, { passive: false });
+    window.addEventListener("touchstart", onPekStart, { passive: true });
+    window.addEventListener("touchmove", onPekFlytt, { passive: false });
+    window.addEventListener("keydown", onTangent);
+    const stadaIntro = () => {
+      stoppaIntro();
+      window.removeEventListener("wheel", onHjul);
+      window.removeEventListener("touchstart", onPekStart);
+      window.removeEventListener("touchmove", onPekFlytt);
+      window.removeEventListener("keydown", onTangent);
+    };
+
     const gl = canvas.getContext("webgl", { antialias: false, depth: false, stencil: false });
     const program = gl ? skapaProgram(gl) : null;
     if (gl && program) {
@@ -310,6 +402,7 @@ export function Ljusscen({
       canvas.addEventListener("webglcontextlost", onTappad);
 
       return () => {
+        stadaIntro();
         stanna();
         if (skrollRaf) window.cancelAnimationFrame(skrollRaf);
         io.disconnect();
@@ -338,6 +431,7 @@ export function Ljusscen({
     window.addEventListener("scroll", onSkroll, { passive: true });
     window.addEventListener("resize", onSkroll);
     return () => {
+      stadaIntro();
       if (skrollRaf) window.cancelAnimationFrame(skrollRaf);
       window.removeEventListener("scroll", onSkroll);
       window.removeEventListener("resize", onSkroll);
