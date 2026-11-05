@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useId, useRef, type CSSProperties, type ReactNode } from "react";
 import { BOKA_PANEL_TEXT, BokaKnappar, BokaRubrik } from "@/components/Boka";
 import { Reveal } from "@/components/Reveal";
 
@@ -17,6 +17,8 @@ import { Reveal } from "@/components/Reveal";
  * - Minskad rörelse: strålen står still på ordet. Utan WebGL tänds hela rubriken.
  * - Målningen hänger i den förgyllda ramen (.galleri-ram-bred) och sidfoten under är dess
  *   museiskylt i mässing (Footer.tsx).
+ * - Samma komponent ritar heron på /tjanster (LANTERNIN): där står man uppe i fyren och ser ut
+ *   över kusten, lyktan ligger strax under bildens nederkant och käglan är mycket bredare.
  */
 
 // Under den här bredden används den stående bilden. Samma gräns som .fyr-kort i styles.css.
@@ -34,7 +36,15 @@ type Bild = {
   lyktstorlek: number;
   /** Samma som object-position i sidled för .fyr-bild. */
   posX: number;
+  /** Hur snabbt käglan vidgas (radianer per enhet höjd). Startsidans fyr: 0,07. */
+  spridning: number;
+  /** Hur snabbt ljuset avtar med avståndet. */
+  avtagande: number;
+  srcSet?: string;
+  alt?: string;
 };
+
+export type Fyrbilder = { bred: Bild; hog: Bild };
 
 const BRED: Bild = {
   src: "/fyr/fyr-bred.webp",
@@ -45,6 +55,9 @@ const BRED: Bild = {
   horisont: 0.588,
   lyktstorlek: 0.026,
   posX: 0.7,
+  spridning: 0.07,
+  avtagande: 0.35,
+  srcSet: "/fyr/fyr-bred-1280.webp 1280w, /fyr/fyr-bred.webp 1916w",
 };
 
 const HOG: Bild = {
@@ -56,6 +69,44 @@ const HOG: Bild = {
   horisont: 0.688,
   lyktstorlek: 0.016,
   posX: 0.5,
+  spridning: 0.07,
+  avtagande: 0.35,
+};
+
+/** Startsidans och avslutningens fyr, sedd utifrån. */
+export const FYREN: Fyrbilder = { bred: BRED, hog: HOG };
+
+/**
+ * Utsikten från lanterninen (heron på /tjanster). Lyktan sitter bakom betraktaren, strax under
+ * bildens nederkant, så käglan går ut över havet och vidgas kraftigt.
+ */
+export const LANTERNIN: Fyrbilder = {
+  bred: {
+    src: "/fyr/lanternin-bred.webp",
+    srcSet: "/fyr/lanternin-bred-960.webp 960w, /fyr/lanternin-bred.webp 1344w",
+    bredd: 1344,
+    hojd: 752,
+    lyktaX: 0.5,
+    lyktaY: 1.12,
+    horisont: 0.55,
+    lyktstorlek: 0.12,
+    posX: 0.5,
+    spridning: 0.42,
+    avtagande: 0.12,
+    alt: "Målning: utsikt från fyrens lanternin i skymningen över havet, en segelskuta och skärgårdens klippor med röda stugor",
+  },
+  hog: {
+    src: "/fyr/lanternin-hog.webp",
+    bredd: 752,
+    hojd: 1344,
+    lyktaX: 0.5,
+    lyktaY: 1.08,
+    horisont: 0.69,
+    lyktstorlek: 0.05,
+    posX: 0.5,
+    spridning: 0.5,
+    avtagande: 0.3,
+  },
 };
 
 // Canvasens upplösning i förhållande till skärmen. Strålen är mjuk och tål låg upplösning.
@@ -63,9 +114,12 @@ const KVALITET = 0.5;
 const SVEP_MS = 4000;
 // Så länge strålen stannar där man pekat/tryckt innan den går tillbaka till rubriken.
 const HEM_MS = 3000;
-// Halva öppningsvinkeln i CSS-masken (grader): kärna + mjuk kant ≈ shaderns 0,07 rad.
-const MASK_KARNA = 2.4;
-const MASK_KANT = 2.6;
+// Halva öppningsvinkeln i CSS-masken (grader) räknas från käglans spridning: kärna + mjuk kant
+// ≈ shaderns kon. För startsidans fyr (0,07 rad) blir det 2,4° + 2,6°.
+const maskVinklar = (spridning: number) => {
+  const halv = ((spridning * 180) / Math.PI) * 1.25;
+  return { karna: halv * 0.48, kant: halv * 0.52 };
+};
 
 const HORN = `
 attribute vec2 aPos;
@@ -87,6 +141,8 @@ uniform vec2 uLykta;
 uniform float uVinkel;
 uniform float uHorisont;
 uniform float uStorlek;
+uniform float uSpridning;
+uniform float uAvtagande;
 
 const vec3 LJUS = vec3(1., .93, .76);
 
@@ -106,15 +162,15 @@ void main() {
   float k = uStorlek;
 
   // Ljuskäglan: smal vid lyktan, vidgas och avtar med avståndet, med damm som driver i ljuset
-  float bredd = k * .4 + langs * .07;
+  float bredd = k * .4 + langs * uSpridning;
   float fram = smoothstep(0., k * 1.5, langs);
   float kon = smoothstep(bredd, bredd * .1, tvars) * fram;
   float karna = smoothstep(bredd * .5, 0., tvars) * fram;
   float damm = .55 + .45 * fbm(vec2(langs * 5. - uTid * .25, tvars * 30. + uTid * .05));
-  float strale = (kon * .55 + karna * .45) * exp(-langs * .35) * damm;
+  float strale = (kon * .55 + karna * .45) * exp(-langs * uAvtagande) * damm;
   // Svagare stråle bakåt, som i en roterande fyrlins
   float bak = -langs;
-  float breddBak = k * .4 + bak * .06;
+  float breddBak = k * .4 + bak * uSpridning * .85;
   strale += smoothstep(breddBak, breddBak * .1, tvars) * smoothstep(0., k * 1.5, bak) * exp(-bak * 1.6) * .22;
   // Under horisonten träffar ljuset vattnet och syns svagare
   strale *= mix(.3, 1., smoothstep(uHorisont - .1, uHorisont + .01, vUv.y));
@@ -155,6 +211,7 @@ const skillnad = (a: number, b: number) =>
   ((((b - a + Math.PI) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)) - Math.PI;
 
 const RUBRIK = "text-[clamp(2.2rem,5vw,4.25rem)] leading-[1.05]";
+const RUBRIK_HERO = "text-[clamp(2.4rem,5.6vw,5rem)] leading-[1.02]";
 
 type Val = { tjanst?: string; paket?: string };
 
@@ -162,15 +219,29 @@ type Val = { tjanst?: string; paket?: string };
 export function Fyrscen({
   rubrik = <BokaRubrik />,
   text = BOKA_PANEL_TEXT,
+  etikett = "Gratis genomgång",
+  bilder = FYREN,
+  hero = false,
+  knappar,
   onBoka,
   prislank,
   ...val
 }: Val & {
   rubrik?: ReactNode;
   text?: string;
+  /** Versalraden ovanför rubriken. */
+  etikett?: string;
+  bilder?: Fyrbilder;
+  /** Sidans första skärm: h1, större rubrik och bildens eget format på dator. */
+  hero?: boolean;
+  /** Egna knappar i stället för BokaKnappar. */
+  knappar?: ReactNode;
   onBoka?: () => void;
   prislank?: { href: string; text: string };
 } = {}) {
+  const rubrikId = useId();
+  const Rubrik = hero ? "h1" : "h2";
+  const rubrikStorlek = hero ? RUBRIK_HERO : RUBRIK;
   const kortRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rubrikRef = useRef<HTMLHeadingElement>(null);
@@ -208,6 +279,8 @@ export function Fyrscen({
       vinkel: gl.getUniformLocation(program, "uVinkel"),
       horisont: gl.getUniformLocation(program, "uHorisont"),
       storlek: gl.getUniformLocation(program, "uStorlek"),
+      spridning: gl.getUniformLocation(program, "uSpridning"),
+      avtagande: gl.getUniformLocation(program, "uAvtagande"),
     };
 
     const smal = window.matchMedia(SMAL);
@@ -220,8 +293,11 @@ export function Fyrscen({
     let lyktaY = 0;
     let horisont = 0;
     let lyktstorlek = 0;
+    let bild = bilder.bred;
+    let mask = maskVinklar(bild.spridning);
     const mat = () => {
-      const bild = smal.matches ? HOG : BRED;
+      bild = smal.matches ? bilder.hog : bilder.bred;
+      mask = maskVinklar(bild.spridning);
       bredd = Math.max(1, kort.clientWidth);
       hojd = Math.max(1, kort.clientHeight);
       const skala = Math.max(bredd / bild.bredd, hojd / bild.hojd);
@@ -275,18 +351,21 @@ export function Fyrscen({
       gl.uniform1f(u.vinkel, vinkel);
       gl.uniform1f(u.horisont, 1 - horisont / hojd);
       gl.uniform1f(u.storlek, lyktstorlek / hojd);
+      gl.uniform1f(u.spridning, bild.spridning);
+      gl.uniform1f(u.avtagande, bild.avtagande);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       // Samma kon som i shadern, som conic-gradient i det tända lagrets koordinater (0° = upp).
       const t = tand.getBoundingClientRect();
       const x = k.left + lyktaX - t.left;
       const y = k.top + lyktaY - t.top;
       const grader = (Math.atan2(Math.cos(vinkel), Math.sin(vinkel)) * 180) / Math.PI;
-      const fran = grader - MASK_KARNA - MASK_KANT;
+      const { karna, kant } = mask;
+      const fran = grader - karna - kant;
       tand.style.setProperty(
         "--strale",
         `conic-gradient(from ${fran.toFixed(2)}deg at ${x.toFixed(1)}px ${y.toFixed(1)}px, ` +
-          `transparent 0deg, #000 ${MASK_KANT}deg, #000 ${MASK_KANT + 2 * MASK_KARNA}deg, ` +
-          `transparent ${2 * (MASK_KANT + MASK_KARNA)}deg)`,
+          `transparent 0deg, #000 ${kant.toFixed(2)}deg, #000 ${(kant + 2 * karna).toFixed(2)}deg, ` +
+          `transparent ${(2 * (kant + karna)).toFixed(2)}deg)`,
       );
     };
 
@@ -420,23 +499,28 @@ export function Fyrscen({
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
     };
-  }, []);
+  }, [bilder]);
 
+  const { bred, hog } = bilder;
   return (
-    <section aria-labelledby="fyr-rubrik" className="fyr-panel">
+    <section
+      aria-labelledby={rubrikId}
+      className={`fyr-panel ${hero ? "fyr-hero" : ""}`}
+      style={{ "--fyr-format": `${bred.bredd} / ${bred.hojd}` } as CSSProperties}
+    >
       {/* Målningen hänger i samma förgyllda ram som projektfilmen; sidfoten är dess skylt. */}
       <div className="galleri-ram galleri-ram-bred fyr-ram galleri-verk mx-auto max-w-[88rem]">
         <div ref={kortRef} className="fyr-kort relative isolate overflow-hidden bg-ink text-white">
           <picture>
-            <source media={SMAL} srcSet={HOG.src} width={HOG.bredd} height={HOG.hojd} />
+            <source media={SMAL} srcSet={hog.src} width={hog.bredd} height={hog.hojd} />
             <img
-              src={BRED.src}
-              srcSet={`/fyr/fyr-bred-1280.webp 1280w, ${BRED.src} 1916w`}
+              src={bred.src}
+              {...(bred.srcSet ? { srcSet: bred.srcSet } : {})}
               sizes="(min-width: 1456px) 1408px, calc(100vw - 48px)"
-              alt=""
-              width={BRED.bredd}
-              height={BRED.hojd}
-              loading="lazy"
+              alt={bred.alt ?? ""}
+              width={bred.bredd}
+              height={bred.hojd}
+              {...(hero ? { fetchPriority: "high" as const } : { loading: "lazy" as const })}
               decoding="async"
               className="fyr-bild absolute inset-0 -z-20 size-full object-cover"
             />
@@ -448,25 +532,31 @@ export function Fyrscen({
           />
           <div className="relative px-6 pt-14 pb-24 sm:px-14 sm:pt-16">
             <Reveal>
-              <p className="caps fyr-skugga text-white/75">Gratis genomgång</p>
+              <p className="caps fyr-skugga text-white/75">{etikett}</p>
               <div className="relative mt-5 max-w-2xl">
-                <h2
+                <Rubrik
                   ref={rubrikRef}
-                  id="fyr-rubrik"
-                  className={`${RUBRIK} fyr-rubrik fyr-skugga text-elfenben`}
+                  id={rubrikId}
+                  className={`${rubrikStorlek} fyr-rubrik fyr-skugga text-elfenben`}
                 >
                   {rubrik}
-                </h2>
-                <div ref={tandRef} aria-hidden="true" className={`fyr-tand font-display ${RUBRIK}`}>
+                </Rubrik>
+                <div
+                  ref={tandRef}
+                  aria-hidden="true"
+                  className={`fyr-tand font-display ${rubrikStorlek}`}
+                >
                   {rubrik}
                 </div>
               </div>
               <p className="fyr-skugga mt-5 max-w-xl text-white/85">{text}</p>
-              <BokaKnappar
-                {...(onBoka ? { onBoka } : {})}
-                {...(prislank ? { prislank } : {})}
-                {...val}
-              />
+              {knappar ?? (
+                <BokaKnappar
+                  {...(onBoka ? { onBoka } : {})}
+                  {...(prislank ? { prislank } : {})}
+                  {...val}
+                />
+              )}
             </Reveal>
           </div>
         </div>

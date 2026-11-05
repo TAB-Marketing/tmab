@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
-import { Mark, PageHero } from "@/components/Heading";
+import { Fyrscen, LANTERNIN } from "@/components/Fyrscen";
+import { Mark } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { DELAR, kr, STARTAVGIFT_TEXT } from "@/lib/priser";
 import { avstava } from "@/lib/text";
@@ -28,21 +29,25 @@ export const Route = createFileRoute("/tjanster/")({
 function Tjanster() {
   return (
     <>
-      <PageHero
-        tavla={{ src: "/galleri/caesar-1080.webp", bredd: 1080, hojd: 1350 }}
-        eyebrow="Tjänster"
-        title={
+      <Fyrscen
+        hero
+        bilder={LANTERNIN}
+        etikett="Tjänster"
+        rubrik={
           <>
             Allt ni behöver för att <Mark>synas digitalt</Mark>
           </>
         }
-        intro="Fyra delar som tillsammans får fler att hitta, välja och kontakta er. Ta en i taget och lägg till fler när det passar."
-      >
-        <BokaKnapp />
-        <Link to="/priser" className="btn-base btn-outline">
-          Se priser
-        </Link>
-      </PageHero>
+        text="Fyra delar som tillsammans får fler att hitta, välja och kontakta er. Ta en i taget och lägg till fler när det passar."
+        knappar={
+          <div className="mt-9 flex flex-wrap gap-3">
+            <BokaKnapp variant="white" />
+            <Link to="/priser" className="btn-base btn-outline-white">
+              Se priser
+            </Link>
+          </div>
+        }
+      />
 
       <div className="container-page grid [&>*]:min-w-0 gap-5 py-14 sm:py-20">
         {DELAR.map((d) => {

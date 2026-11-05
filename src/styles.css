@@ -679,7 +679,7 @@
   .fyr-kort {
     width: 100%;
     min-height: 37.5rem;
-    aspect-ratio: 1916 / 821;
+    aspect-ratio: var(--fyr-format, 1916 / 821);
   }
   /* Beskär från vänster (himmel och vatten), så att fyren och stugorna får plats. */
   .fyr-bild {
@@ -768,6 +768,22 @@
 }
 .fyr-ram {
   --rb: clamp(22px, 3.4vw, 56px);
+}
+/* Heron på /tjanster: utsikten från lanterninen. Samma ram och kort, men först på sidan. */
+.fyr-hero {
+  padding-top: 1.5rem;
+}
+@media (min-width: 640px) {
+  .fyr-hero {
+    padding-top: 2.5rem;
+  }
+}
+/* Lanterninens bilder är redan mörka där texten ligger; mörkningen behövs inte. */
+.fyr-hero .fyr-kort picture::after {
+  opacity: 0.45;
+}
+.fyr-hero .fyr-kort {
+  min-height: 38rem;
 }
 
 /* Sidfoten (Footer.tsx): en graverad mässingsskylt som hänger på väggen under fyrmålningen.
