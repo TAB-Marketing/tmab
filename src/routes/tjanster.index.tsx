@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
-import { Fyrscen, LANTERNIN } from "@/components/Fyrscen";
+import { Ljusscen } from "@/components/Ljusscen";
 import { Mark } from "@/components/Heading";
 import { Reveal } from "@/components/Reveal";
 import { DELAR, kr, STARTAVGIFT_TEXT } from "@/lib/priser";
@@ -29,9 +29,7 @@ export const Route = createFileRoute("/tjanster/")({
 function Tjanster() {
   return (
     <>
-      <Fyrscen
-        hero
-        bilder={LANTERNIN}
+      <Ljusscen
         etikett="Tjänster"
         rubrik={
           <>

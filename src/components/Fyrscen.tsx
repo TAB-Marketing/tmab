@@ -17,8 +17,6 @@ import { Reveal } from "@/components/Reveal";
  * - Minskad rörelse: strålen står still på ordet. Utan WebGL tänds hela rubriken.
  * - Målningen hänger i den förgyllda ramen (.galleri-ram-bred) och sidfoten under är dess
  *   museiskylt i mässing (Footer.tsx).
- * - Samma komponent ritar heron på /tjanster (LANTERNIN): där står man uppe i fyren och ser ut
- *   över kusten, lyktan ligger strax under bildens nederkant och käglan är mycket bredare.
  */
 
 // Under den här bredden används den stående bilden. Samma gräns som .fyr-kort i styles.css.
@@ -75,39 +73,6 @@ const HOG: Bild = {
 
 /** Startsidans och avslutningens fyr, sedd utifrån. */
 export const FYREN: Fyrbilder = { bred: BRED, hog: HOG };
-
-/**
- * Utsikten från lanterninen (heron på /tjanster). Lyktan sitter bakom betraktaren, strax under
- * bildens nederkant, så käglan går ut över havet och vidgas kraftigt.
- */
-export const LANTERNIN: Fyrbilder = {
-  bred: {
-    src: "/fyr/lanternin-bred.webp",
-    srcSet: "/fyr/lanternin-bred-960.webp 960w, /fyr/lanternin-bred.webp 1344w",
-    bredd: 1344,
-    hojd: 752,
-    lyktaX: 0.5,
-    lyktaY: 1.12,
-    horisont: 0.55,
-    lyktstorlek: 0.12,
-    posX: 0.5,
-    spridning: 0.42,
-    avtagande: 0.12,
-    alt: "Målning: utsikt från fyrens lanternin i skymningen över havet, en segelskuta och skärgårdens klippor med röda stugor",
-  },
-  hog: {
-    src: "/fyr/lanternin-hog.webp",
-    bredd: 752,
-    hojd: 1344,
-    lyktaX: 0.5,
-    lyktaY: 1.08,
-    horisont: 0.69,
-    lyktstorlek: 0.05,
-    posX: 0.5,
-    spridning: 0.5,
-    avtagande: 0.3,
-  },
-};
 
 // Canvasens upplösning i förhållande till skärmen. Strålen är mjuk och tål låg upplösning.
 const KVALITET = 0.5;
