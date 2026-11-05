@@ -174,10 +174,13 @@ export function Ljusscen({
         p = Math.min(Math.max(-r.top / bana, 0), 1);
       }
       sektion.style.setProperty("--p", p.toFixed(4));
-      const s0 = Math.max(
-        window.innerWidth / Math.max(1, kort.offsetWidth),
-        window.innerHeight / Math.max(1, kort.offsetHeight),
-      );
+      // Lite mer än skärmen (×1,08), så att inget av väggen skymtar runt kanterna i mörkret.
+      const s0 =
+        1.08 *
+        Math.max(
+          window.innerWidth / Math.max(1, kort.offsetWidth),
+          window.innerHeight / Math.max(1, kort.offsetHeight),
+        );
       sektion.style.setProperty("--s0", s0.toFixed(4));
     };
 

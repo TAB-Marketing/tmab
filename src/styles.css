@@ -929,10 +929,13 @@
   --flamma: clamp(0, calc((var(--p) - 0.12) / 0.33), 1);
   --tand: clamp(0, calc((var(--p) - 0.18) / 0.32), 1);
   --fram: clamp(0, calc((var(--p) - 0.55) / 0.25), 1);
-  --krymp: clamp(0, calc((var(--p) - 0.35) / 0.55), 1);
+  --krymp: clamp(0, calc((var(--p) - 0.3) / 0.65), 1);
   height: 240svh;
 }
+/* Väggen bakom: samma röda damasttapet med förgyllda lister som Sal IV på startsidan, så att
+   målningen krymper in mot en mörk vägg i stället för mot vitt papper. */
 .ljus-fast {
+  --list-h: clamp(22px, 2.2vw, 32px);
   position: sticky;
   top: 0;
   display: grid;
@@ -941,6 +944,32 @@
   /* Luft för sidhuvudet, så att ramens överkant inte hamnar under det i slutläget. */
   padding-top: 3.5rem;
   overflow: hidden;
+  background:
+    linear-gradient(to bottom, rgb(18 3 3 / 0.6), transparent 10rem),
+    linear-gradient(to top, rgb(18 3 3 / 0.45), transparent 7rem),
+    radial-gradient(ellipse 60% 55% at 50% 40%, rgb(255 170 110 / 0.09), transparent 75%),
+    radial-gradient(ellipse 110% 90% at 50% 50%, transparent 55%, rgb(14 2 2 / 0.5)),
+    url("/masterverk/damast.svg") 0 0 / 180px 270px,
+    #5a1517;
+}
+/* Bröstlisten längst ner, så att väggen slutar som ett rum och inte som en kant. */
+.ljus-fast::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  height: var(--list-h);
+  background: url("/masterverk/list.webp") 0 0 / auto 100% repeat-x;
+  transform: scaleY(-1);
+  box-shadow: 0 6px 12px -4px rgb(10 2 2 / 0.5);
+  pointer-events: none;
+  /* Syns först när målningen börjat krympa – i mörkret täcker den hela skärmen. */
+  opacity: var(--krymp);
+}
+/* Galleriljuset blir varmt på tapeten, som i Sal IV. */
+.ljus-fast .galleri-verk::before {
+  background: radial-gradient(ellipse 48% 44% at 50% 26%, rgb(255 196 140 / 0.2), transparent 72%);
 }
 .ljus-ram {
   --rb: clamp(22px, 3.4vw, 56px);
@@ -955,7 +984,7 @@
   z-index: 2;
   background: none;
   pointer-events: none;
-  opacity: clamp(0, calc((var(--p) - 0.68) / 0.17), 1);
+  opacity: clamp(0, calc((var(--p) - 0.75) / 0.15), 1);
 }
 .ljus-kort {
   width: 100%;
