@@ -939,12 +939,13 @@
   position: sticky;
   top: 0;
   display: grid;
-  place-items: center;
-  height: 100svh;
-  /* Luft för sidhuvudet ovanför och bröstlisten nedanför, så att ramen inte hamnar under
-     sidhuvudet eller på listen i slutläget. */
-  padding-top: 4rem;
-  padding-bottom: calc(var(--list-h) + 3rem);
+  place-items: start center;
+  /* Minst en skärm hög, men växer med tavlan: är tavlan högre än skärmen fortsätter väggen
+     under skärmkanten och bröstlisten ligger alltid nedanför ramen, aldrig på den. */
+  min-height: 100svh;
+  /* Luft för sidhuvudet ovanför och bröstlisten nedanför ramen. */
+  padding-top: 5.5rem;
+  padding-bottom: calc(var(--list-h) + 3.5rem);
   overflow: hidden;
   background:
     linear-gradient(to bottom, rgb(18 3 3 / 0.6), transparent 10rem),
@@ -975,9 +976,7 @@
 }
 .ljus-ram {
   --rb: clamp(22px, 3.4vw, 56px);
-  /* Höjden lämnar plats för sidhuvudet ovanför och bröstlisten nedanför, så att ramen aldrig
-     överlappar listen. */
-  width: min(88rem, 100vw - 10rem, (100svh - 17rem) * 1344 / 752);
+  width: min(88rem, 100vw - 10rem);
 }
 /* Ramen som ett lager över kortet: listen ligger utanför kortets kant (negativ inset lika med
    listens bredd), mitten är tom. Tonas in 0,68–0,85, när kortet är några procent större än
@@ -993,6 +992,8 @@
 .ljus-kort {
   width: 100%;
   aspect-ratio: var(--ljus-format, 1344 / 752);
+  /* Texten ska alltid få plats, även när bredden gör tavlan låg. */
+  min-height: 37.5rem;
   /* Från skärmfyllande (--s0, mätt i Ljusscen.tsx) till naturlig storlek, mjukt. */
   --s: calc(1 + (var(--s0, 1.6) - 1) * (1 - var(--krymp)) * (1 - var(--krymp)));
   transform: scale(var(--s));
@@ -1019,7 +1020,8 @@
   }
   .ljus-kort {
     aspect-ratio: auto;
-    height: min(44rem, 100svh - 13rem);
+    min-height: 0;
+    height: 44rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
