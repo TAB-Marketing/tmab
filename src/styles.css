@@ -941,8 +941,10 @@
   display: grid;
   place-items: center;
   height: 100svh;
-  /* Luft för sidhuvudet, så att ramens överkant inte hamnar under det i slutläget. */
-  padding-top: 3.5rem;
+  /* Luft för sidhuvudet ovanför och bröstlisten nedanför, så att ramen inte hamnar under
+     sidhuvudet eller på listen i slutläget. */
+  padding-top: 4rem;
+  padding-bottom: calc(var(--list-h) + 3rem);
   overflow: hidden;
   background:
     linear-gradient(to bottom, rgb(18 3 3 / 0.6), transparent 10rem),
@@ -973,7 +975,9 @@
 }
 .ljus-ram {
   --rb: clamp(22px, 3.4vw, 56px);
-  width: min(88rem, 100vw - 10rem, (100svh - 10rem) * 1344 / 752);
+  /* Höjden lämnar plats för sidhuvudet ovanför och bröstlisten nedanför, så att ramen aldrig
+     överlappar listen. */
+  width: min(88rem, 100vw - 10rem, (100svh - 17rem) * 1344 / 752);
 }
 /* Ramen som ett lager över kortet: listen ligger utanför kortets kant (negativ inset lika med
    listens bredd), mitten är tom. Tonas in 0,68–0,85, när kortet är några procent större än
@@ -1015,7 +1019,7 @@
   }
   .ljus-kort {
     aspect-ratio: auto;
-    height: min(44rem, 100svh - 7rem);
+    height: min(44rem, 100svh - 13rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {
