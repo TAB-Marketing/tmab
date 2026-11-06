@@ -976,7 +976,9 @@
 }
 .ljus-ram {
   --rb: clamp(22px, 3.4vw, 56px);
-  width: min(88rem, 100vw - 10rem);
+  /* 10 % mindre än startsidans tavla, och med marginal så att ramens ornament (som sticker ut
+     utanför listen) inte klipps av den fasta ytans overflow på smalare datorskärmar. */
+  width: min(79rem, 100vw - 18rem);
 }
 /* Ramen som ett lager över kortet: listen ligger utanför kortets kant (negativ inset lika med
    listens bredd), mitten är tom. Tonas in 0,68–0,85, när kortet är några procent större än
@@ -993,7 +995,7 @@
   width: 100%;
   aspect-ratio: var(--ljus-format, 1344 / 752);
   /* Texten ska alltid få plats, även när bredden gör tavlan låg. */
-  min-height: 37.5rem;
+  min-height: 34rem;
   /* Från skärmfyllande (--s0, mätt i Ljusscen.tsx) till naturlig storlek, mjukt. */
   --s: calc(1 + (var(--s0, 1.6) - 1) * (1 - var(--krymp)) * (1 - var(--krymp)));
   transform: scale(var(--s));
