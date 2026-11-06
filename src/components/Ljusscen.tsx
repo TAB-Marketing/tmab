@@ -186,14 +186,14 @@ export function Ljusscen({
       sektion.style.setProperty("--s0", s0.toFixed(4));
     };
 
-    // Introt spelar av sig självt: den som kommer in på sidan ser det mörka läget i 1,5 s, sedan
+    // Introt spelar av sig självt: den som kommer in på sidan ser det mörka läget i 0,8 s, sedan
     // skrollas sidan själv, i lugnt tempo, från toppen till sektionens slut (där målningen
     // hänger i ramen). Ett skrollsteg före dess startar det direkt. Skrollar man igen under
     // tiden hoppar sekvensen till slutet och den vanliga skrollen tar vid. Skrollar man uppåt
     // avbryts den. Inget av detta med minskad rörelse.
     // Pekskärmar får ett långsammare tempo: en kort skroll känns snabbare på en liten skärm.
     const INTRO_MS = window.matchMedia("(hover: none)").matches ? 4200 : 2800;
-    const VANTA_MS = 1500;
+    const VANTA_MS = 800;
     // Hjulhändelser närmare varandra än så här hör till samma gest (styrplatta, mjuk mus).
     const GEST_MS = 350;
     let intro = 0; // rAF-id medan introt spelas
