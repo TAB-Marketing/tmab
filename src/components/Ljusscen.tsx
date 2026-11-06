@@ -199,6 +199,7 @@ export function Ljusscen({
     let intro = 0; // rAF-id medan introt spelas
     let introStart = 0;
     let senasteHjul = -Infinity;
+    let autoTimer = 0;
     // Den svepgest som startade introt får inte också hoppa till slutet.
     let gestStartade = false;
     const bana = () => Math.max(1, sektion.offsetHeight - window.innerHeight);
@@ -226,6 +227,7 @@ export function Ljusscen({
     };
     const startaIntro = () => {
       window.clearTimeout(autoTimer);
+      autoTimer = 0;
       introStart = performance.now();
       // Sidans mjuka skroll (html { scroll-behavior: smooth }) får inte lägga sig ovanpå.
       document.documentElement.style.setProperty("scroll-behavior", "auto");
@@ -273,10 +275,26 @@ export function Ljusscen({
       }
     };
     // Automatisk start efter en kort stund i det mörka läget – bara om man fortfarande står
-    // kvar där och fliken syns.
-    const autoTimer = window.setTimeout(() => {
-      if (!intro && iStart() && document.visibilityState === "visible") startaIntro();
-    }, VANTA_MS);
+    // kvar där och fliken syns. Laddas om varje gång man kommer tillbaka upp till toppen, så
+    // att man aldrig blir stående i mörkret.
+    const laddaAuto = () => {
+      if (autoTimer || intro || stilla.matches) return;
+      autoTimer = window.setTimeout(() => {
+        autoTimer = 0;
+        if (!intro && iStart() && document.visibilityState === "visible") startaIntro();
+      }, VANTA_MS);
+    };
+    const avladdaAuto = () => {
+      window.clearTimeout(autoTimer);
+      autoTimer = 0;
+    };
+    const onSkrollAuto = () => {
+      if (intro) return;
+      if (iStart()) laddaAuto();
+      else avladdaAuto();
+    };
+    laddaAuto();
+    window.addEventListener("scroll", onSkrollAuto, { passive: true });
     const onTangent = (e: KeyboardEvent) => {
       if (stilla.matches) return;
       const ned = e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey);
@@ -295,6 +313,7 @@ export function Ljusscen({
     window.addEventListener("keydown", onTangent);
     const stadaIntro = () => {
       window.clearTimeout(autoTimer);
+      window.removeEventListener("scroll", onSkrollAuto);
       stoppaIntro();
       window.removeEventListener("wheel", onHjul);
       window.removeEventListener("touchstart", onPekStart);
