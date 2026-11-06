@@ -457,9 +457,9 @@ export function Ljusscen({
       style={{ "--ljus-format": `${BRED.bredd} / ${BRED.hojd}` } as CSSProperties}
     >
       <div className="ljus-fast">
-        <div className="ljus-ram galleri-verk relative">
-          {/* Ramen ligger ovanpå kortet och tonas in när kortet nästan krympt färdigt. */}
-          <div aria-hidden="true" className="galleri-ram galleri-ram-bred ljus-ramlager" />
+        {/* Ramen är samma konstruktion som på startsidan (border-image på föräldern). Under
+            introt täcker det uppskalade kortet ramen; den glider fram när kortet krymper. */}
+        <div className="galleri-ram galleri-ram-bred ljus-ram galleri-verk">
           <div
             ref={kortRef}
             className="ljus-kort relative isolate overflow-hidden bg-ink text-white"

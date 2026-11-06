@@ -925,7 +925,7 @@
 .ljus-hero {
   --p: 1;
   /* Lågan flammar upp 0,12–0,45; "efter" tonas in 0,18–0,5; texten 0,55–0,8; krympningen
-     0,35–0,9. */
+     0,3–0,95 (kubisk utbromsning, så ramen glider fram långsamt på slutet). */
   --flamma: clamp(0, calc((var(--p) - 0.12) / 0.33), 1);
   --tand: clamp(0, calc((var(--p) - 0.18) / 0.32), 1);
   --fram: clamp(0, calc((var(--p) - 0.55) / 0.25), 1);
@@ -980,27 +980,21 @@
      utanför listen) inte klipps av den fasta ytans overflow på smalare datorskärmar. */
   width: min(79rem, 100vw - 18rem);
 }
-/* Ramen som ett lager över kortet: listen ligger utanför kortets kant (negativ inset lika med
-   listens bredd), mitten är tom. Tonas in 0,68–0,85, när kortet är några procent större än
-   ramen, så att kortets kant går in under listen. */
-.ljus-ram .ljus-ramlager {
-  position: absolute;
-  inset: calc(-1 * var(--rb));
-  z-index: 2;
-  background: none;
-  pointer-events: none;
-  opacity: clamp(0, calc((var(--p) - 0.75) / 0.15), 1);
-}
 .ljus-kort {
   width: 100%;
   aspect-ratio: var(--ljus-format, 1344 / 752);
   /* Texten ska alltid få plats, även när bredden gör tavlan låg. */
   min-height: 34rem;
   /* Från skärmfyllande (--s0, mätt i Ljusscen.tsx) till naturlig storlek, mjukt. */
-  --s: calc(1 + (var(--s0, 1.6) - 1) * (1 - var(--krymp)) * (1 - var(--krymp)));
+  --s: calc(
+    1 + (var(--s0, 1.6) - 1) * (1 - var(--krymp)) * (1 - var(--krymp)) * (1 - var(--krymp))
+  );
   transform: scale(var(--s));
   transform-origin: center;
   will-change: transform;
+  /* Ovanpå ramen (föräldern) så länge kortet är större än den. */
+  position: relative;
+  z-index: 1;
 }
 .ljus-bild {
   object-position: center;
