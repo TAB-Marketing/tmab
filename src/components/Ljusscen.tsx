@@ -186,16 +186,21 @@ export function Ljusscen({
       sektion.style.setProperty("--s0", s0.toFixed(4));
     };
 
-    // Ett enda skrollsteg från startläget spelar hela sekvensen: sidan skrollas själv, i lugnt
-    // tempo, från toppen till sektionens slut (där målningen hänger i ramen). Skrollar man igen
-    // under tiden hoppar sekvensen till slutet och den vanliga skrollen tar vid. Skrollar man
-    // uppåt avbryts den. Inget av detta med minskad rörelse.
-    const INTRO_MS = 2800;
+    // Introt spelar av sig självt: den som kommer in på sidan ser det mörka läget i 1,5 s, sedan
+    // skrollas sidan själv, i lugnt tempo, från toppen till sektionens slut (där målningen
+    // hänger i ramen). Ett skrollsteg före dess startar det direkt. Skrollar man igen under
+    // tiden hoppar sekvensen till slutet och den vanliga skrollen tar vid. Skrollar man uppåt
+    // avbryts den. Inget av detta med minskad rörelse.
+    // Pekskärmar får ett långsammare tempo: en kort skroll känns snabbare på en liten skärm.
+    const INTRO_MS = window.matchMedia("(hover: none)").matches ? 4200 : 2800;
+    const VANTA_MS = 1500;
     // Hjulhändelser närmare varandra än så här hör till samma gest (styrplatta, mjuk mus).
     const GEST_MS = 350;
     let intro = 0; // rAF-id medan introt spelas
     let introStart = 0;
     let senasteHjul = -Infinity;
+    // Den svepgest som startade introt får inte också hoppa till slutet.
+    let gestStartade = false;
     const bana = () => Math.max(1, sektion.offsetHeight - window.innerHeight);
     const iStart = () =>
       !stilla.matches && window.scrollY <= 2 && sektion.getBoundingClientRect().top >= -2;
@@ -220,6 +225,7 @@ export function Ljusscen({
       if (t < 1) intro = window.requestAnimationFrame(introSteg);
     };
     const startaIntro = () => {
+      window.clearTimeout(autoTimer);
       introStart = performance.now();
       // Sidans mjuka skroll (html { scroll-behavior: smooth }) får inte lägga sig ovanpå.
       document.documentElement.style.setProperty("scroll-behavior", "auto");
@@ -247,6 +253,7 @@ export function Ljusscen({
     let pekY = 0;
     const onPekStart = (e: TouchEvent) => {
       pekY = e.touches[0]?.clientY ?? 0;
+      gestStartade = false;
     };
     const onPekFlytt = (e: TouchEvent) => {
       if (stilla.matches) return;
@@ -254,15 +261,22 @@ export function Ljusscen({
       const nedat = pekY - y > 8;
       if (intro) {
         e.preventDefault();
+        if (gestStartade) return;
         if (nedat) hoppaTillSlut();
         else if (y - pekY > 8) stoppaIntro();
         return;
       }
       if (nedat && iStart()) {
         e.preventDefault();
+        gestStartade = true;
         startaIntro();
       }
     };
+    // Automatisk start efter en kort stund i det mörka läget – bara om man fortfarande står
+    // kvar där och fliken syns.
+    const autoTimer = window.setTimeout(() => {
+      if (!intro && iStart() && document.visibilityState === "visible") startaIntro();
+    }, VANTA_MS);
     const onTangent = (e: KeyboardEvent) => {
       if (stilla.matches) return;
       const ned = e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey);
@@ -280,6 +294,7 @@ export function Ljusscen({
     window.addEventListener("touchmove", onPekFlytt, { passive: false });
     window.addEventListener("keydown", onTangent);
     const stadaIntro = () => {
+      window.clearTimeout(autoTimer);
       stoppaIntro();
       window.removeEventListener("wheel", onHjul);
       window.removeEventListener("touchstart", onPekStart);
