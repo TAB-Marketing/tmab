@@ -23,6 +23,8 @@ export const FORETAG: {
   telefon: string;
   telefonLank: string;
   epost: string;
+  /** Fler e-postadresser som visas under kontaktuppgifter (sidfot och /kontakt). Huvudadressen ovan används i strukturerad data och llms.txt. */
+  fleraEpost: readonly string[];
   oppettider: readonly { dagar: string; tid: string }[];
   personer: readonly { namn: string; roll: string }[];
 } = {
@@ -40,6 +42,7 @@ export const FORETAG: {
   telefon: "",
   telefonLank: "",
   epost: "edvin@treatlymarketing.se",
+  fleraEpost: ["alex@treatly.se", "niko@treatly.se"],
   oppettider: [],
   personer: [],
 };

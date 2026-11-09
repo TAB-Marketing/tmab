@@ -76,7 +76,7 @@ function Kontakt() {
             <Loften kompakt />
           </div>
 
-          {(FORETAG.telefon || FORETAG.epost) && (
+          {(FORETAG.telefon || FORETAG.epost || FORETAG.fleraEpost.length > 0) && (
             <ul className="mt-8 space-y-3">
               {FORETAG.telefon && (
                 <li className="flex items-center gap-3">
@@ -94,6 +94,14 @@ function Kontakt() {
                   </a>
                 </li>
               )}
+              {FORETAG.fleraEpost.map((adress) => (
+                <li key={adress} className="flex items-center gap-3">
+                  <Mail className="size-5 text-guld-mork" aria-hidden="true" />
+                  <a href={`mailto:${adress}`} className="font-bold text-ink underline">
+                    {adress}
+                  </a>
+                </li>
+              ))}
             </ul>
           )}
         </Reveal>

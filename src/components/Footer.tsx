@@ -105,6 +105,17 @@ export function Footer() {
                   </a>
                 </li>
               )}
+              {FORETAG.fleraEpost.map((adress) => (
+                <li key={adress}>
+                  <a
+                    href={`mailto:${adress}`}
+                    onClick={() => mejlKlick(window.location.pathname)}
+                    className="plakett-lank"
+                  >
+                    {adress}
+                  </a>
+                </li>
+              ))}
               {FORETAG.gata && (
                 <li>
                   <address className="not-italic">
