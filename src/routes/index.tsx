@@ -23,13 +23,41 @@ import { avstava } from "@/lib/text";
 import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/")({
-  head: () =>
-    sidhuvud({
+  head: () => {
+    const huvud = sidhuvud({
       titel: "Marknadsföringsbyrå för företag",
       beskrivning: `Vi tar fram marknadsföringsbilder, sköter SEO, GEO och Meta-annonser och bygger hemsidor åt företag. Marknadsföring från ${kr(LAGSTA_MANADSPRIS)}/mån. Boka gratis genomgång.`,
       sokvag: "/",
       schema: [faqSchema(HEM_FRAGOR), videoSchema(PROJEKT_VIDEO.startsida)],
-    }),
+    });
+    return {
+      ...huvud,
+      links: [
+        ...huvud.links,
+        // Mobilens LCP: dukens överdel bakom rubriken är en CSS-bakgrund (.tavla-ovan) och
+        // upptäcks annars först när stilmallen är tolkad. Hämtas direkt, bara på smala skärmar.
+        {
+          rel: "preload",
+          as: "image",
+          href: "/masterverk/duk-hog-ovan.webp",
+          type: "image/webp",
+          media: "(max-width: 1023px)",
+          fetchPriority: "high",
+        },
+        // Datorns LCP är den liggande duken (<img> i Masterverket.tsx).
+        {
+          rel: "preload",
+          as: "image",
+          href: "/masterverk/duk-bred.webp",
+          imageSrcSet: "/masterverk/duk-bred-1000.webp 1000w, /masterverk/duk-bred.webp 1506w",
+          imageSizes: "min(90vw, 90rem)",
+          type: "image/webp",
+          media: "(min-width: 1024px)",
+          fetchPriority: "high",
+        },
+      ],
+    };
+  },
   component: Start,
 });
 

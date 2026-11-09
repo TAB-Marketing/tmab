@@ -672,11 +672,11 @@ function Sokmotoroptimering() {
       </section>
 
       {/* Innehåll */}
-      <section aria-labelledby="innehall" className="container-page py-14 sm:py-20">
+      <section aria-labelledby="seo-innehall" className="container-page py-14 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">Innehåll</p>
-            <h2 id="innehall" className="mt-4 text-4xl sm:text-5xl">
+            <h2 id="seo-innehall" className="mt-4 text-4xl sm:text-5xl">
               SEO-texter och innehåll som svarar på <Mark>rätt frågor</Mark>
             </h2>
           </Reveal>
@@ -891,7 +891,7 @@ function Sokmotoroptimering() {
         <BokaPanel
           tjanst={TJANST}
           onBoka={() => bokaKlick(SIDA, "avslutning")}
-          prislank={{ href: "#pris", text: "Få prisförslag på SEO" }}
+          prislank={{ href: "/seo-byra", text: "Se priser på SEO" }}
           rubrik={
             <>
               Vill ni förbättra ert företags synlighet på <Mark>Google</Mark>?

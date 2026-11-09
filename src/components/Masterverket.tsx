@@ -593,7 +593,10 @@ export function Masterverket() {
             alt="Målning i holländsk guldåldersstil: en bukett i blått, lila, rosa, orange och gult i en bronsurna på en marmorhylla, i förgylld ram"
             width={1506}
             height={785}
-            fetchPriority="high"
+            // Låg prioritet: den gäller även mobilens <source>, där bilden ligger under texten och
+            // annars tar bandbredd från LCP (dukens överdel). Datorns bild förladdas med hög
+            // prioritet i routes/index.tsx, och <img> använder den förladdade filen.
+            fetchPriority="low"
             decoding="async"
             className="tavla-duk"
           />

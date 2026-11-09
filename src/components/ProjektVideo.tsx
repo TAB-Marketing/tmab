@@ -6,7 +6,9 @@ import type { ProjektVideo as Video } from "@/lib/projekt";
  * Ljudlös visningsfilm av sajter vi byggt.
  * - Laddas först när den närmar sig skärmen (preload="none" + IntersectionObserver),
  *   så den påverkar inte sidans laddtid.
- * - Fast bildformat (16:9) och stillbild direkt – sidan hoppar inte när filmen laddas.
+ * - Fast bildformat (16:9) – sidan hoppar inte när stillbild eller film laddas. Stillbilden hämtas
+ *   först när filmen är en bit från skärmen: annars laddas den direkt och tar bandbredd från
+ *   första skärmen på mobil (videons poster följer inte loading="lazy").
  * - Pausas utanför skärmen. Den som valt minskad rörelse ser bara stillbilden.
  * - Paus-knapp, eftersom rörligt innehåll längre än fem sekunder ska gå att stoppa (WCAG 2.2.2).
  */
@@ -16,6 +18,22 @@ export function ProjektVideo({ video, className = "" }: { video: Video; classNam
   const [spelar, setSpelar] = useState(false);
   const [pausadAvAnvandare, setPausadAvAnvandare] = useState(false);
   const [minskadRorelse, setMinskadRorelse] = useState(false);
+  const [naraSkarm, setNaraSkarm] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setNaraSkarm(true);
+        observer.disconnect();
+      },
+      { rootMargin: "1200px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -72,7 +90,7 @@ export function ProjektVideo({ video, className = "" }: { video: Video; classNam
           className="block aspect-video w-full object-cover"
           width={1920}
           height={1080}
-          poster={`${bas}.webp`}
+          {...(naraSkarm ? { poster: `${bas}.webp` } : {})}
           muted
           loop
           playsInline
