@@ -533,7 +533,6 @@ export const GUIDER: readonly Guide[] = [
     ],
   },
   {
-    // UTKAST (gren utkast/guide-ai-hemsida). [Hakparenteser] = bekräfta innan publicering.
     slug: "bygga-hemsida-med-ai",
     titel: "Bygga hemsida med AI: det här återstår efter första utkastet",
     rubrik: {
@@ -542,9 +541,9 @@ export const GUIDER: readonly Guide[] = [
     },
     seoTitel: "Bygga hemsida med AI – det här återstår efter utkastet",
     seoBeskrivning:
-      "AI bygger en hemsida på minuter. Det som återstår är innehållet och tekniken du inte ser: SEO, DNS, formulär, säkerhet, cookies och hastighet. Checklista från vår egen sajt.",
+      "AI bygger en hemsida på minuter. Det som återstår är innehållet och tekniken du inte ser: SEO, DNS, formulär, säkerhet, cookies och hastighet. Med exempel från verkliga sajter.",
     ingress:
-      "Med AI-verktyg som Lovable eller ChatGPT får du en hemsida som ser färdig ut på några minuter. Det som återstår är tre saker: innehåll som bara du kan ge, teknik som inte syns i webbläsaren och det som måste vara rätt innan du publicerar. Nedan går vi igenom vad du måste kontrollera själv – och hur. En enkel sajt klarar du med checklistan. Exemplen kommer från sajter vi själva byggt med AI, bland annat den här.",
+      "Med AI-verktyg som Lovable eller ChatGPT får du en hemsida som ser färdig ut på några minuter. Det som återstår är tre saker: innehåll som bara du kan ge, teknik som inte syns i webbläsaren och det som måste vara rätt innan du publicerar. Nedan går vi igenom vad du måste kontrollera själv – och hur. En enkel sajt klarar du med checklistan. Exemplen kommer från AI-byggda sajter vi har gått igenom.",
     publicerad: "2026-11-10",
     uppdaterad: "2026-11-10",
     tjanst: "hemsida",
@@ -567,7 +566,7 @@ export const GUIDER: readonly Guide[] = [
         rubrik: "Innehållet bara du kan ge",
         stycken: [
           "AI vet inte vad ditt företag kostar, när ni har öppet eller vad som skiljer er från konkurrenten. Saknas underlaget fyller verktyget i luckorna med något som låter rimligt – och det är farligare än en tom ruta.",
-          "När vi byggde en sajt åt en restaurang såg första versionen färdig ut. Men det saknades riktiga bilder, allergeninformation, dryckeslista och priser för avhämtning. Och eftersom restaurangen inte hade något bokningssystem fick ”Boka bord” bli en förfrågan i stället för en bokning.",
+          "En restaurangsajt vi arbetade med såg färdig ut i första versionen. Men det saknades riktiga bilder, allergeninformation, dryckeslista och priser för avhämtning. Och eftersom restaurangen inte hade något bokningssystem fick ”Boka bord” bli en förfrågan i stället för en bokning.",
         ],
         lista: {
           rader: [
@@ -581,13 +580,13 @@ export const GUIDER: readonly Guide[] = [
       {
         rubrik: "Tekniken du inte ser",
         stycken: [
-          "Det mesta som går fel syns inte när du klickar runt på sajten. AI-verktyget bygger det du ber om – men du vet sällan att du ska be om det här. Allt i den här listan hittade vi på vår egen sajt, som vi byggt med AI, och alla sidor såg rätt ut i webbläsaren.",
+          "Det mesta som går fel syns inte när du klickar runt på sajten. AI-verktyget bygger det du ber om – men du vet sällan att du ska be om det här. Allt i listan nedan hittade vi när vi gick igenom en sajt som byggts med AI – och alla sidor såg rätt ut i webbläsaren.",
         ],
         lista: {
           rader: [
             {
               titel: "Långsam på mobil",
-              text: "Startsidan fick 76 av 100 i Googles PageSpeed-test på mobil. Bilden bakom rubriken låg i stilmallen, så telefonen hittade den sent. När vi bad webbläsaren hämta den direkt landade sidan runt 90.",
+              text: "Startsidan fick 76 av 100 i Googles PageSpeed-test på mobil. Bilden bakom rubriken låg i stilmallen, så telefonen hittade den sent. När bilden fick hämtas direkt landade sidan runt 90.",
             },
             {
               titel: "En knapp som inte gjorde något",
@@ -599,7 +598,7 @@ export const GUIDER: readonly Guide[] = [
             },
             {
               titel: "Gammal adress kvar i Google",
-              text: "När vi bytte domän låg den gamla adressen kvar i sökresultaten med gamla priser. Omdirigeringar räcker inte – Google behöver också få veta om flytten.",
+              text: "När sajten bytte domän låg den gamla adressen kvar i sökresultaten med gamla priser. Omdirigeringar räcker inte – Google behöver också få veta om flytten.",
             },
           ],
         },
@@ -748,7 +747,7 @@ export const GUIDER: readonly Guide[] = [
             },
             {
               titel: "Någon måste se felen",
-              text: "Koppla Google Search Console och läs den en gång i månaden. Det var där vi upptäckte att Google inte kunde läsa vår sajtkarta.",
+              text: "Koppla Google Search Console och läs den en gång i månaden. Det är oftast där felen syns först. I sajten ovan var det enda tecknet på att Google inte kunde läsa sajtkartan.",
             },
           ],
         },
@@ -808,6 +807,15 @@ export const GUIDER: readonly Guide[] = [
           "Det ärliga svaret: för många småföretag räcker det att göra själv. Det som kostar mest är inte bygget, utan en sajt som ser bra ut men inte syns eller inte ger förfrågningar.",
         ],
       },
+      {
+        rubrik: "Vår åsikt: det farliga är att den ser färdig ut",
+        stycken: [
+          "En AI-byggd hemsida är inte sämre för att AI byggt den. Problemet är att den ser färdig ut långt innan den är det – och därför publiceras den utan att någon kontrollerat det som inte syns.",
+          "Vår hållning är enkel: publicera aldrig en AI-byggd sajt innan du har gjort tre saker. Sökt efter din rubrik i sidkällan. Skickat formuläret från din egen telefon och sett mejlet komma fram. Kopplat Google Search Console. Det tar en eftermiddag, och det fångar de fel som kostar mest.",
+          "Och en gräns vi inte kompromissar med: tar sajten emot betalningar, inloggningar eller kunduppgifter som sparas i en databas ska någon som kan läsa koden granska den innan den går live. Där handlar det inte om design, utan om ansvar för andras uppgifter.",
+          "Gäller inget av det – du har en enkel sajt med några sidor och ett kontaktformulär – då ska du inte betala en byrå för att bygga den. Lägg pengarna på innehållet i stället.",
+        ],
+      },
     ],
     fragor: [
       {
@@ -820,7 +828,7 @@ export const GUIDER: readonly Guide[] = [
       },
       {
         fraga: "Vilket AI-verktyg ska jag välja?",
-        svar: "Välj ett där du kan koppla en egen domän och där du kan ta med dig koden eller innehållet om du vill byta. Vi har byggt med Lovable och Claude, men villkoren ändras ofta – kontrollera dem innan du bestämmer dig.",
+        svar: "Välj ett där du kan koppla en egen domän och där du kan ta med dig koden eller innehållet om du vill byta. Villkor och priser ändras ofta – kontrollera dem innan du bestämmer dig",
       },
       {
         fraga: "Hur lång tid tar det?",
