@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-route
 import { ArrowRight, Check, Clock, TriangleAlert } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark } from "@/components/Heading";
+import { OffertJamforare } from "@/components/OffertJamforare";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import {
@@ -188,6 +189,7 @@ function AvsnittVy({ a, artikel, forsta }: { a: Avsnitt; artikel: boolean; forst
           {p}
         </p>
       ))}
+      {a.verktyg === "offertjamforare" && <OffertJamforare />}
       {a.lista && (artikel ? <ArtikelLista {...a.lista} /> : <Lista {...a.lista} />)}
       {a.tabell && (
         <div className="skylt mt-7 overflow-x-auto">
@@ -238,6 +240,7 @@ function AvsnittVy({ a, artikel, forsta }: { a: Avsnitt; artikel: boolean; forst
 /** Listor i artikelformat: vanliga punkter i löptexten, inga rutor. */
 function ArtikelLista({
   numrerad,
+  varning,
   rader,
 }: {
   numrerad?: boolean;
@@ -247,7 +250,7 @@ function ArtikelLista({
   const Tag = numrerad ? "ol" : "ul";
   return (
     <Tag
-      className={`mt-5 space-y-3 pl-6 text-lg leading-[1.7] text-ink/85 marker:text-guld-mork ${numrerad ? "list-decimal marker:font-bold" : "list-disc"}`}
+      className={`mt-5 space-y-3 pl-6 text-lg leading-[1.7] text-ink/85 marker:text-guld-mork ${numrerad ? "list-decimal marker:font-bold" : "list-disc"} ${varning ? "marker:text-red-800" : ""}`}
     >
       {rader.map((r) => (
         <li key={typeof r === "string" ? r : r.titel} className="pl-1">

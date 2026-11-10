@@ -15,6 +15,8 @@ export type Avsnitt = {
   efter?: readonly string[];
   /** Lyft citat (pull quote) efter avsnittet – en mening ur texten, inte en ny uppgift. */
   citat?: string;
+  /** Interaktivt verktyg som visas efter avsnittets stycken. */
+  verktyg?: "offertjamforare";
 };
 
 export type Guide = {
@@ -698,6 +700,140 @@ export const GUIDER: readonly Guide[] = [
       {
         fraga: "Hur lång tid tar det?",
         svar: "Utkastet tar minuter. Innehåll, bilder, testning och lansering tar för de flesta några dagar till ett par veckor, beroende på hur mycket underlag du har klart.",
+      },
+    ],
+  },
+  {
+    slug: "jamfora-offerter-hemsida",
+    format: "artikel",
+    titel: "Jämföra offerter på hemsida: frågorna att ställa innan du skriver på",
+    rubrik: {
+      text: "Jämföra offerter på hemsida: frågorna att ställa innan du skriver på",
+      markera: "innan du skriver på",
+    },
+    seoTitel: "Jämföra offerter på hemsida – checklista och verktyg",
+    seoBeskrivning:
+      "Två offerter på samma hemsida kan skilja tusentals kronor – och ändå säga olika saker. Så jämför du kostnaden på tre år, ägandet och det som inte står. Med verktyg.",
+    ingress:
+      "Två offerter på samma hemsida kan skilja flera tusen kronor och ändå beskriva helt olika saker. Den ena räknar bara bygget, den andra tre års drift. Den ena låter dig äga allt, den andra inte. Här är frågorna som gör offerterna jämförbara – och ett verktyg där du räknar ut vad de faktiskt kostar.",
+    publicerad: "2026-11-10",
+    uppdaterad: "2026-11-10",
+    tjanst: "hemsida",
+    avsnitt: [
+      {
+        rubrik: "Äpplen och päron",
+        stycken: [
+          "Den som har tagit in offerter på en hemsida känner igen det. En byrå skickar en sida med ett pris. En annan skickar sju sidor med moduler, timmar och tillval. En tredje har ett lågt engångspris och en månadsavgift längst ner, i mindre text. Att lägga dem bredvid varandra och välja den billigaste fungerar inte, för de är inte billiga på samma sätt.",
+          "Det finns ingen lag om vad en offert ska innehålla, så varje byrå skriver sin egen. Därför är det du som måste ställa frågorna som gör dem jämförbara. De handlar om fyra saker: vad som ingår, vad det kostar över tid, vem som äger resultatet och vad som händer den dag du vill gå vidare.",
+        ],
+      },
+      {
+        rubrik: "Räkna på tre år, inte på bygget",
+        stycken: [
+          "Engångspriset är den siffra alla tittar på, och den som säger minst. En hemsida ska leva i flera år, och det som kostar är ofta det som kommer efter lanseringen: drift, uppdateringar och ändringar.",
+          "Två påhittade men typiska exempel. Offert A kostar 15 000 kronor att bygga och 300 kronor i månaden i drift – 25 800 kronor på tre år. Offert B kostar bara 8 000 kronor att bygga men 900 kronor i månaden – 40 400 kronor på tre år. Den offert som såg billigast ut kostar alltså nästan dubbelt så mycket.",
+          "Räkna därför alltid: engångspris plus månadskostnaden gånger 36. Lägg till vad en ändring kostar om du vet att du kommer att behöva några, och kontrollera om priset får höjas under avtalstiden.",
+        ],
+        citat: "Den offert som såg billigast ut kostade nästan dubbelt så mycket på tre år.",
+      },
+      {
+        rubrik: "Frågorna som avslöjar mest",
+        stycken: [
+          "Det här är frågorna vi själva skulle vilja få svar på innan vi skrev på. Står svaret inte i offerten – fråga, och be om svaret skriftligt.",
+        ],
+        lista: {
+          rader: [
+            {
+              titel: "Vad ingår, exakt",
+              text: "Hur många sidor? Vem skriver texterna – du eller byrån? Vem tar fram bilderna, och får du använda dem fritt? Hur många ändringsrundor ingår innan det börjar kosta extra?",
+            },
+            {
+              titel: "Vem äger det",
+              text: "Registreras domänen i ditt företags namn? Äger du design, texter och kod när du har betalat? Ligger konton som Google Search Console och Google Analytics i ditt namn, med byrån som användare?",
+            },
+            {
+              titel: "Hur du kommer därifrån",
+              text: "Kan du flytta sajten till en annan leverantör, och får du med dig allt? Vad kostar det? Är sajten byggd i en plattform som andra kan arbeta i, eller i byråns eget system?",
+            },
+            {
+              titel: "Vad som kostar efter lanseringen",
+              text: "Vad ingår i den löpande avgiften – säkerhetsuppdateringar, säkerhetskopior, ändringar? Finns det bindningstid och uppsägningstid? Vad kostar en ändring: timpris, klippkort eller ingår några timmar?",
+            },
+            {
+              titel: "Vad ”SEO ingår” betyder",
+              text: "Egna titlar och beskrivningar på varje sida, en sajtkarta som skickas in till Google, och – om du har en gammal sajt – omdirigeringar från de gamla adresserna. Står det bara ”SEO-anpassad” vet du inte vad du får.",
+            },
+            {
+              titel: "När det blir klart",
+              text: "Finns ett leveransdatum? Vad behöver du själv leverera, och när? Vad händer med priset och tidplanen om du blir försenad med texter eller bilder?",
+            },
+          ],
+        },
+      },
+      {
+        rubrik: "Varningstecken",
+        stycken: [
+          "Inget av det här betyder att byrån är oseriös. Men varje punkt är något du bör ha fått förklarat innan du skriver på.",
+        ],
+        lista: {
+          varning: true,
+          rader: [
+            {
+              titel: "Domänen registreras i byråns namn",
+              text: "Då kan du inte flytta sajten – eller din e-post – utan byråns hjälp.",
+            },
+            {
+              titel: "Lågt bygge, lång bindning",
+              text: "Ett lågt engångspris som betalas tillbaka med en månadsavgift i 24 eller 36 månader.",
+            },
+            {
+              titel: "Löpande räkning utan tak",
+              text: "Timpris utan en uppskattning av antalet timmar och ett tak gör priset omöjligt att jämföra.",
+            },
+            {
+              titel: "Ett eget system bara byrån kan",
+              text: "Då blir varje ändring en beställning, och ett byte av byrå blir en ny sajt.",
+            },
+            {
+              titel: "Inga sajter att öppna",
+              text: "En byrå som bygger hemsidor ska kunna visa hemsidor den har byggt – och säga vad den gjorde på dem.",
+            },
+          ],
+        },
+      },
+      {
+        rubrik: "Jämför dina offerter",
+        stycken: [
+          "Fyll i engångspris och månadskostnad från varje offert, och klicka i vad som stämmer. Verktyget räknar ut kostnaden på tre år och visar hur många av de viktigaste frågorna varje offert klarar.",
+        ],
+        verktyg: "offertjamforare",
+      },
+      {
+        rubrik: "Vår slutsats: välj den offert du kan lämna",
+        stycken: [
+          "Det viktigaste i en offert på en hemsida är inte priset. Det är vad som händer den dag du vill gå vidare.",
+          "Vår hållning är tydlig: en offert där domänen, koden eller kontona inte står i ditt namn ska bort från listan, hur billig den än är. Allt annat går att förhandla om – ägandet är det enda du inte kan rätta till i efterhand utan att börja om.",
+          "Bland de offerter som klarar det, välj den med fast pris och tydligast omfattning, och jämför kostnaden på tre år, inte på bygget. Ett fast pris med en tydlig lista över vad som ingår är värt mer än ett lägre timpris med en uppskattning.",
+          "Och behöver du bara en enkel sajt med några sidor: välj inte den dyraste för att den ser mest gedigen ut. Betala för det du behöver, och lägg skillnaden på texter och bilder som får kunderna att höra av sig.",
+        ],
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Hur många offerter ska jag ta in?",
+        svar: "Tre brukar räcka. Med färre har du svårt att se vad som är normalt, med fler blir det svårt att jämföra. Skicka samma underlag till alla – sidor, funktioner, vem som skriver texterna – så blir svaren jämförbara.",
+      },
+      {
+        fraga: "Är en offert bindande?",
+        svar: "En offert binder den som har skickat den, så länge den gäller. Du som kund är aldrig skyldig att tacka ja. Tackar du ja utan ändringar har ni ett avtal – läs därför villkoren innan, inte efter.",
+      },
+      {
+        fraga: "Ska jag välja fast pris eller löpande räkning?",
+        svar: "Fast pris, om omfattningen går att beskriva – och det går den för de flesta hemsidor. Löpande räkning passar när du inte vet vad som behövs, men be då alltid om en uppskattning och ett tak.",
+      },
+      {
+        fraga: "Vad kostar en hemsida?",
+        svar: "Det beror på omfattningen, men räkna alltid på tre år: bygget plus den löpande kostnaden. På vår sida om vad en hemsida kostar visar vi våra egna priser och vad som ingår.",
       },
     ],
   },
