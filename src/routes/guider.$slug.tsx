@@ -6,7 +6,7 @@ import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
 import { FLYTTADE_GUIDER, GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
 import { artikelSchema, brodsmulor, faqSchema, guideBild, sidhuvud } from "@/lib/seo";
-import { hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
+import { DEL_TJANSTER, hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
 export const Route = createFileRoute("/guider/$slug")({
   beforeLoad: ({ params }) => {
@@ -90,7 +90,9 @@ function GuideSida() {
           <aside className="inramad mt-14 max-w-3xl p-8 text-elfenben sm:p-10">
             <p className="caps text-sun">Vill du slippa göra det själv?</p>
             <p className="mt-4 text-2xl leading-snug sm:text-3xl">
-              Vi sköter {tjanst.iText} åt dig, från första analysen till uppföljningen varje månad.
+              {DEL_TJANSTER.webb.includes(tjanst.slug)
+                ? `Vi bygger ${tjanst.iText} åt dig – design, texter, teknik och lansering till fast pris.`
+                : `Vi sköter ${tjanst.iText} åt dig, från första analysen till uppföljningen varje månad.`}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BokaKnapp variant="white" tjanst={tjanst.slug} />

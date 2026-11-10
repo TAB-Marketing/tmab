@@ -532,6 +532,152 @@ export const GUIDER: readonly Guide[] = [
       },
     ],
   },
+  {
+    // UTKAST (gren utkast/guide-ai-hemsida). [Hakparenteser] = bekräfta innan publicering.
+    slug: "bygga-hemsida-med-ai",
+    titel: "Bygga hemsida med AI: det här återstår efter första utkastet",
+    rubrik: {
+      text: "Bygga hemsida med AI: det här återstår efter första utkastet",
+      markera: "efter första utkastet",
+    },
+    seoTitel: "Bygga hemsida med AI – det här återstår efter utkastet",
+    seoBeskrivning:
+      "AI bygger en hemsida på minuter. Det som återstår är innehållet, tekniken du inte ser och det som måste vara rätt innan lansering. Checklista från vår egen sajt.",
+    ingress:
+      "Med AI-verktyg som Lovable eller ChatGPT får du en hemsida som ser färdig ut på några minuter. Det som återstår är tre saker: innehåll som bara du kan ge, teknik som inte syns i webbläsaren och det som måste vara rätt innan du publicerar. En enkel sajt klarar du själv med checklistan nedan. Exemplen kommer från sajter vi själva byggt med AI, bland annat den här.",
+    publicerad: "2026-11-10",
+    uppdaterad: "2026-11-10",
+    tjanst: "hemsida",
+    avsnitt: [
+      {
+        rubrik: "Det AI gör bra",
+        lista: {
+          rader: [
+            "Ett första utkast med layout, färger och sidor på några minuter.",
+            "Kod som fungerar på både dator och mobil från början.",
+            "Textförslag att utgå från när du inte vet var du ska börja.",
+            "Snabba ändringar: ”flytta knappen”, ”gör rubriken större”, ”lägg till en sida om oss”.",
+          ],
+        },
+        efter: [
+          "Det är därför ett utkast kan se färdigt ut. Men ett utkast som ser färdigt ut är inte samma sak som en hemsida som ger kunder.",
+        ],
+      },
+      {
+        rubrik: "1. Innehållet bara du kan ge",
+        stycken: [
+          "AI vet inte vad ditt företag kostar, när ni har öppet eller vad som skiljer er från konkurrenten. Saknas underlaget fyller verktyget i luckorna med något som låter rimligt – och det är farligare än en tom ruta.",
+          "[Bekräfta att vi får nämna det:] När vi byggde en sajt åt en restaurang i Göteborg såg första versionen färdig ut. Men det saknades riktiga bilder, allergeninformation, dryckeslista och priser för avhämtning. Och eftersom restaurangen inte hade något bokningssystem fick ”Boka bord” bli en förfrågan i stället för en bokning.",
+        ],
+        lista: {
+          rader: [
+            "Riktiga priser, öppettider och kontaktuppgifter – kontrollera varje siffra.",
+            "Egna bilder på er, era lokaler eller era produkter. Bildbanker och AI-bilder känns igen.",
+            "Det som gör att kunden väljer er: erfarenhet, garantier, omdömen, exempel.",
+            "Svar på frågorna kunderna faktiskt ställer i telefon och mejl.",
+          ],
+        },
+      },
+      {
+        rubrik: "2. Tekniken du inte ser",
+        stycken: [
+          "Det mesta som går fel syns inte när du klickar runt på sajten. Allt det här hittade vi på vår egen sajt, som vi byggt med AI – och alla sidor såg rätt ut i webbläsaren.",
+        ],
+        lista: {
+          rader: [
+            {
+              titel: "Långsam på mobil",
+              text: "Startsidan fick 76 av 100 i Googles PageSpeed-test på mobil. Bilden bakom rubriken låg i stilmallen, så telefonen hittade den sent. När vi bad webbläsaren hämta den direkt landade sidan runt 90.",
+            },
+            {
+              titel: "Länkar som inte leder någonstans",
+              text: "En knapp pekade på ett avsnitt som bara fanns på en annan sida. Inget felmeddelande – knappen gjorde helt enkelt ingenting.",
+            },
+            {
+              titel: "Google kunde inte läsa sajtkartan",
+              text: "Under en period svarade sajten med ett felmeddelande om betalning från värdtjänsten. Det märktes först i Google Search Console.",
+            },
+            {
+              titel: "Gammal adress kvar i Google",
+              text: "När vi bytte domän låg den gamla adressen kvar i sökresultaten med gamla priser. Omdirigeringar räcker inte – Google behöver också få veta om flytten.",
+            },
+          ],
+        },
+        efter: [
+          "Testa själv: kör startsidan i PageSpeed Insights (pagespeed.web.dev) med mobil vald, och koppla sajten till Google Search Console. Båda är gratis. Läs vår guide om Search Console för att komma igång.",
+        ],
+      },
+      {
+        rubrik: "3. Det som måste vara rätt innan du publicerar",
+        lista: {
+          numrerad: true,
+          rader: [
+            "Domänen är registrerad i företagets namn, inte i en anställds eller byråns.",
+            "Sajten har https, och adressen med och utan www leder till samma ställe.",
+            "Varje sida har en egen titel och beskrivning – det är det som visas i Google.",
+            "Kontaktformuläret är testat: skicka ett meddelande och kontrollera att det kommer fram.",
+            "Integritetspolicy finns. Använder du spårning (t.ex. Meta-pixeln) behövs en cookiebanner med samtycke.",
+            "Sajtkartan är inskickad i Google Search Console.",
+            "Mobilen är testad på en riktig telefon, inte bara i datorns förhandsvisning.",
+            "Du vet vem som äger kontot där sajten ligger, och hur du flyttar den om du byter leverantör.",
+          ],
+        },
+      },
+      {
+        rubrik: "4. Kostnaderna efter lanseringen",
+        stycken: ["Själva bygget kan vara nästan gratis. Det som kostar är att ha sajten igång."],
+        lista: {
+          rader: [
+            "Domän: oftast några hundra kronor om året.",
+            "Värdtjänst (hosting): kontrollera villkoren. Vissa gratisplaner tillåter inte kommersiellt bruk eller stänger sajten när en gräns nås.",
+            "AI-verktyget: många kräver en betald plan för att du ska kunna fortsätta ändra eller koppla en egen domän.",
+            "Din egen tid: varje ändring, varje uppdatering och varje fel som behöver felsökas.",
+          ],
+        },
+      },
+      {
+        rubrik: "När klarar du dig själv – och när lönar det sig att ta hjälp?",
+        tabell: {
+          kolumner: ["Situation", "Gör själv", "Ta hjälp"],
+          rader: [
+            [
+              "Enkel sajt: några sidor, kontaktuppgifter",
+              "Ja, med checklistan ovan",
+              "Om du hellre lägger tiden på företaget",
+            ],
+            [
+              "Sajten ska ge kunder via Google",
+              "Möjligt, men räkna med tid för SEO",
+              "Om du inte hinner skriva och följa upp",
+            ],
+            ["Bokning, betalning eller webbshop", "Svårt – kopplingar och säkerhet", "Ja"],
+            ["Flytt från en gammal sajt", "Riskabelt – rankning kan tappas", "Ja"],
+          ],
+        },
+        efter: [
+          "Det ärliga svaret: för många småföretag räcker det att göra själv. Det som kostar mest är inte bygget, utan en sajt som ser bra ut men inte syns eller inte ger förfrågningar.",
+        ],
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Kan man bygga en hemsida gratis med AI?",
+        svar: "Själva utkastet, ofta ja. Men för att ha sajten igång under en egen domän behöver du oftast betala för domän, värdtjänst och ibland AI-verktyget. Räkna på kostnaden per år, inte bara bygget.",
+      },
+      {
+        fraga: "Rankar en AI-byggd hemsida sämre på Google?",
+        svar: "Nej, inte för att den är byggd med AI. Google bedömer om innehållet är användbart och om sidan fungerar tekniskt – inte vilket verktyg som skapade den. Det som drar ner AI-byggda sajter är oftast tunt, allmänt innehåll och teknikfel som ingen upptäckt.",
+      },
+      {
+        fraga: "Vilket AI-verktyg ska jag välja?",
+        svar: "Välj ett där du kan koppla en egen domän och där du kan ta med dig koden eller innehållet om du vill byta. Vi har byggt med Lovable och Claude, men villkoren ändras ofta – kontrollera dem innan du bestämmer dig.",
+      },
+      {
+        fraga: "Hur lång tid tar det?",
+        svar: "Utkastet tar minuter. Innehåll, bilder, testning och lansering tar för de flesta några dagar till ett par veckor, beroende på hur mycket underlag du har klart.",
+      },
+    ],
+  },
 ];
 
 /**
