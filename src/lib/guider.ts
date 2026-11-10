@@ -13,6 +13,8 @@ export type Avsnitt = {
   tabell?: { kolumner: readonly string[]; rader: readonly (readonly string[])[] };
   /** Stycken efter listan eller tabellen. */
   efter?: readonly string[];
+  /** Lyft citat (pull quote) efter avsnittet – en mening ur texten, inte en ny uppgift. */
+  citat?: string;
 };
 
 export type Guide = {
@@ -28,6 +30,11 @@ export type Guide = {
   uppdaterad: string;
   /** Tjänsten guiden leder vidare till. */
   tjanst: string;
+  /**
+   * "artikel": skrivs som en artikel med tes och slutsats – löptext, anfang och lugnare listor.
+   * Utelämnad = guide (steg för steg, listor i rutor).
+   */
+  format?: "artikel";
   /**
    * Egen delningsbild (1200 × 630) med guidens rubrik, t.ex. "/og/guider/<slug>.jpg".
    * Utelämnad = sajtens standardbild. Ny guide → be om en bild i samma mall.
@@ -534,226 +541,92 @@ export const GUIDER: readonly Guide[] = [
   },
   {
     slug: "bygga-hemsida-med-ai",
-    titel: "Bygga hemsida med AI: det här återstår efter första utkastet",
+    format: "artikel",
+    titel: "Bygga hemsida med AI: det farliga är att den ser färdig ut",
     rubrik: {
-      text: "Bygga hemsida med AI: det här återstår efter första utkastet",
-      markera: "efter första utkastet",
+      text: "Bygga hemsida med AI: det farliga är att den ser färdig ut",
+      markera: "ser färdig ut",
     },
     seoTitel: "Bygga hemsida med AI – det här återstår efter utkastet",
     seoBeskrivning:
-      "AI bygger en hemsida på minuter. Det som återstår är innehållet och tekniken du inte ser: SEO, DNS, formulär, säkerhet, cookies och hastighet. Med exempel från verkliga sajter.",
+      "AI bygger en hemsida som ser färdig ut på minuter. Det som återstår syns inte: SEO, AI-sök, DNS, formulär, säkerhet och cookies. Med checklista.",
     ingress:
-      "Med AI-verktyg som Lovable eller ChatGPT får du en hemsida som ser färdig ut på några minuter. Det som återstår är tre saker: innehåll som bara du kan ge, teknik som inte syns i webbläsaren och det som måste vara rätt innan du publicerar. Nedan går vi igenom vad du måste kontrollera själv – och hur. En enkel sajt klarar du med checklistan. Exemplen kommer från AI-byggda sajter vi har gått igenom.",
+      "AI-verktyg som Lovable och ChatGPT bygger en hemsida som ser färdig ut på några minuter. När vi går igenom sådana sajter hittar vi samma sak gång på gång: det som syns är klart, det som inte syns är det inte. Här är vad som återstår – och var gränsen går för vad du bör göra själv.",
     publicerad: "2026-11-10",
     uppdaterad: "2026-11-10",
     tjanst: "hemsida",
     avsnitt: [
       {
-        rubrik: "Det AI gör bra",
-        lista: {
-          rader: [
-            "Ett första utkast med layout, färger och sidor på några minuter.",
-            "Kod som fungerar på både dator och mobil från början.",
-            "Textförslag att utgå från när du inte vet var du ska börja.",
-            "Snabba ändringar: ”flytta knappen”, ”gör rubriken större”, ”lägg till en sida om oss”.",
-          ],
-        },
-        efter: [
-          "Det är därför ett utkast kan se färdigt ut. Men ett utkast som ser färdigt ut är inte samma sak som en hemsida som ger kunder.",
-        ],
-      },
-      {
-        rubrik: "Innehållet bara du kan ge",
+        rubrik: "Ett utkast som lurar alla",
         stycken: [
-          "AI vet inte vad ditt företag kostar, när ni har öppet eller vad som skiljer er från konkurrenten. Saknas underlaget fyller verktyget i luckorna med något som låter rimligt – och det är farligare än en tom ruta.",
-          "En restaurangsajt vi arbetade med såg färdig ut i första versionen. Men det saknades riktiga bilder, allergeninformation, dryckeslista och priser för avhämtning. Och eftersom restaurangen inte hade något bokningssystem fick ”Boka bord” bli en förfrågan i stället för en bokning.",
+          "Det har aldrig gått så snabbt att få en hemsida. Du beskriver ditt företag, och några minuter senare finns en sajt med logotyp, färger, flera sidor och en kontaktknapp. Den fungerar på mobilen, texterna låter proffsiga och allt går att ändra genom att skriva vad du vill ha.",
+          "Det är imponerande, och för många småföretag är det ett verkligt framsteg. Men just för att resultatet ser så färdigt ut publiceras det ofta innan det är klart. Ingen ställer frågorna en webbutvecklare hade ställt, eftersom inget på skärmen ser ut att behöva dem.",
+          "Det första som fattas är innehållet. En restaurangsajt vi arbetade med såg färdig ut i första versionen – men allergeninformationen saknades, liksom dryckeslistan och priserna för avhämtning. Bilderna var inte restaurangens egna. Och eftersom restaurangen inte hade något bokningssystem kunde ”Boka bord” aldrig bli en riktig bokning, bara en förfrågan.",
         ],
-        lista: {
-          rader: [
-            "Riktiga priser, öppettider och kontaktuppgifter – kontrollera varje siffra.",
-            "Egna bilder på er, era lokaler eller era produkter. Bildbanker och AI-bilder känns igen.",
-            "Det som gör att kunden väljer er: erfarenhet, garantier, omdömen, exempel.",
-            "Svar på frågorna kunderna faktiskt ställer i telefon och mejl.",
-          ],
-        },
+        citat:
+          "AI fyller luckor med det som låter rimligt. Det är farligare än en tom ruta, för en tom ruta märks.",
       },
       {
-        rubrik: "Tekniken du inte ser",
+        rubrik: "Fyra fel som inte syns i webbläsaren",
         stycken: [
-          "Det mesta som går fel syns inte när du klickar runt på sajten. AI-verktyget bygger det du ber om – men du vet sällan att du ska be om det här. Allt i listan nedan hittade vi när vi gick igenom en sajt som byggts med AI – och alla sidor såg rätt ut i webbläsaren.",
-        ],
-        lista: {
-          rader: [
-            {
-              titel: "Långsam på mobil",
-              text: "Startsidan fick 76 av 100 i Googles PageSpeed-test på mobil. Bilden bakom rubriken låg i stilmallen, så telefonen hittade den sent. När bilden fick hämtas direkt landade sidan runt 90.",
-            },
-            {
-              titel: "En knapp som inte gjorde något",
-              text: "Den pekade på ett avsnitt som bara fanns på en annan sida. Inget felmeddelande – knappen gjorde helt enkelt ingenting.",
-            },
-            {
-              titel: "Google kunde inte läsa sajtkartan",
-              text: "Under en period svarade sajten med ett felmeddelande om betalning från värdtjänsten. Det märktes först i Google Search Console.",
-            },
-            {
-              titel: "Gammal adress kvar i Google",
-              text: "När sajten bytte domän låg den gamla adressen kvar i sökresultaten med gamla priser. Omdirigeringar räcker inte – Google behöver också få veta om flytten.",
-            },
-          ],
-        },
-        efter: [
-          "Nedan går vi igenom de områden där AI-byggda sajter oftast brister, och hur du själv kontrollerar dem. Du behöver inte kunna koda – men du behöver veta vad du ska be om.",
+          "Svårare är det som inte syns alls. När vi gick igenom en sajt som byggts med AI såg varje sida rätt ut i webbläsaren. Under ytan hittade vi fyra fel.",
+          "Startsidan fick 76 av 100 i Googles hastighetstest på mobil. Bilden bakom rubriken låg i stilmallen, så telefonen hittade den sent och sidan stod halvtom i flera sekunder. När bilden fick hämtas direkt landade sidan runt 90 – utan att designen ändrades det minsta.",
+          "En knapp längst ner på en sida pekade på ett avsnitt som bara fanns på en annan sida. Inget felmeddelande, knappen gjorde helt enkelt ingenting. Under en period svarade sajten med ett betalningsfel från värdtjänsten, och det enda tecknet var att Google inte kunde läsa sajtkartan. Och när sajten bytte domän låg den gamla adressen kvar i Googles resultat, med gamla priser, bredvid den nya.",
+          "Inget av det här är ovanligt, och inget av det upptäcks genom att klicka runt på sajten. Det upptäcks av den som vet var man ska titta.",
         ],
       },
       {
-        rubrik: "Syns sajten för Google och AI-tjänster?",
+        rubrik: "Robotarna som ser en tom sida",
         stycken: [
-          "Många AI-verktyg bygger sajter där texten skapas i webbläsaren med JavaScript. För besökaren ser det likadant ut. Men Google läser sådana sidor i en andra, långsammare omgång, och AI-tjänsternas robotar – de som hämtar källor åt ChatGPT, Claude och Perplexity – kör inte JavaScript alls. Där ser sidan tom ut.",
+          "Det viktigaste osynliga felet gäller hur sajten är byggd. Många AI-verktyg gör sajter där texten skapas i webbläsaren med JavaScript. För en besökare spelar det ingen roll. För sökmotorerna gör det det.",
+          "Google läser sådana sidor, men i en andra och långsammare omgång. Robotarna som hämtar källor åt ChatGPT, Claude och Perplexity kör inte JavaScript alls – när Vercel analyserade hundratals miljoner hämtningar från dem fanns inga spår av det. För dem är sidan tom. Och ett företag som inte syns i sidans kod kan inte heller nämnas i ett AI-svar.",
+          "Det går att kontrollera på en minut: högerklicka på sidan, välj Visa sidkälla och sök efter din rubrik. Finns den inte där behöver sajten serverrendering eller förrendering. Det gör AI-verktyget inte av sig självt – du måste be om det.",
+          "Samma sak gäller det andra Google behöver: en egen titel och beskrivning på varje sida, en sajtkarta som pekar på din riktiga domän och inte på testadressen, och strukturerad data som berättar vad företaget gör.",
         ],
-        lista: {
-          rader: [
-            {
-              titel: "Texten finns i själva sidan",
-              text: "Kontroll: högerklicka på sidan, välj Visa sidkälla och sök efter din rubrik. Hittar du den inte behöver sajten serverrendering (SSR) eller förrendering. Be AI-verktyget om det uttryckligen.",
-            },
-            {
-              titel: "Egen titel och beskrivning på varje sida",
-              text: "Vanligt fel: alla sidor har samma titel som startsidan. Kontroll: öppna några undersidor och läs fliknamnet i webbläsaren.",
-            },
-            {
-              titel: "Sajtkarta och robots.txt pekar på rätt adress",
-              text: "AI-verktyg skapar ofta sajtkartan med testadressen (t.ex. localhost eller en .app-adress) i stället för din domän. Kontroll: öppna dindomän.se/sitemap.xml och läs adresserna.",
-            },
-            {
-              titel: "Canonical-länk på varje sida",
-              text: "Den talar om vilken adress som är den riktiga när samma sida nås på flera sätt. Saknas den kan Google välja fel version.",
-            },
-            {
-              titel: "Strukturerad data",
-              text: "Kod som berättar för Google vad sidan handlar om: företag, adress, vanliga frågor. Kontroll: Googles test för utökade resultat (search.google.com/test/rich-results).",
-            },
-          ],
-        },
+        citat: "Ett företag som inte syns i sidans kod kan inte nämnas i ett AI-svar.",
       },
       {
-        rubrik: "Domän, e-post och flytt",
+        rubrik: "Där misstagen blir dyra",
         stycken: [
-          "Här är misstagen dyrast, eftersom de kan stoppa din e-post eller radera år av placeringar i Google.",
+          "Domänen är där en snabb ändring kan få långa följder. För att koppla den nya sajten ändrar du domänens DNS – och skriver du över fel post slutar e-posten att komma fram. Ta alltid en skärmbild av alla poster innan du ändrar något.",
+          "Skickar sajten mejl i ditt namn, till exempel bekräftelser från ett formulär, behöver domänen SPF, DKIM och DMARC. Annars hamnar mejlen i skräpposten, ofta utan att någon märker det förrän en kund undrar varför de aldrig fick svar.",
+          "Flyttar du från en gammal sajt ska varje gammal adress med besökare eller länkar leda till motsvarande nya sida med en permanent omdirigering. Leder allt till startsidan tappar du placeringar som kan ha tagit år att bygga upp.",
         ],
-        lista: {
-          rader: [
-            {
-              titel: "DNS-ändringar kan stänga av e-posten",
-              text: "När du kopplar domänen till den nya sajten ändrar du DNS. Råkar du ta bort eller skriva över MX-posterna slutar e-posten att komma fram. Ta en skärmbild av alla DNS-poster innan du ändrar något.",
-            },
-            {
-              titel: "Mejl från formuläret hamnar i skräpposten",
-              text: "Skickar sajten mejl i ditt domännamn behöver domänen SPF, DKIM och DMARC. Annars stoppas mejlen eller sorteras som skräp – ofta utan att du märker det.",
-            },
-            {
-              titel: "Med och utan www",
-              text: "Bestäm en adress och låt den andra leda dit. Annars finns sajten två gånger.",
-            },
-            {
-              titel: "Flytt från en gammal sajt",
-              text: "Varje gammal adress som har besökare eller länkar ska leda till motsvarande nya sida med en permanent omdirigering (301). Leder allt till startsidan, eller till en felsida, tappar du placeringarna. Lista de gamla adresserna innan du stänger något.",
-            },
-          ],
-        },
       },
       {
-        rubrik: "Formulär, inloggning och säkerhet",
+        rubrik: "Där det blir allvar",
         stycken: [
-          "Så fort sajten tar emot uppgifter från besökare – formulär, konton, bokningar – blir det allvar. Det är också här AI-verktyg oftast gör fel som inte syns.",
+          "Så fort sajten tar emot uppgifter – formulär, konton, bokningar, betalningar – handlar det inte längre om utseende. Det är också här AI-byggda sajter brister på sätt som inte syns:",
         ],
         lista: {
-          varning: true,
           rader: [
             {
-              titel: "Hemliga nycklar i koden som skickas till besökaren",
-              text: "En API-nyckel som ligger i webbläsarkoden kan vem som helst läsa och använda – på din bekostnad. Nycklar hör hemma på servern.",
+              titel: "Hemliga nycklar i webbläsarkoden",
+              text: "En API-nyckel som skickas till besökarens webbläsare kan vem som helst läsa och använda, på din bekostnad. Nycklar hör hemma på servern.",
             },
             {
-              titel: "Databas utan behörighetsregler",
-              text: "Sparar sajten uppgifter i en databas (t.ex. Supabase) måste raderna skyddas med regler för vem som får läsa vad. Saknas de kan vem som helst hämta alla kunders uppgifter.",
+              titel: "Databaser utan behörighetsregler",
+              text: "Sparar sajten uppgifter i en databas, till exempel Supabase, måste det finnas regler för vem som får läsa vad. Utan dem kan vem som helst hämta alla kunders uppgifter.",
             },
             {
-              titel: "Formulär utan skydd mot spam",
-              text: "Ett öppet formulär hittas av robotar inom några veckor. Lägg till skräppostskydd och en gräns för hur ofta samma avsändare kan skicka.",
-            },
-            {
-              titel: "Inget test av hela kedjan",
-              text: "Fyll i formuläret själv, från mobilen, och kontrollera att svaret kommer fram – både till dig och, om det ska, till kunden.",
-            },
-          ],
-        },
-      },
-      {
-        rubrik: "Lagar: cookies, personuppgifter och tillgänglighet",
-        lista: {
-          rader: [
-            {
-              titel: "Cookiebanner som faktiskt stoppar spårning",
-              text: "Ber du AI lägga in Google Analytics eller Meta-pixeln läggs den ofta in så att den startar direkt. Spårning får inte starta förrän besökaren sagt ja. Kontroll: öppna sajten i ett privat fönster och se om bannern dyker upp innan något laddas.",
-            },
-            {
-              titel: "Integritetspolicy",
-              text: "Behövs så fort du samlar in personuppgifter, till exempel via ett kontaktformulär. Den ska beskriva vad du sparar, varför och hur länge.",
+              titel: "Spårning före samtycke",
+              text: "Läggs Google Analytics eller Meta-pixeln in utan eftertanke startar de direkt. Spårning får inte starta förrän besökaren sagt ja i en cookiebanner.",
             },
             {
               titel: "Tillgänglighet",
-              text: "Sedan 28 juni 2025 gäller tillgänglighetslagen för bland annat e-handel till konsumenter. Mikroföretag – färre än tio anställda och högst 2 miljoner euro i omsättning eller balansomslutning – är undantagna. Oavsett lagkrav: alt-texter på bilder, tydlig kontrast och en sajt som går att använda med tangentbordet.",
-            },
-          ],
-        },
-      },
-      {
-        rubrik: "Hastighet på riktiga telefoner",
-        stycken: [
-          "AI-verktygets förhandsvisning körs på din dator med snabbt internet. Dina kunder har en mellanklasstelefon med 4G.",
-        ],
-        lista: {
-          rader: [
-            {
-              titel: "Bilder i rätt storlek och format",
-              text: "En bild från kameran kan väga flera megabyte. Gör om till WebP i den storlek den visas i, och ge mobilen en mindre version.",
-            },
-            {
-              titel: "Det viktigaste laddas först",
-              text: "Bilden överst på sidan ska hämtas direkt. Bilder längre ner ska vänta tills besökaren scrollar dit.",
-            },
-            {
-              titel: "Inget som hoppar",
-              text: "Bilder och rutor utan angiven storlek gör att texten hoppar när de laddas. Det irriterar besökare och räknas ner av Google.",
+              text: "Sedan juni 2025 gäller tillgänglighetslagen för bland annat e-handel till konsumenter. Mikroföretag – färre än tio anställda och högst 2 miljoner euro i omsättning eller balansomslutning – är undantagna, men alt-texter, tydlig kontrast och en sajt som går att använda med tangentbordet är god sed ändå.",
             },
           ],
         },
         efter: [
-          "Kontroll: kör startsidan och din viktigaste undersida i PageSpeed Insights (pagespeed.web.dev) med Mobil vald. Under 90 är värt att titta på.",
+          "Till det kommer en integritetspolicy så fort du samlar in personuppgifter, och skydd mot spam i formulären. Ett öppet formulär hittas av robotar inom några veckor.",
         ],
       },
       {
-        rubrik: "Efter lanseringen",
-        lista: {
-          rader: [
-            {
-              titel: "En ändring kan förstöra något annat",
-              text: "Ber du AI ändra rubriken på en sida kan den samtidigt skriva om något annat. Klicka igenom de viktigaste sidorna och testa formuläret efter varje större ändring.",
-            },
-            {
-              titel: "Koden ska gå att ta med sig",
-              text: "Se till att koden sparas i ett konto du äger, till exempel GitHub, så att du kan byta verktyg eller ta in en utvecklare.",
-            },
-            {
-              titel: "Någon måste se felen",
-              text: "Koppla Google Search Console och läs den en gång i månaden. Det är oftast där felen syns först. I sajten ovan var det enda tecknet på att Google inte kunde läsa sajtkartan.",
-            },
-          ],
-        },
-      },
-      {
-        rubrik: "Checklista innan du publicerar",
+        rubrik: "Så vet du om din sajt är klar",
+        stycken: [
+          "Det här är listan vi själva går igenom innan en sajt publiceras. Klarar din sajt alla punkter är den troligen redo.",
+        ],
         lista: {
           numrerad: true,
           rader: [
@@ -763,34 +636,29 @@ export const GUIDER: readonly Guide[] = [
             "Texten syns i sidkällan, inte bara i webbläsaren.",
             "Varje sida har en egen titel och beskrivning.",
             "Sajtkartan visar din riktiga domän och är inskickad i Google Search Console.",
-            "Gamla adresser leder till rätt nya sidor (om du flyttar från en äldre sajt).",
+            "Gamla adresser leder till rätt nya sidor, om du flyttar från en äldre sajt.",
             "Kontaktformuläret är testat från mobilen, och mejlet kommer fram – inte till skräpposten.",
             "Inga hemliga nycklar i webbläsarkoden, och databasen har behörighetsregler.",
             "Integritetspolicy finns, och spårning startar först efter samtycke.",
             "Startsidan klarar minst 90 i PageSpeed Insights på mobil.",
-            "Koden ligger i ett konto du äger.",
+            "Koden ligger i ett konto du äger, så att du kan byta verktyg eller ta in hjälp.",
           ],
         },
       },
       {
-        rubrik: "Kostnaderna efter lanseringen",
-        stycken: ["Själva bygget kan vara nästan gratis. Det som kostar är att ha sajten igång."],
-        lista: {
-          rader: [
-            "Domän: oftast några hundra kronor om året.",
-            "Värdtjänst (hosting): kontrollera villkoren. Vissa gratisplaner tillåter inte kommersiellt bruk eller stänger sajten när en gräns nås.",
-            "AI-verktyget: många kräver en betald plan för att du ska kunna fortsätta ändra eller koppla en egen domän.",
-            "Din egen tid: varje ändring, varje uppdatering och varje fel som behöver felsökas.",
-          ],
-        },
+        rubrik: "Kostnaden kommer efter lanseringen",
+        stycken: [
+          "Själva bygget kan vara nästan gratis. Det som kostar är att ha sajten igång: domänen, oftast några hundra kronor om året, värdtjänsten och ofta en betald plan i AI-verktyget för att kunna koppla en egen domän eller fortsätta ändra.",
+          "Läs villkoren för värdtjänsten. Vissa gratisplaner tillåter inte kommersiellt bruk eller stänger sajten när en gräns nås – och det märks först när kunderna möts av ett felmeddelande. Räkna också med din egen tid. Varje ändring kan förstöra något annat, så de viktigaste sidorna och formuläret behöver testas efter varje större uppdatering, och Search Console behöver läsas en gång i månaden.",
+        ],
       },
       {
-        rubrik: "När klarar du dig själv – och när lönar det sig att ta hjälp?",
+        rubrik: "Göra själv eller ta hjälp?",
         tabell: {
           kolumner: ["Situation", "Gör själv", "Ta hjälp"],
           rader: [
             [
-              "Enkel sajt: några sidor, kontaktuppgifter",
+              "Enkel sajt: några sidor och ett kontaktformulär",
               "Ja, med checklistan ovan",
               "Om du hellre lägger tiden på företaget",
             ],
@@ -800,20 +668,17 @@ export const GUIDER: readonly Guide[] = [
               "Om du inte hinner skriva och följa upp",
             ],
             ["Bokning, betalning eller webbshop", "Svårt – kopplingar och säkerhet", "Ja"],
-            ["Flytt från en gammal sajt", "Riskabelt – rankning kan tappas", "Ja"],
+            ["Flytt från en gammal sajt", "Riskabelt – placeringar kan tappas", "Ja"],
           ],
         },
-        efter: [
-          "Det ärliga svaret: för många småföretag räcker det att göra själv. Det som kostar mest är inte bygget, utan en sajt som ser bra ut men inte syns eller inte ger förfrågningar.",
-        ],
       },
       {
-        rubrik: "Vår åsikt: det farliga är att den ser färdig ut",
+        rubrik: "Vår slutsats: kontrollera det du inte ser",
         stycken: [
-          "En AI-byggd hemsida är inte sämre för att AI byggt den. Problemet är att den ser färdig ut långt innan den är det – och därför publiceras den utan att någon kontrollerat det som inte syns.",
-          "Vår hållning är enkel: publicera aldrig en AI-byggd sajt innan du har gjort tre saker. Sökt efter din rubrik i sidkällan. Skickat formuläret från din egen telefon och sett mejlet komma fram. Kopplat Google Search Console. Det tar en eftermiddag, och det fångar de fel som kostar mest.",
-          "Och en gräns vi inte kompromissar med: tar sajten emot betalningar, inloggningar eller kunduppgifter som sparas i en databas ska någon som kan läsa koden granska den innan den går live. Där handlar det inte om design, utan om ansvar för andras uppgifter.",
-          "Gäller inget av det – du har en enkel sajt med några sidor och ett kontaktformulär – då ska du inte betala en byrå för att bygga den. Lägg pengarna på innehållet i stället.",
+          "En hemsida är inte sämre för att AI har byggt den. Men den ser färdig ut långt innan den är det, och därför publiceras den utan att någon kontrollerat det som inte syns.",
+          "Vår hållning är enkel: publicera aldrig en AI-byggd sajt innan du har gjort tre saker. Sökt efter din rubrik i sidkällan. Skickat formuläret från din egen telefon och sett mejlet komma fram. Kopplat Google Search Console. Det tar en eftermiddag och fångar de fel som kostar mest.",
+          "Och en gräns vi inte kompromissar med: tar sajten emot betalningar, inloggningar eller kunduppgifter som sparas i en databas ska någon som kan läsa koden granska den innan den går live. Det är inte en designfråga. Det är ett ansvar för andras uppgifter.",
+          "Har du en enkel sajt med några sidor och ett kontaktformulär ska du däremot inte betala en byrå för att bygga den. Lägg pengarna på bra bilder och texter som svarar på kundernas frågor. Det är där skillnaden syns.",
         ],
       },
     ],

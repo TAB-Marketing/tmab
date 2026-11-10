@@ -1,10 +1,18 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowRight, Check, Clock, TriangleAlert } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
-import { Markerad, Mark, PageHero } from "@/components/Heading";
+import { Markerad, Mark } from "@/components/Heading";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
-import { FLYTTADE_GUIDER, GUIDER, hittaGuide, lastid, type Avsnitt, type Rad } from "@/lib/guider";
+import {
+  FLYTTADE_GUIDER,
+  GUIDER,
+  hittaGuide,
+  lastid,
+  type Avsnitt,
+  type Guide,
+  type Rad,
+} from "@/lib/guider";
 import { artikelSchema, brodsmulor, faqSchema, guideBild, sidhuvud } from "@/lib/seo";
 import { DEL_TJANSTER, hittaTjanst, tjanstSokvag } from "@/lib/tjanster";
 
@@ -54,66 +62,63 @@ const datum = (iso: string) =>
     year: "numeric",
   });
 
+/** Läsbredd för löptext (~70 tecken per rad). Rubrik, ingress och text står i samma kolumn. */
+const KOLUMN = "mx-auto w-full max-w-[44rem]";
+
 function GuideSida() {
   const { slug } = Route.useParams();
   const g = hittaGuide(slug);
   if (!g) return null;
   const tjanst = hittaTjanst(g.tjanst);
   const fler = GUIDER.filter((o) => o.slug !== g.slug);
+  const artikel = g.format === "artikel";
 
   return (
     <>
-      <PageHero
-        eyebrow="Guide"
-        title={<Markerad text={g.rubrik.text} markera={g.rubrik.markera} />}
-        intro={g.ingress}
-      />
+      {/* Sidhuvudet står centrerat över textkolumnen – guiderna har ingen tavla bredvid rubriken. */}
+      <header className="vagg-ljus relative isolate overflow-hidden">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 border-b border-ink/70"
+        />
+        <div className="mx-auto max-w-[60rem] px-6 py-16 text-center sm:py-24">
+          <p className="eyebrow">{artikel ? "Artikel" : "Guide"}</p>
+          <h1 className="mx-auto mt-6 max-w-[52rem] text-[clamp(2.3rem,5.4vw,4.6rem)] leading-[1.04]">
+            <Markerad text={g.rubrik.text} markera={g.rubrik.markera} />
+          </h1>
+          <p className="mx-auto mt-8 max-w-[40rem] text-lg leading-relaxed text-ink/80 sm:text-xl">
+            {g.ingress}
+          </p>
+          <p className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm text-muted-foreground">
+            <span>
+              Av {FORETAG.namn} · <time dateTime={g.uppdaterad}>{datum(g.uppdaterad)}</time>
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock className="size-4" aria-hidden="true" />
+              {lastid(g)} min läsning
+            </span>
+          </p>
+        </div>
+      </header>
 
-      <article className="container-page pt-8 pb-14 sm:pt-10 sm:pb-20">
-        <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-2">
-            <Clock className="size-4" aria-hidden="true" />
-            {lastid(g)} min läsning
-          </span>
-          <span>
-            Uppdaterad <time dateTime={g.uppdaterad}>{datum(g.uppdaterad)}</time> av {FORETAG.namn}
-          </span>
-        </p>
-
-        <div className="mt-10 max-w-3xl space-y-12">
-          {g.avsnitt.map((a) => (
-            <AvsnittVy key={a.rubrik} a={a} />
+      <article className={`${KOLUMN} px-6 pt-12 pb-14 sm:pt-16 sm:pb-20`}>
+        <div className={artikel ? "space-y-14" : "space-y-12"}>
+          {g.avsnitt.map((a, i) => (
+            <AvsnittVy key={a.rubrik} a={a} artikel={artikel} forsta={i === 0} />
           ))}
         </div>
 
-        {tjanst && (
-          <aside className="inramad mt-14 max-w-3xl p-8 text-elfenben sm:p-10">
-            <p className="caps text-sun">Vill du slippa göra det själv?</p>
-            <p className="mt-4 text-2xl leading-snug sm:text-3xl">
-              {DEL_TJANSTER.webb.includes(tjanst.slug)
-                ? `Vi bygger ${tjanst.iText} åt dig – design, texter, teknik och lansering till fast pris.`
-                : `Vi sköter ${tjanst.iText} åt dig, från första analysen till uppföljningen varje månad.`}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <BokaKnapp variant="white" tjanst={tjanst.slug} />
-              <Link to={tjanstSokvag(tjanst)} className="btn-base btn-outline-white">
-                Om {tjanst.titel}
-              </Link>
-            </div>
-          </aside>
-        )}
+        {tjanst && <TjanstRuta g={g} />}
       </article>
 
       <section aria-labelledby="fragor" className="bg-fade-tint py-14 sm:py-20">
-        <div className="container-page">
-          <div className="max-w-3xl">
-            <p className="eyebrow">Vanliga frågor</p>
-            <h2 id="fragor" className="mt-4 text-3xl sm:text-4xl">
-              Det här undrar <Mark>många</Mark>
-            </h2>
-            <div className="mt-8">
-              <VanligaFragor fragor={g.fragor} />
-            </div>
+        <div className={`${KOLUMN} px-6`}>
+          <p className="eyebrow">Vanliga frågor</p>
+          <h2 id="fragor" className="mt-4 text-3xl sm:text-4xl">
+            Det här undrar <Mark>många</Mark>
+          </h2>
+          <div className="mt-8">
+            <VanligaFragor fragor={g.fragor} />
           </div>
         </div>
       </section>
@@ -146,18 +151,46 @@ function GuideSida() {
   );
 }
 
-function AvsnittVy({ a }: { a: Avsnitt }) {
+function TjanstRuta({ g }: { g: Guide }) {
+  const tjanst = hittaTjanst(g.tjanst);
+  if (!tjanst) return null;
+  return (
+    <aside className="inramad mt-16 p-8 text-elfenben sm:p-10">
+      <p className="caps text-sun">Vill du slippa göra det själv?</p>
+      <p className="mt-4 text-2xl leading-snug sm:text-3xl">
+        {DEL_TJANSTER.webb.includes(tjanst.slug)
+          ? `Vi bygger ${tjanst.iText} åt dig – design, texter, teknik och lansering till fast pris.`
+          : `Vi sköter ${tjanst.iText} åt dig, från första analysen till uppföljningen varje månad.`}
+      </p>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <BokaKnapp variant="white" tjanst={tjanst.slug} />
+        <Link to={tjanstSokvag(tjanst)} className="btn-base btn-outline-white">
+          Om {tjanst.titel}
+        </Link>
+      </div>
+    </aside>
+  );
+}
+
+const STYCKE = "mt-5 text-lg leading-[1.75] text-ink/85";
+/** Anfang: första bokstaven i artikelns första stycke. */
+const ANFANG =
+  "first-letter:float-left first-letter:mt-1.5 first-letter:mr-3 first-letter:font-display first-letter:text-[4.6rem] first-letter:leading-[0.8] first-letter:text-ink";
+
+function AvsnittVy({ a, artikel, forsta }: { a: Avsnitt; artikel: boolean; forsta: boolean }) {
   return (
     <section>
-      <h2 className="text-3xl sm:text-4xl">{a.rubrik}</h2>
-      {a.stycken?.map((p) => (
-        <p key={p} className="mt-5 text-lg leading-relaxed text-ink/85">
+      <h2 className={artikel ? "text-[1.9rem] leading-tight sm:text-4xl" : "text-3xl sm:text-4xl"}>
+        {a.rubrik}
+      </h2>
+      {a.stycken?.map((p, i) => (
+        <p key={p} className={`${STYCKE} ${artikel && forsta && i === 0 ? ANFANG : ""}`}>
           {p}
         </p>
       ))}
-      {a.lista && <Lista {...a.lista} />}
+      {a.lista && (artikel ? <ArtikelLista {...a.lista} /> : <Lista {...a.lista} />)}
       {a.tabell && (
-        <div className="skylt mt-6 overflow-x-auto">
+        <div className="skylt mt-7 overflow-x-auto">
           <table className="w-full min-w-[32rem] text-left">
             <thead>
               <tr className="border-b-2 border-line">
@@ -189,11 +222,45 @@ function AvsnittVy({ a }: { a: Avsnitt }) {
         </div>
       )}
       {a.efter?.map((p) => (
-        <p key={p} className="mt-5 text-lg leading-relaxed text-ink/85">
+        <p key={p} className={STYCKE}>
           {p}
         </p>
       ))}
+      {a.citat && (
+        <blockquote className="my-12 border-y border-guld/60 py-8 text-center font-display text-[1.7rem] leading-snug text-ink italic sm:text-[2.1rem]">
+          <p>”{a.citat}”</p>
+        </blockquote>
+      )}
     </section>
+  );
+}
+
+/** Listor i artikelformat: vanliga punkter i löptexten, inga rutor. */
+function ArtikelLista({
+  numrerad,
+  rader,
+}: {
+  numrerad?: boolean;
+  varning?: boolean;
+  rader: readonly Rad[];
+}) {
+  const Tag = numrerad ? "ol" : "ul";
+  return (
+    <Tag
+      className={`mt-5 space-y-3 pl-6 text-lg leading-[1.7] text-ink/85 marker:text-guld-mork ${numrerad ? "list-decimal marker:font-bold" : "list-disc"}`}
+    >
+      {rader.map((r) => (
+        <li key={typeof r === "string" ? r : r.titel} className="pl-1">
+          {typeof r === "string" ? (
+            r
+          ) : (
+            <>
+              <strong className="text-ink">{r.titel}.</strong> {r.text}
+            </>
+          )}
+        </li>
+      ))}
+    </Tag>
   );
 }
 
