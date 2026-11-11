@@ -839,6 +839,313 @@ export const GUIDER: readonly Guide[] = [
       },
     ],
   },
+  {
+    // Framtidsartikel. Adressen saknar årtal med flit: rubrik och text uppdateras varje höst
+    // (2028 osv.) och behåller sina placeringar. Se sajtstruktur.md.
+    slug: "seo-trender",
+    format: "artikel",
+    titel: "SEO 2027: det här avgör om ditt företag syns nästa år",
+    rubrik: {
+      text: "SEO 2027: det här avgör om ditt företag syns nästa år",
+      markera: "syns nästa år",
+    },
+    seoTitel: "SEO 2027 – trenderna som avgör om du syns",
+    seoBeskrivning:
+      "AI-läget i Google, annonser i ChatGPT och nya favicon-regler. Så ser SEO ut 2027 – vad som redan hänt, vad vi tror händer och vad du bör göra nu.",
+    ingress:
+      "Under 2026 fick svenska användare AI-läget i Google och annonser i ChatGPT, och Google ändrade reglerna för något så litet som ikonen bredvid ditt företagsnamn. Här är vad vi tror att det betyder för 2027 – och vad ett svenskt företag bör göra innan året börjar.",
+    publicerad: "2026-11-11",
+    uppdaterad: "2026-11-11",
+    tjanst: "seo",
+    avsnitt: [
+      {
+        rubrik: "Det som redan har hänt",
+        stycken: [
+          "Den som vill förstå 2027 behöver börja med 2026, för mycket av det som kallas trender har redan hänt. Google lanserade AI-läget på svenska den 8 oktober 2025 – en egen flik där man ställer frågor och får ett sammanfattat svar med källor i stället för en lista med länkar. AI-översikterna, sammanfattningarna högst upp i vanliga sökresultat, fanns redan.",
+          "Den 24 augusti 2026 började ChatGPT visa annonser i 31 europeiska länder, Sverige inräknat, för användare på gratisplanen. En vecka senare kunde vilket företag som helst köpa annonser där själv. Och den 27 oktober 2026 skrev Google om sina regler för favicon – ikonen som visas bredvid ditt namn i sökresultaten.",
+          "Inget av detta är en förutsägelse. Det är utgångsläget för nästa år.",
+        ],
+      },
+      {
+        rubrik: "Google är fortfarande störst – men klicken blir färre",
+        stycken: [
+          "Vår första förutsägelse är den minst spännande, och den viktigaste: Google kommer fortfarande att ge de flesta svenska företag fler besökare än alla AI-tjänster tillsammans under 2027. Det är också vad de flesta analytiker som följer AI-sök räknar med.",
+          "Men klicken fördelas om. Enkla frågor – vad något är, hur något fungerar – besvaras allt oftare direkt i AI-översikten, utan att någon klickar vidare. Frågor där någon ska fatta ett beslut – vem ska jag anlita, vad kostar det, vilken ska jag välja – ger fortfarande klick, eftersom svaret beror på jämförelser, priser och förtroende.",
+          "Det betyder att en sajt som bara förklarar saker kommer att tappa trafik. En sajt som hjälper någon att välja kommer att klara sig bättre.",
+        ],
+        citat:
+          "En sajt som bara förklarar saker tappar trafik. En sajt som hjälper någon att välja klarar sig.",
+      },
+      {
+        rubrik: "Att bli nämnd blir lika viktigt som att ranka",
+        stycken: [
+          "AI-tjänsterna sammanfattar vad andra säger om dig. Därför spelar det roll var ditt företag nämns – inte bara på din egen sajt, utan i branschmedier, på LinkedIn, i forum och i omdömen. Inom SEO kallas idén att synas via andras starka sajter för lånad auktoritet, och den används både rätt och fel.",
+          "Rätt är att skriva korta, användbara artiklar på LinkedIn under ditt eget namn, svara på frågor i forum där dina kunder faktiskt finns och se till att branschsajter och kataloger har rätt uppgifter om dig.",
+          "Fel är att publicera förklädd reklam på sajter som inte är till för det. Ett tips som sprids just nu är att lägga upp ”forskningsrapporter” om produkter i öppna forskningsarkiv, eftersom AI-tjänster litar på sådana. Vi avråder. Det är vilseledande mot läsarna, arkiven tar bort sådant, och ett företag som blir känt för att lura AI-tjänster får svårt att bygga det förtroende som allt annat vilar på.",
+          "Google har sedan 2024 en särskild regel mot lånad auktoritet som missbrukas. Sedan 30 augusti 2026 delar Google inte längre ut manuella straff enligt regeln för användare i EU och EES, efter en granskning från EU-kommissionen – men Google säger att det står fast vid regeln och kan fortfarande behandla sådana delar av en sajt som en egen sajt utan den lånade styrkan. Det är ingen grön flagga.",
+        ],
+      },
+      {
+        rubrik: "Skriv om nästa år innan det har börjat",
+        stycken: [
+          "Det mest underskattade knepet i SEO är också det enklaste: skriv om nästa år innan någon annan gör det. När folk börjar söka på ”bästa X 2027” finns ofta ingen bra sida alls, och den första som är riktigt bra har ett försprång som är svårt att ta igen.",
+          "Det är därför den här artikeln finns. Men knepet kräver två saker. Innehållet måste vara på riktigt – en lista med gissningar hjälper ingen. Och det måste uppdateras: en sida om 2027 som fortfarande står kvar orörd 2028 skadar mer än den hjälper.",
+          "Ett praktiskt råd: lägg inte årtalet i adressen. Den här sidan heter /guider/seo-trender och får en ny rubrik och nytt innehåll varje höst – adressen och placeringarna följer med.",
+        ],
+      },
+      {
+        rubrik: "Tekniken blir viktigare, inte mindre viktig",
+        stycken: [
+          "AI-tjänsterna gör det lätt att tro att tekniken inte spelar någon roll längre. Det är tvärtom.",
+        ],
+        lista: {
+          rader: [
+            {
+              titel: "Texten måste finnas i sidans kod",
+              text: "Robotarna som hämtar källor åt ChatGPT, Claude och Perplexity kör inte JavaScript. Skapas texten i webbläsaren ser sidan tom ut för dem. Läs mer i vår artikel om [vad som återstår när AI har byggt en hemsida](/guider/bygga-hemsida-med-ai).",
+            },
+            {
+              titel: "Ikonen bredvid ditt namn",
+              text: "Sedan 27 oktober 2026 kräver Google att Googlebot kan läsa startsidan och följa eventuella omdirigeringar därifrån till sidan där ikonen anges. En flytt från http till https eller från www till utan www, där ingen kontrollerat kedjan, ger en grå jordglob i stället för din logga. Vi såg den själva efter vårt eget domänbyte.",
+            },
+            {
+              titel: "Strukturerad data",
+              text: "Kod som talar om vad sidan handlar om – företag, priser, öppettider, vanliga frågor – gör det lättare för både Google och AI-tjänster att återge dig rätt.",
+            },
+            {
+              titel: "Bing räknas igen",
+              text: "Bing ligger bakom Microsoft Copilot och används av flera AI-tjänster för att hitta källor. Koppla Bing Webmaster Tools – det tar fem minuter.",
+            },
+          ],
+        },
+      },
+      {
+        rubrik: "Det du inte kan mäta",
+        stycken: [
+          "En obekväm sanning om 2027: en del av effekten kommer inte att synas i statistiken. Den som får ditt företag rekommenderat av en AI-tjänst och sedan googlar ditt namn ser ut som en vanlig sökning på företagsnamnet. Besök från ChatGPT syns ofta som hänvisningar från chatgpt.com, men långt ifrån alla.",
+          "Mät därför det du kan – sökningar på ditt företagsnamn i [Google Search Console](/guider/google-search-console), hänvisningar från AI-tjänster och, framför allt, förfrågningar och försäljning. Fråga nya kunder var de hittade er. Det låter gammaldags, men det är 2027 den mest pålitliga mätningen som finns.",
+        ],
+      },
+      {
+        rubrik: "Vår slutsats: bli det självklara svaret",
+        stycken: [
+          "SEO 2027 handlar mindre om knep och mer om att bli det självklara svaret på frågorna dina kunder ställer – på Google, i AI-tjänsterna och i samtalen däremellan.",
+          "Vår hållning: lägg inte tid på att lura AI-tjänster. Lägg den på tre saker som fungerar oavsett vilken tjänst som vinner. En sajt som tekniskt går att läsa för alla robotar. Sidor som hjälper någon att välja, inte bara förklarar. Och ett företag som nämns på fler ställen än sin egen sajt, under riktiga namn, med riktiga omdömen.",
+          "Gör du det kommer en ny AI-tjänst 2027 att vara en möjlighet, inte ett hot. Gör du det inte spelar det ingen roll vilken tjänst som vinner.",
+          "Vill du veta hur AI-sök fungerar i praktiken finns mer i vår guide om [att synas i ChatGPT](/guider/vad-ar-geo).",
+        ],
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Är SEO död 2027?",
+        svar: "Nej. Google ger fortfarande de flesta företag fler besökare än alla AI-tjänster tillsammans. Det som förändras är vilka sökningar som ger klick – frågor där någon ska välja eller köpa klarar sig bättre än rena faktafrågor.",
+      },
+      {
+        fraga: "Vad är skillnaden mellan SEO och GEO?",
+        svar: "SEO handlar om att synas i Googles sökresultat, GEO om att synas och nämnas i AI-tjänsters svar. Grunden är densamma – en sajt som går att läsa, användbart innehåll och ett företag som nämns på andra ställen – men GEO lägger mer vikt vid att bli citerad. Läs mer om [GEO-optimering](/geo-optimering).",
+      },
+      {
+        fraga: "Måste vi annonsera i ChatGPT?",
+        svar: "Nej, inte för att synas i svaren – annonserna visas separat och OpenAI säger att de inte påverkar svaren. Det är en ny annonskanal som kan vara värd att testa för företag vars kunder redan använder ChatGPT, men den ersätter inte SEO.",
+      },
+      {
+        fraga: "Fungerar parasit-SEO fortfarande?",
+        svar: "Att publicera innehåll på andras starka sajter för att låna deras placeringar kan ge kortsiktiga resultat, men Google kan behandla sådant innehåll som en egen sajt utan den lånade styrkan. Att skriva användbara inlägg under eget namn på LinkedIn eller i forum är något annat, och det rekommenderar vi.",
+      },
+    ],
+  },
+  {
+    // Framtidsartikel – uppdateras varje höst, se kommentaren på seo-trender.
+    slug: "hemsida-trender",
+    format: "artikel",
+    titel: "Hemsidor 2027: det här förväntar sig kunderna – och deras AI-assistenter",
+    rubrik: {
+      text: "Hemsidor 2027: det här förväntar sig kunderna – och deras AI-assistenter",
+      markera: "deras AI-assistenter",
+    },
+    seoTitel: "Hemsida 2027 – det här förväntar sig kunderna",
+    seoBeskrivning:
+      "2027 läses din hemsida av människor och av AI-assistenter som jämför och handlar åt dem. Så förbereder du sajten: teknik, innehåll och förtroende.",
+    ingress:
+      "Den viktigaste besökaren på din hemsida 2027 kanske inte är en människa. AI-assistenter jämför redan priser, läser omdömen och lägger varor i kundvagnen åt sina användare – i USA och Kanada i dag, i Europa troligen snart. Här är vad det betyder för hur en företagssajt bör byggas nästa år.",
+    publicerad: "2026-11-11",
+    uppdaterad: "2026-11-11",
+    tjanst: "hemsida",
+    avsnitt: [
+      {
+        rubrik: "Två sorters besökare",
+        stycken: [
+          "I maj 2026 presenterade Google Universal Cart, en kundvagn som följer användaren mellan Google Sök, Gemini, YouTube och Gmail och kan jämföra priser och bevaka rea åt hen. Sedan dess har köp direkt i Googles AI-läge börjat rullas ut i USA och Kanada, och Google har sagt att Storbritannien står på tur. I Sverige finns det ännu inte.",
+          "Vår förutsägelse är att det kommer, och att det förändrar vad en hemsida är till för. En AI-assistent ser inte din design. Den läser din text, dina priser, dina öppettider och vad andra säger om dig – och avgör om du är värd att föreslå.",
+          "Det betyder inte att människorna försvinner. Det betyder att en hemsida 2027 måste fungera för två sorters besökare samtidigt: en människa som vill känna förtroende, och en maskin som vill ha fakta.",
+        ],
+        citat: "En AI-assistent ser inte din design. Den läser dina fakta.",
+      },
+      {
+        rubrik: "Det maskinerna behöver",
+        lista: {
+          rader: [
+            {
+              titel: "Text i sidans kod",
+              text: "AI-tjänsternas robotar kör inte JavaScript. Bygger sajten sin text i webbläsaren ser de en tom sida. Kontrollera med Visa sidkälla.",
+            },
+            {
+              titel: "Fakta som går att läsa",
+              text: "Priser, öppettider, adress, leveransvillkor och vad som ingår – skrivna som text, inte gömda i bilder eller pdf:er. Säljer du produkter: ett produktflöde med rätt pris och lagerstatus.",
+            },
+            {
+              titel: "Strukturerad data",
+              text: "Kod som talar om att det här är ett företag med en viss adress, en tjänst med ett visst pris eller en fråga med ett visst svar. Det gör det lättare att återge dig rätt.",
+            },
+            {
+              titel: "En startsida Google kan nå",
+              text: "Sedan 27 oktober 2026 kräver Google att startsidan går att läsa och att eventuella omdirigeringar därifrån fungerar för att visa din ikon i sökresultaten. En trasig kedja ger en grå jordglob bredvid ditt namn.",
+            },
+          ],
+        },
+      },
+      {
+        rubrik: "Det människorna behöver",
+        stycken: [
+          "Ju mer text på nätet som skrivs av AI, desto mer värd blir det som uppenbart inte är det. Riktiga bilder på er, era lokaler och era kunder. Namn på personerna bakom företaget. Omdömen med namn. Konkreta exempel på vad ni har gjort.",
+          "Det är också det AI-tjänsterna letar efter när de ska avgöra vem som är trovärdig. Samma sak som övertygar en människa övertygar alltså maskinen – det är en av få saker som blir enklare 2027, inte svårare.",
+        ],
+      },
+      {
+        rubrik: "Snabb på telefonen, användbar för alla",
+        stycken: [
+          "Mobilen är redan där de flesta besök sker, och det kommer inte att ändras. Det som ändras är tålamodet. En sida som står halvtom i flera sekunder förlorar besökaren innan hen har sett vad du erbjuder.",
+          "Sedan 28 juni 2025 gäller tillgänglighetslagen för bland annat e-handel till konsumenter. Mikroföretag – färre än tio anställda och högst 2 miljoner euro i omsättning eller balansomslutning – är undantagna, men kraven är rimliga för alla: läsbar kontrast, alt-texter på bilder och en sajt som går att använda med tangentbordet. Det som gör en sajt användbar för en person med nedsatt syn gör den ofta också lättare att läsa för en maskin.",
+        ],
+      },
+      {
+        rubrik: "Färre sidor, tydligare svar",
+        stycken: [
+          "Vår andra förutsägelse: företagssajter blir mindre, inte större. Tio tunna sidor som säger ungefär samma sak hjälper varken människor eller maskiner. En sida per fråga dina kunder ställer – vad gör ni, vad kostar det, hur går det till, varför ska jag välja er – med tydliga svar och vanliga frågor längst ner, hjälper båda.",
+          "Det är samma princip som vi bygger vår egen sajt efter: en sida per sökavsikt, och sidor som hjälper någon att välja snarare än bara förklarar.",
+        ],
+      },
+      {
+        rubrik: "Vår slutsats: bygg för att bli läst, inte bara sedd",
+        stycken: [
+          "De senaste tio åren har en bra hemsida mest handlat om hur den ser ut. 2027 handlar den lika mycket om hur den läses – av människor som scrollar på telefonen och av assistenter som jämför åt dem.",
+          "Vår hållning: designa inte om sajten för att den ser gammal ut. Bygg om den om den inte går att läsa – om texten inte finns i koden, om priserna saknas, om ingen vet vilka som står bakom företaget. Det är där nästa års kunder försvinner, inte i valet av typsnitt.",
+          "Är sajten i grunden bra räcker det ofta att [modernisera den](/modernisera-hemsida). Ska du ta in offerter på en ny, läs först [så jämför du offerter på en hemsida](/guider/jamfora-offerter-hemsida).",
+        ],
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Kan AI-assistenter handla på min hemsida?",
+        svar: "Inte i Sverige ännu. Google har börjat med köp direkt i AI-läget i USA och Kanada och har sagt att Storbritannien står på tur. Det du kan göra redan nu är att se till att priser, lagerstatus och villkor finns som text och strukturerad data, så att sajten är redo när det kommer.",
+      },
+      {
+        fraga: "Behöver vi en ny hemsida inför 2027?",
+        svar: "Inte nödvändigtvis. Går texten att läsa i sidkällan, är sajten snabb på mobilen och står priser och kontaktuppgifter tydligt räcker det ofta att förbättra den sajt ni har. Saknas det bör ni överväga att bygga nytt.",
+      },
+      {
+        fraga: "Varför syns en grå jordglob i stället för vår logga i Google?",
+        svar: "Oftast för att Google inte kan läsa startsidan eller följa omdirigeringarna dit, eller för att ikonen inte anges på startsidan. Sedan 27 oktober 2026 är kravet tydligt i Googles dokumentation. På en ny domän kan det också ta några veckor innan ikonen visas.",
+      },
+      {
+        fraga: "Gäller tillgänglighetslagen vår hemsida?",
+        svar: "Den gäller bland annat e-handel till konsumenter. Mikroföretag med färre än tio anställda och högst 2 miljoner euro i omsättning eller balansomslutning är undantagna. Är du osäker, kontrollera med Post- och telestyrelsen eller en jurist.",
+      },
+    ],
+  },
+  {
+    // Framtidsartikel – uppdateras varje höst, se kommentaren på seo-trender.
+    slug: "meta-annonser-trender",
+    format: "artikel",
+    titel: "Annonsera på Facebook och Instagram 2027: när Meta gör annonserna själv",
+    rubrik: {
+      text: "Annonsera på Facebook och Instagram 2027: när Meta gör annonserna själv",
+      markera: "gör annonserna själv",
+    },
+    seoTitel: "Facebook- och Instagramannonser 2027",
+    seoBeskrivning:
+      "Meta automatiserar målgrupper, placeringar och nu själva annonserna. Så ser annonsering på Facebook och Instagram ut 2027 – och vad som kräver en människa.",
+    ingress:
+      "Meta har ett uttalat mål: att du ska kunna ge systemet en produktbild och en budget, och att resten sköts av AI. Mycket av det finns redan. Här är vad vi tror att annonsering på Facebook och Instagram innebär 2027 – och var du som annonsör fortfarande gör skillnad.",
+    publicerad: "2026-11-11",
+    uppdaterad: "2026-11-11",
+    tjanst: "meta-annonser",
+    avsnitt: [
+      {
+        rubrik: "Det som redan är automatiskt",
+        stycken: [
+          "Den som annonserade på Facebook för fem år sedan valde själv målgrupp, placering och budget. I dag är det mesta av det Metas sak. Sedan slutet av 2025 är Advantage+ – Metas automatiserade kampanjer – förvalt för nya kampanjer om försäljning, kundämnen och appar, och i början av 2026 slogs det manuella och det automatiska flödet ihop till ett.",
+          "Målgrupperna du anger behandlas nu som förslag snarare än regler. Systemet visar annonsen för dem det tror kommer att agera, oavsett om de finns i din målgrupp eller inte.",
+          "Under hösten 2026 har Meta dessutom lagt till verktyg som gör stillbilder till videoannonser och skapar varianter av samma video med olika inledningar, musik och textning. Och enligt Wall Street Journal är målet att annonser ska kunna skapas och riktas helt av AI före slutet av 2026. Meta har inte bekräftat ett datum, men riktningen är tydlig.",
+        ],
+      },
+      {
+        rubrik: "Annonsen blir målgruppen",
+        stycken: [
+          "Vår viktigaste förutsägelse för 2027 är att annonsen ersätter målgruppen som det du styr med. När systemet själv väljer vem som ser annonsen är det annonsens innehåll som avgör vem den hittar. En annons om en barnvagn hittar föräldrar, en annons med ett B2B-erbjudande hittar beslutsfattare – oavsett vilka intressen du kryssade i.",
+          "Det betyder att fler och bättre varianter blir den viktigaste hävstången. Inte tio versioner av samma bild med olika färg, utan olika vinklar: olika problem, olika kunder, olika skäl att köpa. Systemet kan göra varianter. Det kan inte hitta på varför någon ska välja just dig.",
+        ],
+        citat:
+          "Systemet kan göra varianter. Det kan inte hitta på varför någon ska välja just dig.",
+      },
+      {
+        rubrik: "Tre saker att hålla koll på",
+        lista: {
+          rader: [
+            {
+              titel: "Du ansvarar för det AI:n skapar",
+              text: "Metas reviderade annonsvillkor, som enligt planen gäller från 20 november 2026, gör annonsören ensam ansvarig för annonser som skapats med Metas AI-verktyg. Granska därför allt som genereras innan det går ut – påståenden, priser och bilder på produkter.",
+            },
+            {
+              titel: "Förval som skickar kunderna någon annanstans",
+              text: "Meta slår på allt fler funktioner som standard, till exempel att ett tryck på annonsen kan öppna en produktsida inne i appen i stället för din sajt. Gå igenom inställningarna för varje kampanj, och stäng av det som inte passar.",
+            },
+            {
+              titel: "Mätningen gynnar Meta",
+              text: "Metas egen statistik räknar generöst. Jämför med försäljningen i din kassa eller ditt CRM, och testa ibland att pausa en kampanj för att se vad som faktiskt försvinner.",
+            },
+          ],
+        },
+        efter: [
+          "En sak som inte gäller oss i Sverige än: sedan december 2025 använder Meta användarnas samtal med Meta AI för att anpassa annonser – men inte i EU, Storbritannien och Sydkorea. Om och när det kommer hit är en öppen fråga för 2027.",
+        ],
+      },
+      {
+        rubrik: "En ny kanal: annonser i ChatGPT",
+        stycken: [
+          "Sedan 24 augusti 2026 visar ChatGPT annonser för användare på gratisplanen i 31 europeiska länder, Sverige inräknat, och sedan 31 augusti kan företag köpa dem själva. Annonserna visas separat från svaren, och i Europa är de inte personanpassade om inte användaren samtyckt.",
+          "Vår bedömning är att det blir värt att testa under 2027 för företag vars kunder redan frågar ChatGPT om det de säljer. Men det ersätter inte Facebook och Instagram – där finns räckvidden, och där finns verktygen för bild och video.",
+        ],
+      },
+      {
+        rubrik: "Vår slutsats: ge Meta material, inte kontrollen",
+        stycken: [
+          "När maskinen sköter målgrupper, placeringar och budget är det lockande att ge upp allt. Det är ett misstag. Annonsering på Facebook och Instagram 2027 avgörs av tre saker som Meta inte kan göra åt dig: ett erbjudande som är värt att trycka på, bilder och video som är äkta nog att stanna upp för, och en mätning du själv kontrollerar.",
+          "Vår hållning: låt Meta sköta det tekniska, men behåll ansvaret för budskapet och siffrorna. Ge systemet många olika, riktiga annonser att välja bland. Granska allt AI:n skapar innan det går ut. Och lita på din kassa före Metas statistik.",
+          "Vill du komma igång själv finns vår guide om [Facebook-annonsering](/guider/facebook-annonsering). Vill du hellre att någon sköter det åt dig, läs om [hur vi arbetar med Meta-annonser](/meta-ads-byra).",
+        ],
+      },
+    ],
+    fragor: [
+      {
+        fraga: "Behövs en byrå om Meta automatiserar allt?",
+        svar: "Mindre för det tekniska, mer för innehållet. Meta sköter alltmer av målgrupper, placeringar och budget, men någon måste ta fram erbjudanden och annonser som är värda att visa, granska det AI:n skapar och följa upp mot riktig försäljning.",
+      },
+      {
+        fraga: "Kan man fortfarande välja målgrupp själv?",
+        svar: "Delvis. Du kan ange en målgrupp, men i de flesta kampanjer behandlar Meta den som ett förslag och visar annonsen även för andra om systemet tror att de kommer att agera. Platser och vissa begränsningar, som ålder, går fortfarande att styra.",
+      },
+      {
+        fraga: "Är AI-skapade annonser tillåtna?",
+        svar: "Ja, Meta erbjuder själva verktygen. Men du som annonsör ansvarar för innehållet, och annonser som vilseleder om produkten bryter både mot Metas regler och mot marknadsföringslagen.",
+      },
+      {
+        fraga: "Ska vi annonsera i ChatGPT 2027?",
+        svar: "Testa gärna om dina kunder redan använder ChatGPT för att jämföra det du säljer. Det är en ny kanal med få annonsörer, men den ersätter inte annonser på Facebook och Instagram.",
+      },
+    ],
+  },
 ];
 
 /**
