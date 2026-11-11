@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-route
 import { ArrowRight, Check, Clock, TriangleAlert } from "lucide-react";
 import { BokaKnapp, BokaPanel } from "@/components/Boka";
 import { Markerad, Mark } from "@/components/Heading";
+import { MedLankar } from "@/components/MedLankar";
 import { OffertJamforare } from "@/components/OffertJamforare";
 import { VanligaFragor } from "@/components/VanligaFragor";
 import { FORETAG } from "@/lib/foretag";
@@ -186,7 +187,7 @@ function AvsnittVy({ a, artikel, forsta }: { a: Avsnitt; artikel: boolean; forst
       </h2>
       {a.stycken?.map((p, i) => (
         <p key={p} className={`${STYCKE} ${artikel && forsta && i === 0 ? ANFANG : ""}`}>
-          {p}
+          <MedLankar text={p} />
         </p>
       ))}
       {a.verktyg === "offertjamforare" && <OffertJamforare />}
@@ -225,7 +226,7 @@ function AvsnittVy({ a, artikel, forsta }: { a: Avsnitt; artikel: boolean; forst
       )}
       {a.efter?.map((p) => (
         <p key={p} className={STYCKE}>
-          {p}
+          <MedLankar text={p} />
         </p>
       ))}
       {a.citat && (
@@ -255,10 +256,10 @@ function ArtikelLista({
       {rader.map((r) => (
         <li key={typeof r === "string" ? r : r.titel} className="pl-1">
           {typeof r === "string" ? (
-            r
+            <MedLankar text={r} />
           ) : (
             <>
-              <strong className="text-ink">{r.titel}.</strong> {r.text}
+              <strong className="text-ink">{r.titel}.</strong> <MedLankar text={r.text} />
             </>
           )}
         </li>
@@ -299,11 +300,15 @@ function Lista({
             <Check className="mt-1 size-5 shrink-0 text-guld-mork" aria-hidden="true" />
           )}
           {typeof r === "string" ? (
-            <span>{r}</span>
+            <span>
+              <MedLankar text={r} />
+            </span>
           ) : (
             <span>
               <strong className="block text-ink">{r.titel}</strong>
-              <span className="text-ink/80">{r.text}</span>
+              <span className="text-ink/80">
+                <MedLankar text={r.text} />
+              </span>
             </span>
           )}
         </li>

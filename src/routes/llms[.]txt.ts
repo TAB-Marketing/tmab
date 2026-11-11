@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { absolut, FORETAG } from "@/lib/foretag";
+import { utanLankar } from "@/lib/lankar";
 import {
   BINDNING_TEXT,
   DELAR,
@@ -90,7 +91,7 @@ function llmsText(): string {
       ...PRIS_FRAGOR,
       ...TJANSTER.filter((t) => !landningssidaForTjanst(t.slug)).flatMap((t) => t.fragor),
       ...LANDNINGSSIDOR.flatMap((l) => l.fragor),
-    ]).map((f) => `- ${f.fraga} ${f.svar}`),
+    ]).map((f) => `- ${f.fraga} ${utanLankar(f.svar)}`),
     "",
     "## Sidor",
     "",

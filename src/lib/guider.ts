@@ -1,6 +1,7 @@
 // Guider – informationssidor som svarar på det kunder söker på. De ger sajten innehåll att
 // ranka på i Google och att citeras av AI-assistenter, och länkar vidare till rätt tjänst.
 // Enda källan för /guider, varje guidesida, sitemap.xml och llms.txt.
+import { utanLankar } from "@/lib/lankar";
 import type { Fraga } from "@/lib/priser";
 
 export type Rad = string | { titel: string; text: string };
@@ -651,7 +652,7 @@ export const GUIDER: readonly Guide[] = [
         rubrik: "Kostnaden kommer efter lanseringen",
         stycken: [
           "Själva bygget kan vara nästan gratis. Det som kostar är att ha sajten igång: domänen, oftast några hundra kronor om året, värdtjänsten och ofta en betald plan i AI-verktyget för att kunna koppla en egen domän eller fortsätta ändra.",
-          "Läs villkoren för värdtjänsten. Vissa gratisplaner tillåter inte kommersiellt bruk eller stänger sajten när en gräns nås – och det märks först när kunderna möts av ett felmeddelande. Räkna också med din egen tid. Varje ändring kan förstöra något annat, så de viktigaste sidorna och formuläret behöver testas efter varje större uppdatering, och Search Console behöver läsas en gång i månaden.",
+          "Läs villkoren för värdtjänsten. Vissa gratisplaner tillåter inte kommersiellt bruk eller stänger sajten när en gräns nås – och det märks först när kunderna möts av ett felmeddelande. Räkna också med din egen tid. Varje ändring kan förstöra något annat, så de viktigaste sidorna och formuläret behöver testas efter varje större uppdatering, och [Search Console](/guider/google-search-console) behöver läsas en gång i månaden.",
         ],
       },
       {
@@ -678,9 +679,10 @@ export const GUIDER: readonly Guide[] = [
         rubrik: "Vår slutsats: kontrollera det du inte ser",
         stycken: [
           "En hemsida är inte sämre för att AI har byggt den. Men den ser färdig ut långt innan den är det, och därför publiceras den utan att någon kontrollerat det som inte syns.",
-          "Vår hållning är enkel: publicera aldrig en AI-byggd sajt innan du har gjort tre saker. Sökt efter din rubrik i sidkällan. Skickat formuläret från din egen telefon och sett mejlet komma fram. Kopplat Google Search Console. Det tar en eftermiddag och fångar de fel som kostar mest.",
+          "Vår hållning är enkel: publicera aldrig en AI-byggd sajt innan du har gjort tre saker. Sökt efter din rubrik i sidkällan. Skickat formuläret från din egen telefon och sett mejlet komma fram. Kopplat [Google Search Console](/guider/google-search-console). Det tar en eftermiddag och fångar de fel som kostar mest.",
           "Och en gräns vi inte kompromissar med: tar sajten emot betalningar, inloggningar eller kunduppgifter som sparas i en databas ska någon som kan läsa koden granska den innan den går live. Det är inte en designfråga. Det är ett ansvar för andras uppgifter.",
           "Har du en enkel sajt med några sidor och ett kontaktformulär ska du däremot inte betala en byrå för att bygga den. Lägg pengarna på bra bilder och texter som svarar på kundernas frågor. Det är där skillnaden syns.",
+          "Och ska du ta in hjälp: läs [så jämför du offerter på en hemsida](/guider/jamfora-offerter-hemsida) innan du skriver på.",
         ],
       },
     ],
@@ -732,7 +734,7 @@ export const GUIDER: readonly Guide[] = [
         stycken: [
           "Engångspriset är den siffra alla tittar på, och den som säger minst. En hemsida ska leva i flera år, och det som kostar är ofta det som kommer efter lanseringen: drift, uppdateringar och ändringar.",
           "Två påhittade men typiska exempel. Offert A kostar 15 000 kronor att bygga och 300 kronor i månaden i drift – 25 800 kronor på tre år. Offert B kostar bara 8 000 kronor att bygga men 900 kronor i månaden – 40 400 kronor på tre år. Den offert som såg billigast ut kostar alltså nästan dubbelt så mycket.",
-          "Räkna därför alltid: engångspris plus månadskostnaden gånger 36. Lägg till vad en ändring kostar om du vet att du kommer att behöva några, och kontrollera om priset får höjas under avtalstiden.",
+          "Räkna därför alltid: engångspris plus månadskostnaden gånger 36. Lägg till vad en ändring kostar om du vet att du kommer att behöva några, och kontrollera om priset får höjas under avtalstiden. Våra egna priser, räknade på samma sätt, står på [vad en hemsida kostar](/hemsida-pris).",
         ],
         citat: "Den offert som såg billigast ut kostade nästan dubbelt så mycket på tre år.",
       },
@@ -761,7 +763,7 @@ export const GUIDER: readonly Guide[] = [
             },
             {
               titel: "Vad ”SEO ingår” betyder",
-              text: "Egna titlar och beskrivningar på varje sida, en sajtkarta som skickas in till Google, och – om du har en gammal sajt – omdirigeringar från de gamla adresserna. Står det bara ”SEO-anpassad” vet du inte vad du får.",
+              text: "Egna titlar och beskrivningar på varje sida, en sajtkarta som skickas in i [Google Search Console](/guider/google-search-console), och – om du har en gammal sajt – omdirigeringar från de gamla adresserna. Står det bara ”SEO-anpassad” vet du inte vad du får.",
             },
             {
               titel: "När det blir klart",
@@ -814,7 +816,7 @@ export const GUIDER: readonly Guide[] = [
           "Det viktigaste i en offert på en hemsida är inte priset. Det är vad som händer den dag du vill gå vidare.",
           "Vår hållning är tydlig: en offert där domänen, koden eller kontona inte står i ditt namn ska bort från listan, hur billig den än är. Allt annat går att förhandla om – ägandet är det enda du inte kan rätta till i efterhand utan att börja om.",
           "Bland de offerter som klarar det, välj den med fast pris och tydligast omfattning, och jämför kostnaden på tre år, inte på bygget. Ett fast pris med en tydlig lista över vad som ingår är värt mer än ett lägre timpris med en uppskattning.",
-          "Och behöver du bara en enkel sajt med några sidor: välj inte den dyraste för att den ser mest gedigen ut. Betala för det du behöver, och lägg skillnaden på texter och bilder som får kunderna att höra av sig.",
+          "Och behöver du bara en enkel sajt med några sidor: välj inte den dyraste för att den ser mest gedigen ut. Betala för det du behöver, och lägg skillnaden på texter och bilder som får kunderna att höra av sig. Räcker en enkel sajt kan du också bygga den själv – läs [vad som återstår efter AI-utkastet](/guider/bygga-hemsida-med-ai) först.",
         ],
       },
     ],
@@ -833,7 +835,7 @@ export const GUIDER: readonly Guide[] = [
       },
       {
         fraga: "Vad kostar en hemsida?",
-        svar: "Det beror på omfattningen, men räkna alltid på tre år: bygget plus den löpande kostnaden. På vår sida om vad en hemsida kostar visar vi våra egna priser och vad som ingår.",
+        svar: "Det beror på omfattningen, men räkna alltid på tre år: bygget plus den löpande kostnaden. På vår sida om [vad en hemsida kostar](/hemsida-pris) visar vi våra egna priser och vad som ingår.",
       },
     ],
   },
@@ -861,5 +863,5 @@ export function lastid(g: Guide): number {
     ]),
     ...g.fragor.flatMap((f) => [f.fraga, f.svar]),
   ].join(" ");
-  return Math.max(1, Math.round(text.split(/\s+/).length / 200));
+  return Math.max(1, Math.round(utanLankar(text).split(/\s+/).length / 200));
 }

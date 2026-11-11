@@ -2,6 +2,7 @@
 // Varje route anropar sidhuvud() i sin head() – då blir titel, beskrivning, canonical,
 // delningsbild och strukturerad data likadana överallt.
 import { absolut, FORETAG, SAJT_URL } from "@/lib/foretag";
+import { utanLankar } from "@/lib/lankar";
 import type { Guide } from "@/lib/guider";
 import type { ProjektVideo } from "@/lib/projekt";
 import { PAKET, PRIS, type Fraga } from "@/lib/priser";
@@ -193,7 +194,7 @@ export function faqSchema(fragor: readonly Fraga[]): Schema {
     mainEntity: fragor.map((f) => ({
       "@type": "Question",
       name: f.fraga,
-      acceptedAnswer: { "@type": "Answer", text: f.svar },
+      acceptedAnswer: { "@type": "Answer", text: utanLankar(f.svar) },
     })),
   };
 }

@@ -1,5 +1,6 @@
 import { ChevronDown, Plus } from "lucide-react";
 import { useState } from "react";
+import { MedLankar } from "@/components/MedLankar";
 import type { Fraga } from "@/lib/priser";
 
 /** Hur många frågor som syns innan "Visa fler". */
@@ -28,7 +29,9 @@ export function VanligaFragor({ fragor }: { fragor: readonly Fraga[] }) {
                 <Plus className="size-4" strokeWidth={1.5} aria-hidden="true" />
               </span>
             </summary>
-            <p className="max-w-3xl pb-6 text-base leading-relaxed text-ink/80">{f.svar}</p>
+            <p className="max-w-3xl pb-6 text-base leading-relaxed text-ink/80">
+              <MedLankar text={f.svar} />
+            </p>
           </details>
         ))}
       </div>
