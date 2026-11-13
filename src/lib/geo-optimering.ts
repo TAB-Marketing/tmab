@@ -52,7 +52,7 @@ export const GEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar GEO-optimering?",
-    svar: `GEO ingår i Synlighet tillsammans med SEO – det finns inget separat GEO-pris. Först en grundoptimering från ${kr(PRIS.grundoptimering)}, sedan löpande från ${kr(PRIS.synlighetBas)} per månad med AI-koll i varje rapport. Vad ChatGPT svarar om er i dag visar vi gratis i genomgången. ${MOMS_TEXT}`,
+    svar: `GEO ingår i Synlighet tillsammans med SEO – det finns inget separat GEO-pris. Först en grundoptimering från ${kr(PRIS.grundoptimeringLiten)}, sedan löpande från ${kr(PRIS.synlighetBas)} per månad med AI-koll i varje rapport. Vad ChatGPT svarar om er i dag visar vi gratis i genomgången. ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar det innan GEO ger resultat?",

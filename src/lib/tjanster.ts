@@ -94,11 +94,11 @@ export const TJANSTER: readonly Tjanst[] = [
       "Google Search Console i ert namn och rapport varje månad",
     ],
     pris: { belopp: PRIS.synlighetBas, fran: true, manad: true, avser: "Synlighet – SEO och GEO" },
-    iPaket: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb.`,
+    iPaket: `Först en grundoptimering från ${kr(PRIS.grundoptimeringLiten)} som engångsjobb.`,
     fragor: [
       {
         fraga: "Vad kostar SEO?",
-        svar: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb. Därefter löpande SEO och GEO från ${kr(PRIS.synlighetBas)} per månad, utan bindningstid. ${MOMS_TEXT}`,
+        svar: `Först en grundoptimering från ${kr(PRIS.grundoptimeringLiten)} som engångsjobb. Därefter löpande SEO och GEO från ${kr(PRIS.synlighetBas)} per månad, utan bindningstid. ${MOMS_TEXT}`,
       },
       {
         fraga: "Hur lång tid tar det innan SEO ger resultat?",
@@ -139,7 +139,7 @@ export const TJANSTER: readonly Tjanst[] = [
       "Uppföljning av hur ni nämns",
     ],
     pris: { belopp: PRIS.synlighetBas, fran: true, manad: true, avser: "Synlighet – SEO och GEO" },
-    iPaket: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb.`,
+    iPaket: `Först en grundoptimering från ${kr(PRIS.grundoptimeringLiten)} som engångsjobb.`,
     fordjupning: [
       {
         rubrik: { text: "Så väljer AI-assistenter vilka företag de nämner", markera: "nämner" },
@@ -184,7 +184,7 @@ export const TJANSTER: readonly Tjanst[] = [
       },
       {
         fraga: "Vad kostar GEO?",
-        svar: `GEO ingår i Synlighet tillsammans med SEO: först en grundoptimering från ${kr(PRIS.grundoptimering)}, sedan löpande från ${kr(PRIS.synlighetBas)} per månad. ${MOMS_TEXT}`,
+        svar: `GEO ingår i Synlighet tillsammans med SEO: först en grundoptimering från ${kr(PRIS.grundoptimeringLiten)}, sedan löpande från ${kr(PRIS.synlighetBas)} per månad. ${MOMS_TEXT}`,
       },
     ],
   },

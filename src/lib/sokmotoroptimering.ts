@@ -32,7 +32,7 @@ export const SOKMOTOROPTIMERING_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar sökmotoroptimering?",
-    svar: `Hos oss kostar en grundoptimering av SEO och GEO från ${kr(PRIS.grundoptimering)} som engångsjobb. Löpande SEO och GEO kostar från ${kr(PRIS.synlighetBas)} per månad. ${BINDNING_TEXT} ${MOMS_TEXT}`,
+    svar: `Hos oss kostar en grundoptimering av SEO och GEO från ${kr(PRIS.grundoptimeringLiten)} som engångsjobb. Löpande SEO och GEO kostar från ${kr(PRIS.synlighetBas)} per månad. ${BINDNING_TEXT} ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar SEO?",

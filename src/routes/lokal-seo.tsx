@@ -585,7 +585,7 @@ function LokalSeo() {
                   <dt className="text-white/80">Grundoptimering av hemsidan, engång</dt>
                   <dd className="mt-1 font-display text-4xl">
                     <span className="text-2xl">från </span>
-                    {kr(PRIS.grundoptimering)}
+                    {kr(PRIS.grundoptimeringLiten)}
                   </dd>
                 </div>
                 <div className="py-4">

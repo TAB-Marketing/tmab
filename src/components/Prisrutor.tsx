@@ -91,6 +91,6 @@ export function DelPrisrutor({
   );
 }
 
-/** Kort prisrad för hjältesektionen: "Grundoptimering 5 995 kr · löpande från 3 995 kr/mån". */
-export const SYNLIGHET_KORT = `Grundoptimering från ${kr(PRIS.grundoptimering)} · löpande från ${kr(PRIS.synlighetBas)}/mån`;
+/** Kort prisrad för hjältesektionen: "Grundoptimering 3 460 kr · löpande från 3 995 kr/mån". */
+export const SYNLIGHET_KORT = `Grundoptimering från ${kr(PRIS.grundoptimeringLiten)} · löpande från ${kr(PRIS.synlighetBas)}/mån`;
 export const ANNONSER_KORT = `Uppsättning ${kr(PRIS.annonsUppsattning)} · löpande från ${kr(PRIS.annonser1)}/mån`;

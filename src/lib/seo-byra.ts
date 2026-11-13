@@ -26,7 +26,7 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar det att anlita en SEO-byrå?",
-    svar: `Först en grundoptimering från ${kr(PRIS.grundoptimering)} som engångsjobb. Därefter löpande SEO och GEO: Bas ${kr(PRIS.synlighetBas)}, Mellan ${kr(PRIS.synlighetMellan)} eller Hög ${kr(PRIS.synlighetHog)} per månad, utan bindningstid. Nivån föreslår vi efter genomgången. ${MOMS_TEXT}`,
+    svar: `Först en grundoptimering från ${kr(PRIS.grundoptimeringLiten)} som engångsjobb. Därefter löpande SEO och GEO: Bas ${kr(PRIS.synlighetBas)}, Mellan ${kr(PRIS.synlighetMellan)} eller Hög ${kr(PRIS.synlighetHog)} per månad, utan bindningstid. Nivån föreslår vi efter genomgången. ${MOMS_TEXT}`,
   },
   {
     fraga: "Kan SEO hjälpa småföretag att få fler kunder?",
@@ -70,7 +70,7 @@ export const SEO_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Kan vi få SEO-hjälp till fast pris?",
-    svar: `Ja. Grundoptimeringen kostar från ${kr(PRIS.grundoptimering)} som engångspris, och löpande SEO har fast månadspris från ${kr(PRIS.synlighetBas)}. Vi debiterar aldrig per timme. ${MOMS_TEXT}`,
+    svar: `Ja. Grundoptimeringen kostar från ${kr(PRIS.grundoptimeringLiten)} som engångspris, och löpande SEO har fast månadspris från ${kr(PRIS.synlighetBas)}. Vi debiterar aldrig per timme. ${MOMS_TEXT}`,
   },
   {
     fraga: "Ska vi anlita en SEO-konsult eller en SEO-byrå?",

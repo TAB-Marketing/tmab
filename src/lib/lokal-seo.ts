@@ -31,7 +31,7 @@ export const LOKAL_FRAGOR: readonly Fraga[] = [
   },
   {
     fraga: "Vad kostar lokal SEO?",
-    svar: `Google-företagsprofilen sätter vi upp eller tar över för ${kr(PRIS.foretagsprofil)}. Hemsidan: en grundoptimering från ${kr(PRIS.grundoptimering)}, och därefter löpande SEO från ${kr(PRIS.synlighetBas)} per månad med nya lokala tjänstesidor varje månad. Flera orter eller språk får offert. ${MOMS_TEXT}`,
+    svar: `Google-företagsprofilen sätter vi upp eller tar över för ${kr(PRIS.foretagsprofil)}. Hemsidan: en grundoptimering från ${kr(PRIS.grundoptimeringLiten)}, och därefter löpande SEO från ${kr(PRIS.synlighetBas)} per månad med nya lokala tjänstesidor varje månad. Flera orter eller språk får offert. ${MOMS_TEXT}`,
   },
   {
     fraga: "Hur lång tid tar det innan lokal SEO ger resultat?",

@@ -30,9 +30,10 @@ export const PRIS = {
   annonserSkraddarsytt: 8995,
   // Synlighet
   foretagsprofil: 1995,
+  grundoptimeringLiten: 3460,
   grundoptimering: 5995,
   grundoptimeringStor: 9995,
-  grundoptimeringLista: 3995,
+  grundoptimeringLista: 1940,
   synlighetBas: 3930,
   synlighetMellan: 6970,
   synlighetHog: 9930,
@@ -72,7 +73,7 @@ export const BINDNING_TEXT =
 /** Avbetalning av hemsida – det enda som binder. */
 export const AVBETALNING_TEXT = "Väljer ni avbetalning på en ny hemsida binder den i 12 månader.";
 
-export const STARTAVGIFT_TEXT = `Studio och Webb har ingen uppstart. Annonser och Synlighet har ett engångsjobb vid start: annonsuppsättning (${kr(PRIS.annonsUppsattning)}) före Annonser och grundoptimering (från ${kr(PRIS.grundoptimering)}) före Synlighet. Är det redan gjort hoppar vi över det.`;
+export const STARTAVGIFT_TEXT = `Studio och Webb har ingen uppstart. Annonser och Synlighet har ett engångsjobb vid start: annonsuppsättning (${kr(PRIS.annonsUppsattning)}) före Annonser och grundoptimering (från ${kr(PRIS.grundoptimeringLiten)}) före Synlighet. Är det redan gjort hoppar vi över det.`;
 
 export const SVARSTID_TEXT = "Vi svarar inom en arbetsdag.";
 
@@ -305,9 +306,14 @@ export const SYNLIGHET: Del = {
       slug: "seo",
     },
     {
-      tjanst: "Grundoptimering, upp till 10 sidor",
-      pris: PRIS.grundoptimering,
+      tjanst: "Grundoptimering, upp till 5 sidor",
+      pris: PRIS.grundoptimeringLiten,
       not: "Teknik, sökordsanalys, strukturerad data, Search Console och Bing i ert namn, plan för 3 månader",
+      slug: "seo",
+    },
+    {
+      tjanst: "Grundoptimering, 6–10 sidor",
+      pris: PRIS.grundoptimering,
       slug: "seo",
     },
     {
@@ -572,10 +578,18 @@ export const ENGANGSJOBB: readonly Engangsjobb[] = [
     belopp: PRIS.foretagsprofil,
   },
   {
+    id: "grundoptimering-liten",
+    del: "synlighet",
+    namn: "Grundoptimering, upp till 5 sidor",
+    not: "Teknik, sökordsanalys, strukturerad data, Search Console och Bing",
+    belopp: PRIS.grundoptimeringLiten,
+    grupp: "grundoptimering",
+    uppstart: true,
+  },
+  {
     id: "grundoptimering",
     del: "synlighet",
-    namn: "Grundoptimering, upp till 10 sidor",
-    not: "Teknik, sökordsanalys, strukturerad data, Search Console och Bing",
+    namn: "Grundoptimering, 6–10 sidor",
     belopp: PRIS.grundoptimering,
     grupp: "grundoptimering",
     uppstart: true,
